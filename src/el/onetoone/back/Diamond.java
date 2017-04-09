@@ -7,7 +7,7 @@ public class Diamond {
 	
 	public Status getStatus() {
 		
-		return status;
+		return this.status;
 	}
 	
 	public void setStatus(Status status) {
@@ -17,7 +17,7 @@ public class Diamond {
 	
 	public Color getColor() {
 		
-		return color;
+		return this.color;
 	}
 	
 	public void setColor(Color color) {
