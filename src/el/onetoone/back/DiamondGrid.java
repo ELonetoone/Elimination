@@ -1,6 +1,9 @@
 package el.onetoone.back;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.Stream;
 
 public class DiamondGrid {
 	
@@ -8,7 +11,38 @@ public class DiamondGrid {
 	
 	public void init() {
 		
+		//initialize the map
+		Random random = new Random();
+		Color[] colors = Color.values();
+		colors = Stream.of(colors).filter(c -> !c.toString().equals("GRAY")).toArray(Color[]::new);
+		System.out.println(Arrays.toString(colors));
 		
+		do {
+			for (int i = 0; i < diamondMap.length; i++) {
+				
+				for (int j = 0; j < diamondMap[i].length; j++) {
+					
+					if (i < 2 || j < 2 || j > Config.width + 1 || i > Config.height + 1) {
+						//外围填灰色
+						diamondMap[i][j] = new Diamond();
+						diamondMap[i][j].setColor(Color.GRAY);
+					} else {
+						diamondMap[i][j] = new Diamond();
+						diamondMap[i][j].setColor(colors[(int) ((Math.random() * 100) % colors.length)]);
+					}
+				}
+			}
+		} while ((!hasDied()) || canElimination());
+
+
+		for (int i = 0; i < diamondMap.length; i++) {
+			
+			for (int j = 0; j < diamondMap[i].length; j++) {
+				
+				System.out.printf("%-6s  ",diamondMap[i][j].getColor().toString());
+			}
+			System.out.println();
+		}
 	}
 	
 	public boolean hasDied() {
@@ -51,7 +85,7 @@ public class DiamondGrid {
 	
 	public boolean canElimination() {
 		for (int i = 2; i < Config.height; i++) {
-			for (int j = 2; j < Config.width; i++) {
+			for (int j = 2; j < Config.width; j++) {
 				Color currentColor = diamondMap[i][j].getColor();
 				if (currentColor == diamondMap[i][j+1].getColor()
 						&& currentColor == diamondMap[i][j+2].getColor()) {
@@ -74,7 +108,7 @@ public class DiamondGrid {
 	public ArrayList<Point> eliminationMap() {
 		ArrayList<Point> toBeEliminations = new ArrayList<>();
 		for (int i = 2; i < Config.height; i++) {
-			for (int j = 2; j < Config.width; i++) {
+			for (int j = 2; j < Config.width; j++) {
 				Color currentColor = diamondMap[i][j].getColor();
 				if (currentColor == diamondMap[i][j+1].getColor()
 						&& currentColor == diamondMap[i][j+2].getColor()) {
@@ -253,4 +287,9 @@ public class DiamondGrid {
 		
 	}
 
+	public static void main(String[] args) {
+		
+		DiamondGrid diamondGrid = new DiamondGrid();
+		diamondGrid.init();
+	}
 }
