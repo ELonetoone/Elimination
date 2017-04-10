@@ -33,16 +33,6 @@ public class DiamondGrid {
 				}
 			}
 		} while ((!hasDied()) || canElimination());
-
-
-		for (int i = 0; i < diamondMap.length; i++) {
-			
-			for (int j = 0; j < diamondMap[i].length; j++) {
-				
-				System.out.printf("%-6s  ",diamondMap[i][j].getColor().toString());
-			}
-			System.out.println();
-		}
 	}
 	
 	public boolean hasDied() {
@@ -285,11 +275,5 @@ public class DiamondGrid {
 	public void generateNewMap() {
 		
 		
-	}
-
-	public static void main(String[] args) {
-		
-		DiamondGrid diamondGrid = new DiamondGrid();
-		diamondGrid.init();
 	}
 }
