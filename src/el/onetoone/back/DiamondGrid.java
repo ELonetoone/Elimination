@@ -2,7 +2,6 @@ package el.onetoone.back;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class DiamondGrid {
@@ -12,7 +11,6 @@ public class DiamondGrid {
 	public void init() {
 		
 		//initialize the map
-		Random random = new Random();
 		Color[] colors = Color.values();
 		colors = Stream.of(colors).filter(c -> !c.toString().equals("GRAY")).toArray(Color[]::new);
 		System.out.println(Arrays.toString(colors));
@@ -273,7 +271,6 @@ public class DiamondGrid {
 	}
 	
 	public void generateNewMap() {
-		
 		
 	}
 }

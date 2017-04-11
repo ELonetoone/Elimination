@@ -4,7 +4,16 @@ public class Point {
 
 	private int x;
 	private int y;
+	private Status status;
 	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public int getX() {
 		return this.x;
 	}
