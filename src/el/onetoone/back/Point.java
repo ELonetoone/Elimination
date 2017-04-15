@@ -2,18 +2,16 @@ package el.onetoone.back;
 
 public class Point {
 
+	/**
+	 * 点的x坐标
+	 */
 	private int x;
-	private int y;
-	private Status status;
 	
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
+	/**
+	 * 点的y坐标
+	 */
+	private int y;
+	
 	public int getX() {
 		return this.x;
 	}
@@ -33,6 +31,21 @@ public class Point {
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	@Override
+	public boolean equals(Object point) {
+		Point anotherPoint = (Point) point;
+		if (anotherPoint.x == x && anotherPoint.y == y) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return x * 100 + y;
 	}
 	
 }

@@ -7,13 +7,12 @@ import java.util.stream.Stream;
 public class DiamondGrid {
 	
 	private Diamond[][] diamondMap = new Diamond[Config.height + 4][Config.width + 4];
+	private Color[] colors = Color.values();
 	
 	public void init() {
 		
 		//initialize the map
-		Color[] colors = Color.values();
 		colors = Stream.of(colors).filter(c -> !c.toString().equals("GRAY")).toArray(Color[]::new);
-		System.out.println(Arrays.toString(colors));
 		
 		do {
 			for (int i = 0; i < diamondMap.length; i++) {
@@ -30,7 +29,10 @@ public class DiamondGrid {
 					}
 				}
 			}
-		} while ((!hasDied()) || canElimination());
+		} while (hasDied() || canElimination());
+		diamondMap[6][8] = null;
+		diamondMap[7][8] = null;
+		testPrint();
 	}
 	
 	public boolean hasDied() {
@@ -44,7 +46,7 @@ public class DiamondGrid {
 							|| currentColor == diamondMap[i+3][j].getColor()
 							|| currentColor == diamondMap[i+2][j-1].getColor()
 							|| currentColor == diamondMap[i+2][j+1].getColor()) {
-						return true;
+						return false;
 					}
 				} else if (currentColor == diamondMap[i][j+1].getColor()){
 					if (currentColor == diamondMap[i][j-2].getColor()
@@ -53,22 +55,22 @@ public class DiamondGrid {
 							|| currentColor == diamondMap[i][j+3].getColor()
 							|| currentColor == diamondMap[i-1][j+2].getColor()
 							|| currentColor == diamondMap[i+1][j+2].getColor()) {
-						return true;
+						return false;
 					}
 				} else if (currentColor == diamondMap[i][j+2].getColor()) {
 					if (currentColor == diamondMap[i-1][j+1].getColor()
 							|| currentColor == diamondMap[i+1][j+1].getColor()) {
-						return true;
+						return false;
 					}
 				} else if (currentColor == diamondMap[i+2][j].getColor()) {
 					if (currentColor == diamondMap[i+1][j-1].getColor()
 							|| currentColor == diamondMap[i+1][j+1].getColor()) {
-						return true;
+						return false;
 					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean canElimination() {
@@ -271,6 +273,78 @@ public class DiamondGrid {
 	}
 	
 	public void generateNewMap() {
+		
+		//把null移到最顶部
+		moveNullToTheTop();
+		
+		//将null换为新的宝石
+		for (int i = 2; i < diamondMap.length - 2; i++) {
+			
+			for (int j = 2; j < diamondMap[i].length - 2; j++) {
+				if (diamondMap[i][j] == null) {
+					diamondMap[i][j] = new Diamond();
+					diamondMap[i][j].setColor(colors[(int) ((Math.random() * 100) % colors.length)]);
+				}
+			}
+		}
+		
+		if (hasDied()) {
+			//死图则游戏结束
+		}
+		testPrint();
+	}
+	
+	private void moveNullToTheTop() {
+		
+		for (int i = 2; i < diamondMap.length - 2; i++) {
+			
+			for (int j = 2; j < diamondMap[i].length - 2; j++) {
+				
+				if (i != 2) {
+					//最顶部不用移动
+					if (diamondMap[i][j] == null) {
+						int k = i;
+						while (true) {
+							//上方也为null时则不动
+							if (diamondMap[k - 1][j] == null) {
+								break;
+							}
+							diamondMap[k][j] = diamondMap[k - 1][j];
+							diamondMap[k - 1][j] = null;
+							testPrint();//test
+							k--;
+							if (k == 2) {
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public void  testPrint() {
+
+		for (int i = 0; i < diamondMap.length; i++) {
+			
+			System.out.printf( "%-2s:", i);
+			for (int j = 0; j < diamondMap[i].length; j++) {
+				
+				if (diamondMap[i][j] != null) {
+					System.out.printf("%-6s   ", diamondMap[i][j].getColor());
+				} else {
+					System.out.printf("%-6s   ", diamondMap[i][j]);
+				}
+			}
+			System.out.println();
+		}
+		System.out.println("\r\n\r\n");
+	}
+	
+	public static void main(String[] args) {
+		DiamondGrid diamondGrid = new DiamondGrid();
+		diamondGrid.init();
+		diamondGrid.generateNewMap();
 		
 	}
 }
