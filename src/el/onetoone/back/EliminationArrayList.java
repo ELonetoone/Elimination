@@ -25,7 +25,7 @@ public class EliminationArrayList {
 	}
 	
 	/**
-	 * 生成特效的宝石。（最多生成一个特效宝石）
+	 * 生成特效宝石。（最多生成一个特效宝石）
 	 * @param point 特效宝石位置
 	 * @param diamond 特效宝石
 	 */

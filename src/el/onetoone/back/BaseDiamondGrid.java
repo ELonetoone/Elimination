@@ -4,8 +4,20 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Stream;
 
-
+/**
+ * 感觉下一步还可以试下撤销某一步的逻辑
+ * 不过要等先做出来一个版本把所有可能的bug都de了
+ * 
+ * 啊啊啊，还要debug，烦烦烦！
+ * QAQ
+ * @author iznauy
+ *
+ */
 public class BaseDiamondGrid {
+	
+	/**
+	 * 用户死亡后别忘了增加相应的金币数 @廖均达
+	 */
 
 	private Color[] colors = Color.values();
 	private Diamond[][] diamondMap;
@@ -20,6 +32,18 @@ public class BaseDiamondGrid {
 	 */
 	private int width;
 	
+	/**
+	 * 玩家获取的分数
+	 */
+	private int grade = 0;
+	
+	/**
+	 * 获取用户分数
+	 * @return 用户分数
+	 */
+	public int getGrade() {
+		return this.grade;
+	}
 	
 	//测试代码
 	public static void main(String[] args) {
@@ -43,6 +67,8 @@ public class BaseDiamondGrid {
 			this.init();
 		} while (isDie() || canDirectlyEliminated());
 		
+		//用户分数设置为0
+		this.grade = 0;
 		//测试代码
 		for (int i = 0; i < height + 4; i++) {
 			for (int j = 0; j < width + 4; j++) {
@@ -68,6 +94,17 @@ public class BaseDiamondGrid {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * 重置游戏
+	 * 比如用户输了选择重来，或者用户选择重新开始游戏
+	 */
+	public void reset() {
+		this.grade = 0;
+		do {
+			this.init();
+		} while (isDie() || canDirectlyEliminated());
 	}
 	
 	/**
@@ -349,6 +386,7 @@ public class BaseDiamondGrid {
 	
 	/**
 	 * 经过特效处理后的点阵集合
+	 * 修复了上次例会提到的bug
 	 * @param points 原点阵集合
 	 * @return 新的点阵集合
 	 */
@@ -356,34 +394,46 @@ public class BaseDiamondGrid {
 		HashSet<Point> pointSet = new HashSet<>();
 		for (Point point: points) {
 			pointSet.add(point);
-			Diamond diamond = diamondMap[point.getX()][point.getY()];
-			if (diamond.getStatus() == Status.COMMON) {
-				continue;
-			} else if (diamond.getStatus() == Status.FOUR_EL_COL) {
-				for (int i = 2; i < height + 2; i++) {
-					pointSet.add(new Point(i, point.getY()));
-				}
-			} else if (diamond.getStatus() == Status.FOUR_EL_ROW) {
-				for (int i = 2; i < width + 2; i++) {
-					pointSet.add(new Point(point.getX(), i));
-				}
-			} else if (diamond.getStatus() == Status.BIG_EL) {
-				for (int i = 2; i < height + 2; i++) {
-					pointSet.add(new Point(i, point.getY()));
-				}
-				for (int i = 2; i < width + 2; i++) {
-					pointSet.add(new Point(point.getX(), i));
-				}
-			} else if (diamond.getStatus() == Status.L_EL) {
-				for (int i = point.getX() - 1; i <= point.getX() + 1; i++) {
-					for (int j = point.getY() - 1; j <= point.getY() + 1; j++) {
-						if (diamondMap[i][j].getColor() != Color.GRAY) {
-							pointSet.add(new Point(i, j));
+		}
+		int originalCount = pointSet.size();
+		int finalCount = 0;
+		do {
+			//除了第一次之外，每次进入之后都会让original被final替换
+			if (finalCount != 0) {
+				originalCount = finalCount;
+			}
+			for (Point point: pointSet) {
+				pointSet.add(point);
+				Diamond diamond = diamondMap[point.getX()][point.getY()];
+				if (diamond.getStatus() == Status.COMMON) {
+					continue;
+				} else if (diamond.getStatus() == Status.FOUR_EL_COL) {
+					for (int i = 2; i < height + 2; i++) {
+						pointSet.add(new Point(i, point.getY()));
+					}
+				} else if (diamond.getStatus() == Status.FOUR_EL_ROW) {
+					for (int i = 2; i < width + 2; i++) {
+						pointSet.add(new Point(point.getX(), i));
+					}
+				} else if (diamond.getStatus() == Status.BIG_EL) {
+					for (int i = 2; i < height + 2; i++) {
+						pointSet.add(new Point(i, point.getY()));
+					}
+					for (int i = 2; i < width + 2; i++) {
+						pointSet.add(new Point(point.getX(), i));
+					}
+				} else if (diamond.getStatus() == Status.L_EL) {
+					for (int i = point.getX() - 1; i <= point.getX() + 1; i++) {
+						for (int j = point.getY() - 1; j <= point.getY() + 1; j++) {
+							if (diamondMap[i][j].getColor() != Color.GRAY) {
+								pointSet.add(new Point(i, j));
+							}
 						}
 					}
 				}
 			}
-		}
+			finalCount = pointSet.size();
+		} while(finalCount != originalCount);
 		ArrayList<Point> pointList = new ArrayList<>();
 		for (Point finalPoint: pointSet) {
 			pointList.add(finalPoint);
@@ -649,6 +699,7 @@ public class BaseDiamondGrid {
 
 	/**
 	 * 执行用户的交换操作后的消除工作
+	 * 一点小bug修复
 	 * @param point1
 	 * @param point2
 	 */
@@ -660,14 +711,19 @@ public class BaseDiamondGrid {
 			
 			if (list != null) {
 				
+				for (Point point : list.getToBeEliminatedPoints()) {
+					
+					//iznauy 修改 2017.4.16
+					//用于增加分数
+					grade += diamondMap[point.getX()][point.getY()].getGrade();
+					
+					diamondMap[point.getX()][point.getY()] = null;
+				}
+				
 				//将普通宝石换为特效宝石
 				if (list.getNewDiamond() != null) {
 					Point temp = list.getPoint();
 					diamondMap[temp.getX()][temp.getY()] = list.getNewDiamond();
-				}
-				
-				for (Point point : list.getToBeEliminatedPoints()) {
-					diamondMap[point.getX()][point.getY()] = null;
 				}
 			}
 		}
@@ -710,8 +766,10 @@ public class BaseDiamondGrid {
 		//界面中的方块都落下后再执行后续的executeFullScreenElimination，这一点我觉得要结合动画来写，比如绘制一次执行一次该方法
 		if (isDie()) {
 			//死图则执行游戏结束的相关行为
+			//用户金币也要相应的增加
 		}
 	}
+	
 	
 	private void moveNullToTheTop() {
 		
