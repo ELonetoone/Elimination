@@ -2,12 +2,12 @@ package el.onetoone.back;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.stream.Stream;
 
 
 public class BaseDiamondGrid {
 
-	private Color[] colors = Color.values();
 	private Diamond[][] diamondMap;
 	
 	/**
@@ -22,13 +22,9 @@ public class BaseDiamondGrid {
 	
 	
 	//测试代码
-	public static void main(String[] args) {
-		new BaseDiamondGrid(8, 10);
-		ArrayList<String> arrayList = new ArrayList<>();
-		arrayList.add(null);
-		arrayList.add(null);
-		arrayList.forEach(System.out::println);
-	}
+//	public static void main(String[] args) {
+//		new BaseDiamondGrid(5, 5);
+//	}
 	
 	/**
 	 * 初始化游戏地图
@@ -56,7 +52,10 @@ public class BaseDiamondGrid {
 	/**
 	 * 初始化游戏界面
 	 */
+	@SuppressWarnings("unused")
 	public void init() {
+		Random random = new Random();
+		Color[] colors = Color.values();
 		colors = Stream.of(colors).filter(c -> !c.toString().equals("GRAY")).toArray(Color[]::new);
 		for (int i = 0; i < height + 4; i++) {
 			for (int j = 0; j < width + 4; j++) {
@@ -85,7 +84,7 @@ public class BaseDiamondGrid {
 							|| currentColor == diamondMap[i+3][j].getColor()
 							|| currentColor == diamondMap[i+2][j-1].getColor()
 							|| currentColor == diamondMap[i+2][j+1].getColor()) {
-						return false;
+						return true;
 					}
 				} else if (currentColor == diamondMap[i][j+1].getColor()){
 					if (currentColor == diamondMap[i][j-2].getColor()
@@ -94,22 +93,22 @@ public class BaseDiamondGrid {
 							|| currentColor == diamondMap[i][j+3].getColor()
 							|| currentColor == diamondMap[i-1][j+2].getColor()
 							|| currentColor == diamondMap[i+1][j+2].getColor()) {
-						return false;
+						return true;
 					}
 				} else if (currentColor == diamondMap[i][j+2].getColor()) {
 					if (currentColor == diamondMap[i-1][j+1].getColor()
 							|| currentColor == diamondMap[i+1][j+1].getColor()) {
-						return false;
+						return true;
 					}
 				} else if (currentColor == diamondMap[i+2][j].getColor()) {
 					if (currentColor == diamondMap[i+1][j-1].getColor()
 							|| currentColor == diamondMap[i+1][j+1].getColor()) {
-						return false;
+						return true;
 					}
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**
@@ -144,8 +143,6 @@ public class BaseDiamondGrid {
 	 * @return 返回一个消除以及生成新宝石的队列
 	 */
 	public ArrayList<EliminationArrayList> exchangeTwoDiamond(int x1, int y1, int x2, int y2) {
-		
-		boolean changeSucceed = false;
 		ArrayList<EliminationArrayList> eliminationArrayLists = new ArrayList<>();
 		//将两块宝石物理上交换
 		Diamond tempDiamond = diamondMap[x1][y1];
@@ -154,39 +151,32 @@ public class BaseDiamondGrid {
 		
 		//如果存在五消特效宝石，五消最特殊，不需要判断列也可以消除
 		if (diamondMap[x1][y1].getStatus() == Status.FIVE_EL || diamondMap[x2][y2].getStatus() == Status.FIVE_EL) {
-			
 			EliminationArrayList eliminationArrayList = new EliminationArrayList();
-			eliminationArrayList.setToBeEliminatedPoints(concernSpecialDiamond(fiveSpecialElimination(x1, y1, x2, y2)));//modified by liao
+			eliminationArrayList.setToBeEliminatedPoints(fiveSpecialElimination(x1, y1, x2, y2));
 			eliminationArrayLists.add(eliminationArrayList);
 			return eliminationArrayLists;
 		} 
-		
 		//不存在五消特效宝石被交换
 		//先搜索第一个点附近
 		int[] point1row = rowSearch(x1, y1);
 		int[] point1col = columnSearch(x1, y1);
-		
 		if (point1row[2] >= 3) {
 			int beginX = x1 - point1row[0];
 			int beginY = y1;  //这下面的这个不为空
-			
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY); //搜索s1所在位置的起点，由于是行搜索，所以一定包含这个交换的点
 			EliminationArrayList eliminationArrayList1 = new EliminationArrayList();
-			
 			if (result.first != Status.COMMON) {
-				eliminationArrayList1.setNewDiamond(new Point(x1, y1), new Diamond(diamondMap[x1][y1].getColor(), result.first));
+				eliminationArrayList1.setDiamond(new Diamond(diamondMap[x1][y1].getColor(), result.first));
 			}
-			
 			eliminationArrayList1.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			eliminationArrayLists.add(eliminationArrayList1);
 		} else if (point1col[2] >= 3) {
 			int beginX = x1;
 			int beginY = y1 - point1col[0];
-			
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY);
 			EliminationArrayList eliminationArrayList1 = new EliminationArrayList();
 			if (result.first != Status.COMMON) {
-				eliminationArrayList1.setNewDiamond(new Point(x1, y1), new Diamond(diamondMap[x1][y1].getColor(), result.first));
+				eliminationArrayList1.setDiamond(new Diamond(diamondMap[x1][y1].getColor(), result.first));
 			}
 			eliminationArrayList1.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			eliminationArrayLists.add(eliminationArrayList1);
@@ -203,7 +193,7 @@ public class BaseDiamondGrid {
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY);
 			EliminationArrayList eliminationArrayList2 = new EliminationArrayList();
 			if (result.first != Status.COMMON) {
-				eliminationArrayList2.setNewDiamond(new Point(x2, y2), new Diamond(diamondMap[x2][y2].getColor(), result.first));
+				eliminationArrayList2.setDiamond(new Diamond(diamondMap[x2][y2].getColor(), result.first));
 			}
 			eliminationArrayList2.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			eliminationArrayLists.add(eliminationArrayList2);
@@ -213,7 +203,7 @@ public class BaseDiamondGrid {
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY);
 			EliminationArrayList eliminationArrayList2 = new EliminationArrayList();
 			if (result.first != Status.COMMON) {
-				eliminationArrayList2.setNewDiamond(new Point(x2, y2), new Diamond(diamondMap[x2][y2].getColor(), result.first));
+				eliminationArrayList2.setDiamond(new Diamond(diamondMap[x2][y2].getColor(), result.first));
 			}
 			eliminationArrayList2.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			eliminationArrayLists.add(eliminationArrayList2);
@@ -221,18 +211,6 @@ public class BaseDiamondGrid {
 			eliminationArrayLists.add(null);
 		}
 	
-		//交换失败后的工作
-		for (EliminationArrayList list : eliminationArrayLists) {
-			if (list != null) {
-				changeSucceed = true;
-			}
-		}
-		
-		if (!changeSucceed) {
-			tempDiamond = diamondMap[x1][y1];
-			diamondMap[x1][y1] = diamondMap[x2][y2];
-			diamondMap[x2][y2] = tempDiamond;
-		}
 		return eliminationArrayLists;
 	}
 	
@@ -400,10 +378,6 @@ public class BaseDiamondGrid {
 	public TwoTuple<Status, ArrayList<Point>> searchSpecifyPoint(int i, int j) {
 		ArrayList<Point> toBeEliminations = new ArrayList<>();
 		Status status;
-		//modified by liao
-		if (diamondMap[i][j] == null) {
-			return null;
-		}
 		Color currentColor = diamondMap[i][j].getColor();
 		if (currentColor == diamondMap[i][j+1].getColor()
 				&& currentColor == diamondMap[i][j+2].getColor()) {
@@ -638,106 +612,11 @@ public class BaseDiamondGrid {
 		if (result != null) {
 			eliminationArrayList.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			if (result.first != Status.COMMON) {
-				eliminationArrayList.setNewDiamond(new Point(result.second.get(0).getX(), result.second.get(0).getY()),
-						new Diamond(diamondMap[result.second.get(0).getX()][result.second.get(0).getY()].getColor(), result.first));
+				eliminationArrayList.setDiamond(new Diamond(diamondMap[result.second.get(0).getX()][result.second.get(0).getY()].getColor(), result.first));
 			}
 			return eliminationArrayList;
 		}
 		return null;
 	}
 	
-
-	/**
-	 * 执行用户的交换操作后的消除工作
-	 * @param point1
-	 * @param point2
-	 */
-	public void executeExchangeElimination(Point point1, Point point2) {
-		
-		ArrayList<EliminationArrayList> toBeEliminatedLists = this.exchangeTwoDiamond(point1, point2);
-		
-		for (EliminationArrayList list : toBeEliminatedLists) {
-			
-			if (list != null) {
-				
-				//将普通宝石换为特效宝石
-				if (list.getNewDiamond() != null) {
-					Point temp = list.getPoint();
-					diamondMap[temp.getX()][temp.getY()] = list.getNewDiamond();
-				}
-				
-				for (Point point : list.getToBeEliminatedPoints()) {
-					diamondMap[point.getX()][point.getY()] = null;
-				}
-			}
-		}
-	}
-	
-	public void executeFullScreenElimination() {
-		
-		EliminationArrayList list;
-		while ((list = fullScreenElimination()) != null) {
-			
-			if (list.getNewDiamond() != null) {
-				Point temp = list.getPoint();
-				diamondMap[temp.getX()][temp.getY()] = list.getNewDiamond();
-			}
-			
-			for (Point point : list.getToBeEliminatedPoints()) {
-				diamondMap[point.getX()][point.getY()] = null;
-			}
-		}
-	}
-	
-	/**
-	 * 生成消除后的新地图，将地图内部的null移到最顶部，然后系那个null替换为新的方块
-	 */
-	public void generateNewMap() {
-		
-		//把null移到最顶部
-		moveNullToTheTop();
-		
-		//将null换为新的宝石
-		for (int i = 2; i < diamondMap.length - 2; i++) {
-			
-			for (int j = 2; j < diamondMap[i].length - 2; j++) {
-				if (diamondMap[i][j] == null) {
-					diamondMap[i][j] = new Diamond(colors[(int) ((Math.random() * 100) % colors.length)], Status.COMMON);				}
-			}
-		}
-		executeFullScreenElimination();
-		
-		//界面中的方块都落下后再执行后续的executeFullScreenElimination，这一点我觉得要结合动画来写，比如绘制一次执行一次该方法
-		if (isDie()) {
-			//死图则执行游戏结束的相关行为
-		}
-	}
-	
-	private void moveNullToTheTop() {
-		
-		for (int i = 2; i < diamondMap.length - 2; i++) {
-			
-			for (int j = 2; j < diamondMap[i].length - 2; j++) {
-				
-				if (i != 2) {
-					//最顶部不用移动
-					if (diamondMap[i][j] == null) {
-						int k = i;
-						while (true) {
-							//上方也为null时则不动
-							if (diamondMap[k - 1][j] == null) {
-								break;
-							}
-							diamondMap[k][j] = diamondMap[k - 1][j];
-							diamondMap[k - 1][j] = null;
-							k--;
-							if (k == 2) {
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
 }
