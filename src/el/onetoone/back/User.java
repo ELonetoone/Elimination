@@ -87,7 +87,7 @@ public class User {
 	 * @param uid 用户注册ID
 	 * @return 
 	 */
-	public boolean hasRegister(String uid) throws Exception{
+	public static boolean hasRegister(String uid) throws Exception{
 		DataBase dataBase = new DataBase();
 		ArrayList<String> allUsers = dataBase.read();
 		if (allUsers == null) {

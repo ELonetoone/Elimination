@@ -1,5 +1,7 @@
 package el.onetoone.back;
 
+import el.onetoone.ui.DiamondCircle;
+
 public class Diamond {
 
 	/**
@@ -7,6 +9,7 @@ public class Diamond {
 	 */
 	private Status status = Status.COMMON;
 	
+
 	/**
 	 * 宝石的颜色
 	 */
@@ -54,5 +57,6 @@ public class Diamond {
 		}
 		
 	}
+
 	
 }
