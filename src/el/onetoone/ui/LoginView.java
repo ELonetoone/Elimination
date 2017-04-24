@@ -77,7 +77,7 @@ public class LoginView extends Application {
 		grid.add(resultText, 1, 6);
 		
 		//test code
-		GameScreen gameScreen = new GameScreen(scene);
+//		GameScreen gameScreen = new GameScreen(scene);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -214,6 +214,10 @@ public class LoginView extends Application {
 			mediumText.setScaleY(1.0);
 		});
 		
+		mediumText.setOnMousePressed(e -> {
+			GameScreen gameScreen = new GameScreen(scene);
+		});
+		
 		difficultText.setOnMouseEntered(e -> {
 			difficultText.setScaleX(1.5);
 			difficultText.setScaleY(1.5);
@@ -222,6 +226,10 @@ public class LoginView extends Application {
 		difficultText.setOnMouseExited(e -> {
 			difficultText.setScaleX(1.0);
 			difficultText.setScaleY(1.0);
+		});
+		
+		difficultText.setOnMousePressed(e -> {
+			GameScreen gameScreen = new GameScreen(scene);
 		});
 		
 		grid.add(easyText, 0, 0);

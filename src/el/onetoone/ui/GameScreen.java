@@ -62,6 +62,9 @@ public class GameScreen {
 		scene.setRoot(borderPane);
 	}
 	
+	/**
+	 * 绘制宝石，同时也会给宝石添加事件监听器
+	 */
 	private void paintDiamonds() {
 		//计算圆心坐标,注意,这里的v是指列，h指行
 				double centerV = scene.getHeight() / (Config.height * 2);
@@ -111,7 +114,6 @@ public class GameScreen {
 						diamondCircles[i][j] = new DiamondCircle();
 						diamondCircles[i][j].setPoint(new Point(i + 2, j + 2));
 						diamondCircles[i][j].setFill(color);
-						diamondCircles[i][j].setOpacity(1);
 						diamondCircles[i][j].setRadius(radius);
 						diamondCircles[i][j].setCenterX(centerH + circleDistance * j);
 						diamondCircles[i][j].setCenterY(centerV + circleDistance * i);
@@ -235,7 +237,6 @@ public class GameScreen {
 	/**
 	 * 将选中的两个宝石在diamondCircles中交换位置，同时也会交换他们的Point
 	 * @param currentCircle
-	 * @param choosedCircle
 	 */
 	private void exchangeDiamondCircle(DiamondCircle currentCircle) {
 		
