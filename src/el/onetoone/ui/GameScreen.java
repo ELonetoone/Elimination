@@ -2,14 +2,11 @@ package el.onetoone.ui;
 
 
 
-import java.util.Arrays;
 
 import el.onetoone.back.BaseDiamondGrid;
 import el.onetoone.back.Config;
 import el.onetoone.back.Diamond;
 import el.onetoone.back.Point;
-import javafx.animation.Animation.Status;
-import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;

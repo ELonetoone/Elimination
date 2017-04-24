@@ -18,7 +18,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class LoginView extends Application {
 
@@ -32,7 +31,6 @@ public class LoginView extends Application {
 	public void start(Stage primaryStage) {
 		
 		primaryStage.setTitle("Happy Elimination");
-//		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
