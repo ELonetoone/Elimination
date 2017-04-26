@@ -24,7 +24,7 @@ public class Point {
 		this.x = x;
 	}
 	
-	public void getX(int y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 	
@@ -46,6 +46,11 @@ public class Point {
 	@Override
 	public int hashCode() {
 		return x * 100 + y;
+	}
+
+	@Override
+	public String toString() {
+		return "Point [" + x + ", " + y + "]";
 	}
 	
 }

@@ -46,13 +46,22 @@ public class BaseDiamondGrid {
 	}
 	
 	//测试代码
-	public static void main(String[] args) {
-		new BaseDiamondGrid(8, 10);
-		ArrayList<String> arrayList = new ArrayList<>();
-		arrayList.add(null);
-		arrayList.add(null);
-		arrayList.forEach(System.out::println);
-	}
+//	public static void main(String[] args) {
+//		BaseDiamondGrid diamondGrid = new BaseDiamondGrid(Config.height, Config.width);
+//		diamondGrid.exchangeTwoDiamond(new Point(8, 4), new Point(8, 5));
+////		for (int i = 0; i < diamondGrid.getHeight()+ 4; i++) {
+////			System.out.printf("%-3d ", i);
+////			for (int j = 0; j < diamondGrid.getWidth()+ 4; j++) {
+////				System.out.printf("%-6s  ",diamondGrid.getDiamondMap()[i][j].getColor().toString());
+////			}
+////			System.out.println("/r/n");
+////			
+////		}
+//		ArrayList<String> arrayList = new ArrayList<>();
+//		arrayList.add(null);
+//		arrayList.add(null);
+//		arrayList.forEach(System.out::println);
+//	}
 	
 	/**
 	 * 初始化游戏地图
@@ -70,13 +79,14 @@ public class BaseDiamondGrid {
 		//用户分数设置为0
 		this.grade = 0;
 		//测试代码
-		for (int i = 0; i < height + 4; i++) {
-			for (int j = 0; j < width + 4; j++) {
-				System.out.print(diamondMap[i][j].getColor().toString() + "    ");
-			}
-			System.out.println();
-			
-		}
+//		for (int i = 0; i < height + 4; i++) {
+//			System.out.printf("%-3d ", i);
+//			for (int j = 0; j < width + 4; j++) {
+//				System.out.printf("%-6s  ",diamondMap[i][j].getColor().toString());
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
 	}
 	
 	/**
@@ -155,8 +165,8 @@ public class BaseDiamondGrid {
 	 * @return 是否可以直接消除
 	 */
 	private boolean canDirectlyEliminated() {
-		for (int i = 2; i < height; i++) {
-			for (int j = 2; j < width; j++) {
+		for (int i = 2; i < height + 2; i++) {
+			for (int j = 2; j < width + 2; j++) {
 				Color currentColor = diamondMap[i][j].getColor();
 				if (currentColor == diamondMap[i][j+1].getColor()
 						&& currentColor == diamondMap[i][j+2].getColor()) {
@@ -188,6 +198,7 @@ public class BaseDiamondGrid {
 		Diamond tempDiamond = diamondMap[x1][y1];
 		diamondMap[x1][y1] = diamondMap[x2][y2];
 		diamondMap[x2][y2] = tempDiamond;
+
 		
 		//如果存在五消特效宝石，五消最特殊，不需要判断列也可以消除
 		if (diamondMap[x1][y1].getStatus() == Status.FIVE_EL || diamondMap[x2][y2].getStatus() == Status.FIVE_EL) {
@@ -197,15 +208,15 @@ public class BaseDiamondGrid {
 			eliminationArrayLists.add(eliminationArrayList);
 			return eliminationArrayLists;
 		} 
-		
+//		testPrint();
 		//不存在五消特效宝石被交换
 		//先搜索第一个点附近
 		int[] point1row = rowSearch(x1, y1);
 		int[] point1col = columnSearch(x1, y1);
 		
-		if (point1row[2] >= 3) {
-			int beginX = x1 - point1row[0];
-			int beginY = y1;  //这下面的这个不为空
+		if (point1row[2] >= 2) {
+			int beginX = x1;
+			int beginY = y1 - point1row[0];  //这下面的这个不为空
 			
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY); //搜索s1所在位置的起点，由于是行搜索，所以一定包含这个交换的点
 			EliminationArrayList eliminationArrayList1 = new EliminationArrayList();
@@ -216,9 +227,9 @@ public class BaseDiamondGrid {
 			
 			eliminationArrayList1.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			eliminationArrayLists.add(eliminationArrayList1);
-		} else if (point1col[2] >= 3) {
-			int beginX = x1;
-			int beginY = y1 - point1col[0];
+		} else if (point1col[2] >= 2) {
+			int beginX = x1 - point1col[0];
+			int beginY = y1;
 			
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY);
 			EliminationArrayList eliminationArrayList1 = new EliminationArrayList();
@@ -234,9 +245,9 @@ public class BaseDiamondGrid {
 		//搜索第二个点
 		int[] point2row = rowSearch(x2, y2);
 		int[] point2col = columnSearch(x2, y2);
-		if (point2row[2] >= 3) {
-			int beginX = x2 - point2row[0];
-			int beginY = y2;
+		if (point2row[2] >= 2) {
+			int beginX = x2;
+			int beginY = y2 - point2row[0];
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY);
 			EliminationArrayList eliminationArrayList2 = new EliminationArrayList();
 			if (result.first != Status.COMMON) {
@@ -244,9 +255,9 @@ public class BaseDiamondGrid {
 			}
 			eliminationArrayList2.setToBeEliminatedPoints(concernSpecialDiamond(result.second));
 			eliminationArrayLists.add(eliminationArrayList2);
-		} else if (point2col[2] >= 3) {
-			int beginX = x2;
-			int beginY = y2 - point2col[0];
+		} else if (point2col[2] >= 2) {
+			int beginX = x2 - point2col[0];
+			int beginY = y2;
 			TwoTuple<Status, ArrayList<Point>> result = searchSpecifyPoint(beginX, beginY);
 			EliminationArrayList eliminationArrayList2 = new EliminationArrayList();
 			if (result.first != Status.COMMON) {
@@ -283,10 +294,10 @@ public class BaseDiamondGrid {
 	public int[] rowSearch(int x, int y) {
 		int leftdeviate = 0;
 		int rightdeviate = 0;
-		for (int i = y - 1; i >= 0 && diamondMap[x][i].getColor() == diamondMap[x][y].getColor(); i--) {
+		for (int i = y - 1; i >= 0 && diamondMap[x][i] != null && diamondMap[x][i].getColor() == diamondMap[x][y].getColor(); i--) {
 			leftdeviate++;
 		}
-		for (int i = y + 1; i < width + 4 && diamondMap[x][i].getColor() == diamondMap[x][y].getColor(); i++) {
+		for (int i = y + 1; i < width + 4 && diamondMap[x][i] != null && diamondMap[x][i].getColor() == diamondMap[x][y].getColor(); i++) {
 			rightdeviate++;
 		}
 		return new int[] {leftdeviate, rightdeviate, leftdeviate + rightdeviate};
@@ -301,10 +312,10 @@ public class BaseDiamondGrid {
 	public int[] columnSearch(int x, int y) {
 		int updeviate = 0;
 		int downdeviate = 0;
-		for (int i = x - 1; i>= 0 && diamondMap[i][y].getColor() == diamondMap[x][y].getColor(); i--) {
+		for (int i = x - 1; i>= 0 && diamondMap[i][y] != null && diamondMap[i][y].getColor() == diamondMap[x][y].getColor(); i--) {
 			updeviate++;
 		}
-		for (int i = x + 1; i < height + 4 && diamondMap[i][y].getColor() == diamondMap[x][y].getColor(); i++) {
+		for (int i = x + 1; i < height + 4 && diamondMap[i][y] != null && diamondMap[i][y].getColor() == diamondMap[x][y].getColor(); i++) {
 			downdeviate++;
 		}
 		return new int[]{updeviate, downdeviate, updeviate + downdeviate};
@@ -455,42 +466,58 @@ public class BaseDiamondGrid {
 			return null;
 		}
 		Color currentColor = diamondMap[i][j].getColor();
-		if (currentColor == diamondMap[i][j+1].getColor()
+		//modified a bug here
+		if (diamondMap[i][j + 1] != null
+				&& diamondMap[i][j + 2] != null
+				&& currentColor == diamondMap[i][j+1].getColor()
 				&& currentColor == diamondMap[i][j+2].getColor()) {
 			//保证横着可以消除
 			toBeEliminations.add(new Point(i, j));
 			toBeEliminations.add(new Point(i, j+1));
 			toBeEliminations.add(new Point(i, j+2));
 			//假如可以四消，判断五消和水平4个的大L消除
-			if (currentColor == diamondMap[i][j+3].getColor()) {
+			//modified a bug here
+			if ((j + 3) < (width + 4) 
+					&& diamondMap[i][j + 3] != null
+					&& currentColor == diamondMap[i][j+3].getColor()) {
 				toBeEliminations.add(new Point(i, j+3));
 				//判断是否可以五消
-				if (currentColor == diamondMap[i][j+4].getColor()) {
+				if ((j + 4) < (width + 4) 
+						&& diamondMap[i][j+4] != null
+						&& currentColor == diamondMap[i][j+4].getColor()) {
 					toBeEliminations.add(new Point(i, j+4));
 					status = Status.FIVE_EL;
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i+1][j+3].getColor()
+				} else if (diamondMap[i+1][j+3] != null 
+						&& diamondMap[i+2][j+3] != null
+						&& currentColor == diamondMap[i+1][j+3].getColor()
 						&& currentColor == diamondMap[i+2][j+3].getColor()) {
 					//右下的大L形状消除
 					toBeEliminations.add(new Point(i+1, j+3));
 					toBeEliminations.add(new Point(i+2, j+3));
 					status = Status.BIG_EL;
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i-1][j+3].getColor()
+				} else if (diamondMap[i-1][j+3] != null
+						&& diamondMap[i-2][j+3] != null
+						&& currentColor == diamondMap[i-1][j+3].getColor()
 						&& currentColor == diamondMap[i-2][j+3].getColor()) {
 					//右上的大L形状消除
 					status = Status.BIG_EL;
 					toBeEliminations.add(new Point(i-1, j+3));
 					toBeEliminations.add(new Point(i-2,	j+3));
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i-1][j].getColor()
+				} else if (diamondMap[i-1][j] != null 
+						&& diamondMap[i-2][j] != null
+						&& currentColor == diamondMap[i-1][j].getColor()
 						&& currentColor == diamondMap[i-2][j].getColor()) {
 					//左上的大L形状消除
 					status = Status.BIG_EL;
 					toBeEliminations.add(new Point(i-1, j));
 					toBeEliminations.add(new Point(i-2, j));
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i+1][j].getColor()
+				} else if (diamondMap[i+1][j] != null 
+						&& diamondMap[i+2][j] != null
+						&& currentColor == diamondMap[i+1][j].getColor()
 						&& currentColor == diamondMap[i+2][j].getColor()) {
 					//右下的大L形状消除
 					status = Status.BIG_EL;
@@ -503,30 +530,40 @@ public class BaseDiamondGrid {
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
 			} 
 			//如果横着不可以四消,判断水平只有3个的大L消除和L消除
-			if (currentColor == diamondMap[i+1][j+2].getColor()
+			if (diamondMap[i+1][j+2] != null 
+					&& diamondMap[i+2][j+2] != null
+					&& currentColor == diamondMap[i+1][j+2].getColor()
 					&& currentColor == diamondMap[i+2][j+2].getColor()) {
 				//右下的L形状消除
 				toBeEliminations.add(new Point(i+1, j+2));
 				toBeEliminations.add(new Point(i+2, j+2));
 				status = Status.L_EL;
 				//判断是否能大L
-				if (currentColor == diamondMap[i+3][j+2].getColor()) {
+				if ((i + 3) < (height + 4) 
+						&& diamondMap[i+3][j+2] != null
+						&& currentColor == diamondMap[i+3][j+2].getColor()) {
 					toBeEliminations.add(new Point(i+3, j+2));
 					status = Status.BIG_EL;
 				}
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-			} else if (currentColor == diamondMap[i-1][j+2].getColor()
+			} else if (diamondMap[i-1][j+2] != null 
+					&& diamondMap[i-2][j+2] != null
+					&& currentColor == diamondMap[i-1][j+2].getColor()
 					&& currentColor == diamondMap[i-2][j+2].getColor()) {
 				//右上的L形状消除
 				toBeEliminations.add(new Point(i-1, j+2));
 				toBeEliminations.add(new Point(i-2,	j+2));
 				status = Status.L_EL;
-				if ((i >= 3) && currentColor == diamondMap[i-3][j+2].getColor()) {
+				if (i >= 3 
+						&& diamondMap[i-3][j+2] != null
+						&& currentColor == diamondMap[i-3][j+2].getColor()) {
 					toBeEliminations.add(new Point(i-3, j+2));
 					status = Status.BIG_EL;
 				}
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-			} else if (currentColor == diamondMap[i-1][j].getColor()
+			} else if (diamondMap[i-1][j] != null 
+					&& diamondMap[i-2][j] != null
+					&& currentColor == diamondMap[i-1][j].getColor()
 					&& currentColor == diamondMap[i-2][j].getColor()) {
 				//左上的L形状消除
 				toBeEliminations.add(new Point(i-1, j));
@@ -537,7 +574,9 @@ public class BaseDiamondGrid {
 					status = Status.BIG_EL;
 				}
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-			} else if (currentColor == diamondMap[i+1][j].getColor()
+			} else if (diamondMap[i+1][j] != null 
+					&& diamondMap[i+2][j] != null
+					&& currentColor == diamondMap[i+1][j].getColor()
 					&& currentColor == diamondMap[i+2][j].getColor()) {
 				//右下的L形状消除
 				status = Status.L_EL;
@@ -552,42 +591,56 @@ public class BaseDiamondGrid {
 			//否则只能普通的三消
 			status = Status.COMMON;
 			return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-		} else if (currentColor == diamondMap[i+1][j].getColor()
+		} else if (diamondMap[i+1][j] != null 
+				&& diamondMap[i+2][j] != null
+				&& currentColor == diamondMap[i+1][j].getColor()
 				&& currentColor == diamondMap[i+2][j].getColor()) {
 			//保证竖着可以消除
 			toBeEliminations.add(new Point(i, j));
 			toBeEliminations.add(new Point(i+1, j));
 			toBeEliminations.add(new Point(i+2, j));
 			//假如可以四消，判断五消和竖着4个的大L消除
-			if (currentColor == diamondMap[i+3][j].getColor()) {
+			if ((i + 3) < (height + 4) 
+					&& diamondMap[i+3][j] != null
+					&& currentColor == diamondMap[i+3][j].getColor()) {
 				toBeEliminations.add(new Point(i+3, j));
 				//判断是否可以五消
-				if (currentColor == diamondMap[i+4][j].getColor()) {
+				if ((i + 4) < (height + 4) 
+						&& diamondMap[i+4][j] != null
+						&& currentColor == diamondMap[i+4][j].getColor()) {
 					toBeEliminations.add(new Point(i+4, j));
 					status = Status.FIVE_EL;
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i+3][j+1].getColor()
+				} else if (diamondMap[i+3][j+1] != null 
+						&& diamondMap[i+3][j+2] != null
+						&& currentColor == diamondMap[i+3][j+1].getColor()
 						&& currentColor == diamondMap[i+3][j+2].getColor()) {
 					//右下的大L形状消除
 					status = Status.BIG_EL;
 					toBeEliminations.add(new Point(i+3, j+1));
 					toBeEliminations.add(new Point(i+3, j+2));
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i+3][j-1].getColor()
+				} else if (diamondMap[i+3][j-1] != null 
+						&& diamondMap[i+3][j-2] != null
+						&& currentColor == diamondMap[i+3][j-1].getColor()
 						&& currentColor == diamondMap[i+3][j-2].getColor()) {
 					//左下的大L形状消除
 					status = Status.BIG_EL;
 					toBeEliminations.add(new Point(i+3, j-1));
 					toBeEliminations.add(new Point(i+3,	j-2));
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i][j-1].getColor()
+				} else if (diamondMap[i][j-1] != null 
+						&& diamondMap[i][j-2] != null
+						&& currentColor == diamondMap[i][j-1].getColor()
 						&& currentColor == diamondMap[i][j-2].getColor()) {
 					//左上的大L形状消除
 					status = Status.BIG_EL;
 					toBeEliminations.add(new Point(i, j-1));
 					toBeEliminations.add(new Point(i, j-2));
 					return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-				} else if (currentColor == diamondMap[i][j+1].getColor()
+				} else if (diamondMap[i][j+1] != null 
+						&& diamondMap[i][j+2] != null
+						&& currentColor == diamondMap[i][j+1].getColor()
 						&& currentColor == diamondMap[i][j+2].getColor()) {
 					//右上的大L形状消除
 					status = Status.BIG_EL;
@@ -600,19 +653,23 @@ public class BaseDiamondGrid {
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
 			} 
 			//如果横着不可以四消,判断竖着只有3个的大L消除和L消除
-			if (currentColor == diamondMap[i+2][j+1].getColor()
+			if (diamondMap[i+2][j+1] != null 
+					&& diamondMap[i+2][j+2] != null
+					&& currentColor == diamondMap[i+2][j+1].getColor()
 					&& currentColor == diamondMap[i+2][j+2].getColor()) {
 				//右下的L形状消除
 				status = Status.L_EL;
 				toBeEliminations.add(new Point(i+2, j+1));
 				toBeEliminations.add(new Point(i+2, j+2));
 				//判断是否能大L
-				if (currentColor == diamondMap[i+2][j+3].getColor()) {
+				if ((j + 3) < (width + 4) && currentColor == diamondMap[i+2][j+3].getColor()) {
 					toBeEliminations.add(new Point(i+2, j+3));
 					status = Status.BIG_EL;
 				}
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-			} else if (currentColor == diamondMap[i+2][j-1].getColor()
+			} else if (diamondMap[i+2][j-1] != null
+					&& diamondMap[i+2][j-2] != null
+					&& currentColor == diamondMap[i+2][j-1].getColor()
 					&& currentColor == diamondMap[i+2][j-2].getColor()) {
 				//左下的L形状消除
 				status = Status.L_EL;
@@ -624,25 +681,33 @@ public class BaseDiamondGrid {
 					status = Status.BIG_EL;
 				}
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-			} else if (currentColor == diamondMap[i][j-1].getColor()
+			} else if (diamondMap[i][j-1] != null
+					&& diamondMap[i][j-2] != null
+					&& currentColor == diamondMap[i][j-1].getColor()
 					&& currentColor == diamondMap[i][j-2].getColor()) {
 				//左上的L形状消除
 				status = Status.L_EL;
 				toBeEliminations.add(new Point(i, j-1));
 				toBeEliminations.add(new Point(i, j-2));
 				//判断能否大L
-				if ((j >= 3) && currentColor == diamondMap[i][j-3].getColor()) {
+				if ((j >= 3) 
+						&& diamondMap[i][j-3] != null
+						&& currentColor == diamondMap[i][j-3].getColor()) {
 					toBeEliminations.add(new Point(i, j-3));
 					status = Status.BIG_EL;
 				}
 				return new TwoTuple<Status, ArrayList<Point>>(status, toBeEliminations);
-			} else if (currentColor == diamondMap[i][j+1].getColor()
+			} else if (diamondMap[i][j+1] != null
+					&& diamondMap[i][j+2] != null
+					&& currentColor == diamondMap[i][j+1].getColor()
 					&& currentColor == diamondMap[i][j+2].getColor()) {
 				//右上的L形状消除
 				status = Status.L_EL;
 				toBeEliminations.add(new Point(i, j+1));
 				toBeEliminations.add(new Point(i, j+2));
-				if (currentColor == diamondMap[i][j+3].getColor()) {
+				if ((j + 3) < (width + 4) 
+						&& diamondMap[i][j+3] != null
+						&& currentColor == diamondMap[i][j+3].getColor()) {
 					toBeEliminations.add(new Point(i, j+3));
 					status = Status.BIG_EL;
 				}
@@ -703,14 +768,16 @@ public class BaseDiamondGrid {
 	 * @param point1
 	 * @param point2
 	 */
-	public void executeExchangeElimination(Point point1, Point point2) {
+	public boolean executeExchangeElimination(Point point1, Point point2) {
 		
+		boolean exchangeValid = false;
 		ArrayList<EliminationArrayList> toBeEliminatedLists = this.exchangeTwoDiamond(point1, point2);
 		
 		for (EliminationArrayList list : toBeEliminatedLists) {
 			
 			if (list != null) {
 				
+				exchangeValid = true;
 				for (Point point : list.getToBeEliminatedPoints()) {
 					
 					//iznauy 修改 2017.4.16
@@ -727,6 +794,9 @@ public class BaseDiamondGrid {
 				}
 			}
 		}
+		testPrint();
+		
+		return exchangeValid;
 	}
 	
 	public void executeFullScreenElimination() {
@@ -761,13 +831,13 @@ public class BaseDiamondGrid {
 					diamondMap[i][j] = new Diamond(colors[(int) ((Math.random() * 100) % colors.length)], Status.COMMON);				}
 			}
 		}
-		executeFullScreenElimination();
+//		executeFullScreenElimination();
 		
 		//界面中的方块都落下后再执行后续的executeFullScreenElimination，这一点我觉得要结合动画来写，比如绘制一次执行一次该方法
-		if (isDie()) {
-			//死图则执行游戏结束的相关行为
-			//用户金币也要相应的增加
-		}
+//		if (isDie()) {
+//			//死图则执行游戏结束的相关行为
+//			//用户金币也要相应的增加
+//		}
 	}
 	
 	
@@ -797,5 +867,41 @@ public class BaseDiamondGrid {
 				}
 			}
 		}
+	}
+
+	/**
+	 * 返回宝石地图
+	 * @author liao
+	 * @return 宝石地图
+	 */
+	public Diamond[][] getDiamondMap() {
+		
+		return diamondMap;
+	}
+	
+	/**
+	 * use in test
+	 * @param diamonds
+	 */
+	public void setDiamondMap(Diamond[][] diamonds) {
+		this.diamondMap = diamonds;
+	}
+	
+	/**
+	 * use in test
+	 */
+	public void testPrint() {
+		for (int i = 0; i < diamondMap.length; i++) {
+			System.out.printf("%-3d ", i);
+			for (int j = 0; j < diamondMap[i].length; j++) {
+				if (diamondMap[i][j] != null) {
+					System.out.printf("%-6s  ", diamondMap[i][j].getColor().toString());
+				} else {
+					System.out.printf("%-6s  ", diamondMap[i][j]);
+				}
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 }
