@@ -1,6 +1,7 @@
 package el.onetoone.back;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 用户类，可以用于注册账号，登录等。
@@ -35,6 +36,11 @@ public class User {
 	private int maxMark = 0;
 	
 	/**
+	 * 用户持有的道具
+	 */
+	private HashMap<String, Integer> myItems = new HashMap<>();
+	
+	/**
 	 * 数据库连接失败
 	 */
 	public static final String FAILTOCONNECTDATABASE = "131231398";
@@ -54,7 +60,8 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		return uid + " " + password + " " + userName + " " + coinCount + " " + maxMark + "\n";
+		return uid + " " + password + " " + userName + " " + coinCount + " " + maxMark + " " + myItems.get(ItemList.BOOM) + 
+				" " + myItems.get(ItemList.HAMMER) + " "  + myItems.get(ItemList.NEWMAP) + "\n";
 	}
 	
 	/**
@@ -64,7 +71,8 @@ public class User {
 	 */
 	public User parseUserString(String userInfo) {
 		String[] userInfos = userInfo.split(" ");
-		return new User(userInfos[0], userInfos[1], userInfos[2], Integer.valueOf(userInfos[3]), Integer.valueOf(userInfos[4]));
+		return new User(userInfos[0], userInfos[1], userInfos[2], Integer.valueOf(userInfos[3]), Integer.valueOf(userInfos[4])
+				, Integer.valueOf(userInfos[5]), Integer.valueOf(userInfos[6]), Integer.valueOf(userInfos[7]));
 	}
 	
 	/**
@@ -75,11 +83,14 @@ public class User {
 	 * @param coinCount
 	 * @param maxMark
 	 */
-	public User(String uid, String password, String userName, int coinCount, int maxMark) {
+	public User(String uid, String password, String userName, int coinCount, int maxMark, int boomCount, int hammerCount, int newmapCount) {
 		this.uid = uid;
 		this.maxMark = maxMark;
 		this.password = password;
 		this.coinCount = coinCount;
+		this.myItems.put(ItemList.BOOM, boomCount);
+		this.myItems.put(ItemList.HAMMER, hammerCount);
+		this.myItems.put(ItemList.NEWMAP, newmapCount);
 	}
 	
 	/**
@@ -112,7 +123,7 @@ public class User {
 	 * @throws Exception 如果遇到文件读写失败时候抛出
 	 */
 	public static User register(String uid, String password) throws Exception {
-		User user = new User(uid, password, uid, 0, 0);
+		User user = new User(uid, password, uid, 0, 0, 0, 0, 0);
 		DataBase dataBase = new DataBase();
 		//假如写入数据不成功
 		if (!dataBase.write(user.toString())) {
@@ -138,7 +149,8 @@ public class User {
 		for (String userInfo: allUsers) {
 			String[] userInfos = userInfo.split(" ");
 			if (userInfos[0].equals(uid) && userInfos[1].equals(password)) {
-				return new User(userInfos[0], userInfos[1], userInfos[2], Integer.valueOf(userInfos[3]), Integer.valueOf(userInfos[4]));
+				return new User(userInfos[0], userInfos[1], userInfos[2], Integer.valueOf(userInfos[3]), Integer.valueOf(userInfos[4]), Integer.valueOf(userInfos[5])
+						, Integer.valueOf(userInfos[6]), Integer.valueOf(userInfos[7]));
 			} else if (userInfos[0].equals(uid) && !userInfos[1].equals(password)) {
 				throw new Exception(WRONGPASSWORD);
 			}
@@ -211,6 +223,41 @@ public class User {
 	 */
 	public void setMaxMark(int maxMark) {
 		this.maxMark = maxMark;
+	}
+	
+	/**
+	 * 获取各种道具用户拥有数量
+	 * @return
+	 */
+	public HashMap<String, Integer> getMyItems() {
+		return this.myItems;
+	}
+	
+	/**
+	 * 判断用户是否有足够的道具
+	 * @param item 道具名称
+	 * @return
+	 */
+	private boolean hasEnoughItem(String item) {
+		if (myItems.get(item) >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 使用某个道具
+	 * @param item
+	 * @return 是否使用成功，使用成功返回TRUE，否则返回FALSE
+	 */
+	public boolean useItem(String item) {
+		if (hasEnoughItem(item)) {
+			myItems.replace(item, myItems.get(item) - 1);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

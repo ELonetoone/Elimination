@@ -16,8 +16,9 @@ import java.util.stream.Stream;
 public class BaseDiamondGrid {
 	
 	/**
-	 * 用户死亡后别忘了增加相应的金币数 @廖均达
+	 * 用户死亡后别忘了增加相应的金币数 @廖均达 
 	 */
+	//get it
 
 	private Color[] colors = Color.values();
 	private Diamond[][] diamondMap;
@@ -45,24 +46,6 @@ public class BaseDiamondGrid {
 		return this.grade;
 	}
 	
-	//测试代码
-//	public static void main(String[] args) {
-//		BaseDiamondGrid diamondGrid = new BaseDiamondGrid(Config.height, Config.width);
-//		diamondGrid.exchangeTwoDiamond(new Point(8, 4), new Point(8, 5));
-////		for (int i = 0; i < diamondGrid.getHeight()+ 4; i++) {
-////			System.out.printf("%-3d ", i);
-////			for (int j = 0; j < diamondGrid.getWidth()+ 4; j++) {
-////				System.out.printf("%-6s  ",diamondGrid.getDiamondMap()[i][j].getColor().toString());
-////			}
-////			System.out.println("/r/n");
-////			
-////		}
-//		ArrayList<String> arrayList = new ArrayList<>();
-//		arrayList.add(null);
-//		arrayList.add(null);
-//		arrayList.forEach(System.out::println);
-//	}
-	
 	/**
 	 * 初始化游戏地图
 	 * @param height 游戏网格实际高度
@@ -78,15 +61,7 @@ public class BaseDiamondGrid {
 		
 		//用户分数设置为0
 		this.grade = 0;
-		//测试代码
-//		for (int i = 0; i < height + 4; i++) {
-//			System.out.printf("%-3d ", i);
-//			for (int j = 0; j < width + 4; j++) {
-//				System.out.printf("%-6s  ",diamondMap[i][j].getColor().toString());
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
+
 	}
 	
 	/**
@@ -403,6 +378,7 @@ public class BaseDiamondGrid {
 	 */
 	public ArrayList<Point> concernSpecialDiamond(ArrayList<Point> points) {
 		HashSet<Point> pointSet = new HashSet<>();
+		HashSet<Point> finalpointSet = new HashSet<>();
 		for (Point point: points) {
 			pointSet.add(point);
 		}
@@ -414,36 +390,37 @@ public class BaseDiamondGrid {
 				originalCount = finalCount;
 			}
 			for (Point point: pointSet) {
-				pointSet.add(point);
+				finalpointSet.add(point);
 				Diamond diamond = diamondMap[point.getX()][point.getY()];
 				if (diamond.getStatus() == Status.COMMON) {
 					continue;
 				} else if (diamond.getStatus() == Status.FOUR_EL_COL) {
 					for (int i = 2; i < height + 2; i++) {
-						pointSet.add(new Point(i, point.getY()));
+						finalpointSet.add(new Point(i, point.getY()));
 					}
 				} else if (diamond.getStatus() == Status.FOUR_EL_ROW) {
 					for (int i = 2; i < width + 2; i++) {
-						pointSet.add(new Point(point.getX(), i));
+						finalpointSet.add(new Point(point.getX(), i));
 					}
 				} else if (diamond.getStatus() == Status.BIG_EL) {
 					for (int i = 2; i < height + 2; i++) {
-						pointSet.add(new Point(i, point.getY()));
+						finalpointSet.add(new Point(i, point.getY()));
 					}
 					for (int i = 2; i < width + 2; i++) {
-						pointSet.add(new Point(point.getX(), i));
+						finalpointSet.add(new Point(point.getX(), i));
 					}
 				} else if (diamond.getStatus() == Status.L_EL) {
 					for (int i = point.getX() - 1; i <= point.getX() + 1; i++) {
 						for (int j = point.getY() - 1; j <= point.getY() + 1; j++) {
 							if (diamondMap[i][j].getColor() != Color.GRAY) {
-								pointSet.add(new Point(i, j));
+								finalpointSet.add(new Point(i, j));
 							}
 						}
 					}
 				}
 			}
-			finalCount = pointSet.size();
+			finalCount = finalpointSet.size();
+			pointSet = finalpointSet;
 		} while(finalCount != originalCount);
 		ArrayList<Point> pointList = new ArrayList<>();
 		for (Point finalPoint: pointSet) {
@@ -782,7 +759,7 @@ public class BaseDiamondGrid {
 					
 					//iznauy 修改 2017.4.16
 					//用于增加分数
-					grade += diamondMap[point.getX()][point.getY()].getGrade();
+		//			grade += diamondMap[point.getX()][point.getY()].getGrade();
 					
 					diamondMap[point.getX()][point.getY()] = null;
 				}
@@ -820,6 +797,7 @@ public class BaseDiamondGrid {
 	 */
 	public void generateNewMap() {
 		
+		boolean haschanged = false;
 		//把null移到最顶部
 		moveNullToTheTop();
 		
@@ -828,10 +806,15 @@ public class BaseDiamondGrid {
 			
 			for (int j = 2; j < diamondMap[i].length - 2; j++) {
 				if (diamondMap[i][j] == null) {
+					haschanged = true;
 					diamondMap[i][j] = new Diamond(colors[(int) ((Math.random() * 100) % colors.length)], Status.COMMON);				}
 			}
 		}
-//		executeFullScreenElimination();
+		if (haschanged) {
+			executeFullScreenElimination();
+			generateNewMap();
+		}
+		
 		
 		//界面中的方块都落下后再执行后续的executeFullScreenElimination，这一点我觉得要结合动画来写，比如绘制一次执行一次该方法
 //		if (isDie()) {
@@ -904,4 +887,10 @@ public class BaseDiamondGrid {
 		}
 		System.out.println();
 	}
+	
+	/**
+	 * 道具消除的几个方法 等到debug结束后再处理
+	 */
+	
+	
 }

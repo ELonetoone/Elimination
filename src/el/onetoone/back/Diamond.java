@@ -1,7 +1,5 @@
 package el.onetoone.back;
 
-import el.onetoone.ui.DiamondCircle;
-
 public class Diamond {
 
 	/**
