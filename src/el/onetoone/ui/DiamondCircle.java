@@ -60,6 +60,23 @@ public class DiamondCircle extends Circle{
 		return fade;
 	}
 	
+	public TranslateTransition dropToTransition(double toY) {
+		TranslateTransition dropTransition = new TranslateTransition(Duration.millis(TRANSLATETRANSITIONTIME), this);
+		dropTransition.setByY(toY);;
+		
+		return dropTransition;
+	}
+	
+	public FadeTransition appearTransition() {
+		
+		FadeTransition appear = new FadeTransition(Duration.millis(FADETRANSITIONTIME), this);
+		appear.setFromValue(0.0);
+		appear.setToValue(1.0);
+		appear.setCycleCount(1);
+		
+		return appear;
+	}
+	
 	public String loaction() {
 		
 		return getCenterX() + ", " + getCenterY();

@@ -2,6 +2,7 @@ package el.onetoone.back;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -776,9 +777,10 @@ public class BaseDiamondGrid {
 		return exchangeValid;
 	}
 	
-	public void executeFullScreenElimination() {
+	public boolean executeFullScreenEliminationSucceed() {
 		
 		EliminationArrayList list;
+		boolean flag = false;
 		while ((list = fullScreenElimination()) != null) {
 			
 			if (list.getNewDiamond() != null) {
@@ -789,31 +791,39 @@ public class BaseDiamondGrid {
 			for (Point point : list.getToBeEliminatedPoints()) {
 				diamondMap[point.getX()][point.getY()] = null;
 			}
+			flag = true;
 		}
+		
+		return flag;
 	}
 	
 	/**
 	 * 生成消除后的新地图，将地图内部的null移到最顶部，然后系那个null替换为新的方块
 	 */
-	public void generateNewMap() {
+	public List<Point> generateNewDiamonds() {
 		
-		boolean haschanged = false;
+//		boolean haschanged = false;
 		//把null移到最顶部
 		moveNullToTheTop();
 		
+		List<Point> list = new ArrayList<>();
 		//将null换为新的宝石
 		for (int i = 2; i < diamondMap.length - 2; i++) {
 			
 			for (int j = 2; j < diamondMap[i].length - 2; j++) {
 				if (diamondMap[i][j] == null) {
-					haschanged = true;
-					diamondMap[i][j] = new Diamond(colors[(int) ((Math.random() * 100) % colors.length)], Status.COMMON);				}
+//					haschanged = true;
+					diamondMap[i][j] = new Diamond(colors[(int) ((Math.random() * 100) % colors.length)], Status.COMMON);	
+					list.add(new Point(i, j));
+				}
 			}
 		}
-		if (haschanged) {
-			executeFullScreenElimination();
-			generateNewMap();
-		}
+		
+		return list;
+//		if (haschanged) {
+//			executeFullScreenElimination();
+//			generateNewDiamonds();
+//		}
 		
 		
 		//界面中的方块都落下后再执行后续的executeFullScreenElimination，这一点我觉得要结合动画来写，比如绘制一次执行一次该方法
