@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /**
  * 感觉下一步还可以试下撤销某一步的逻辑
  * 不过要等先做出来一个版本把所有可能的bug都de了
@@ -37,14 +40,19 @@ public class BaseDiamondGrid {
 	/**
 	 * 玩家获取的分数
 	 */
-	private int grade = 0;
+	private IntegerProperty gradeProperty;
+	
 	
 	/**
 	 * 获取用户分数
 	 * @return 用户分数
 	 */
 	public int getGrade() {
-		return this.grade;
+		return gradeProperty.get();
+	}
+	
+	public IntegerProperty gradeProperty() {
+		return gradeProperty;
 	}
 	
 	/**
@@ -61,7 +69,7 @@ public class BaseDiamondGrid {
 		} while (isDie() || canDirectlyEliminated());
 		
 		//用户分数设置为0
-		this.grade = 0;
+		gradeProperty = new SimpleIntegerProperty(0);
 
 	}
 	
@@ -87,7 +95,7 @@ public class BaseDiamondGrid {
 	 * 比如用户输了选择重来，或者用户选择重新开始游戏
 	 */
 	public void reset() {
-		this.grade = 0;
+		this.gradeProperty.set(0);
 		do {
 			this.init();
 		} while (isDie() || canDirectlyEliminated());
@@ -760,7 +768,8 @@ public class BaseDiamondGrid {
 					
 					//iznauy 修改 2017.4.16
 					//用于增加分数
-		//			grade += diamondMap[point.getX()][point.getY()].getGrade();
+//					gradeProperty.add(diamondMap[point.getX()][point.getY()].getGrade());
+					gradeProperty.set(gradeProperty.get() + diamondMap[point.getX()][point.getY()].getGrade());
 					
 					diamondMap[point.getX()][point.getY()] = null;
 				}
@@ -773,6 +782,7 @@ public class BaseDiamondGrid {
 			}
 		}
 		testPrint();
+		System.out.println(getGrade());
 		
 		return exchangeValid;
 	}

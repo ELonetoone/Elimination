@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class GameScreen {
 
@@ -28,6 +29,7 @@ public class GameScreen {
 	Diamond[][] diamonds;
 	
 	Scene scene;
+	ScoreBoard scoreBoard;
 	Group group;
 	BorderPane borderPane;
 	
@@ -56,11 +58,13 @@ public class GameScreen {
 		borderPane.setPrefSize(500, 500);
 		group = new Group();
 		sequentialTransition = new SequentialTransition();
+		scoreBoard = new ScoreBoard(diamondGrid);
 		
 		paintDiamonds();
 		
 		
 		borderPane.setCenter(group);
+		borderPane.setTop(scoreBoard);
 		scene.setRoot(borderPane);
 	}
 	
@@ -143,7 +147,6 @@ public class GameScreen {
 									&& choosedCircle.getPoint().getY() == currentCircle.getPoint().getY()) {
 								//上下交换
 								boolean exchangeValid = diamondGrid.executeExchangeElimination(currentCircle.getPoint(), choosedCircle.getPoint());
-								
 								TranslateTransition transition1 = choosedCircle.verticalTransition((currentCircle.getPoint().getX()
 										- choosedCircle.getPoint().getX()) * CIRCLEDISTANCEE);
 								TranslateTransition transition2 = currentCircle.verticalTransition((choosedCircle.getPoint().getX()
@@ -182,7 +185,6 @@ public class GameScreen {
 									&& choosedCircle.getPoint().getX() == currentCircle.getPoint().getX()) {
 								//左右交换
 								boolean exchangeValid = diamondGrid.executeExchangeElimination(currentCircle.getPoint(), choosedCircle.getPoint());
-								
 								TranslateTransition transition1 = currentCircle.hrizontalTransition((choosedCircle.getPoint().getY()
 										- currentCircle.getPoint().getY()) * CIRCLEDISTANCEE);
 								TranslateTransition transition2 = choosedCircle.hrizontalTransition((currentCircle.getPoint().getY()
