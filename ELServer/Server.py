@@ -1,7 +1,7 @@
 from DataBase import *
 from ELSocket import *
 
-udpSock = ELSocket(21444)
+udpSock = ELSocket(21445)
 db = DataBase()
 
 while True:
@@ -19,11 +19,13 @@ while True:
     else:
         feedInfo = "wrong message"
     udpSock.sendto(feedInfo, address)
+    print data
     try:
-        log = open('log.txt', 'w+')
-        log.write(address + data + feedInfo)
-    except:
+        log = open('log.txt', 'a')
+        log.write(str(address) + ' ' + data + ' ' +  feedInfo + '\n')
+    except Exception as e:
         print 'log Error!'
+        print e
     finally:
         log.close()
 

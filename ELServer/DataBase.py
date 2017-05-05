@@ -12,16 +12,18 @@ class DataBase(object):
         if count >= 1:
             return "has registered!"
         else:
-            registerSqli = "insert into userInfo values ('%s', '%s', '%s', %d, %d, %d, %d, %d, %d, %d)" % (datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9])
+            registerSqli = "insert into userInfo values ('%s', '%s', '%s', %s, %s, %s, %s, %s, %s, %s)" % (datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9])
             count = self.cur.execute(registerSqli)
             if count == 1:
+                self.db.commit()
                 return "success"
             return "fail"
 
     def update(self, datas):
-        updateSqli = "replace into userInfo values ('%s', '%s', '%s', %d, %d, %d, %d, %d, %d, %d)" % (datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9])
+        updateSqli = "replace into userInfo values ('%s', '%s', '%s', %s, %s, %s, %s, %s, %s, %s)" % (datas[0], datas[1], datas[2], datas[3], datas[4], datas[5], datas[6], datas[7], datas[8], datas[9])
         count = self.cur.execute(updateSqli)
         if count == 1:
+            self.db.commit()
             return 'success'
         else:
             return 'fail'
