@@ -31,9 +31,19 @@ public class User {
 	private int coinCount = 0;
 	
 	/**
-	 * 用户最高分
+	 * 用户无尽模式最高分
 	 */
-	private int maxMark = 0;
+	private int endLessMaxMark = 0;
+	
+	/**
+	 * 用户限时模式最高分
+	 */
+	private int timeLimitedMaxMark = 0;
+	
+	/**
+	 * 用户步数有限模式最高分
+	 */
+	private int stepLimitedMaxMark = 0;
 	
 	/**
 	 * 用户持有的道具
@@ -60,7 +70,9 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		return uid + " " + password + " " + userName + " " + coinCount + " " + maxMark + " " + myItems.get(ItemList.BOOM) + 
+		return uid + " " + password + " " + userName + " " + coinCount + " " + endLessMaxMark + " " + timeLimitedMaxMark + " "
+				+ stepLimitedMaxMark + " "
+				+ myItems.get(ItemList.BOOM) + 
 				" " + myItems.get(ItemList.HAMMER) + " "  + myItems.get(ItemList.NEWMAP) + "\n";
 	}
 	
@@ -72,7 +84,8 @@ public class User {
 	public User parseUserString(String userInfo) {
 		String[] userInfos = userInfo.split(" ");
 		return new User(userInfos[0], userInfos[1], userInfos[2], Integer.valueOf(userInfos[3]), Integer.valueOf(userInfos[4])
-				, Integer.valueOf(userInfos[5]), Integer.valueOf(userInfos[6]), Integer.valueOf(userInfos[7]));
+				, Integer.valueOf(userInfos[5]), Integer.valueOf(userInfos[6]), Integer.valueOf(userInfos[7]), Integer.valueOf(userInfos[8])
+				, Integer.valueOf(userInfos[9]));
 	}
 	
 	/**
@@ -83,9 +96,12 @@ public class User {
 	 * @param coinCount
 	 * @param maxMark
 	 */
-	public User(String uid, String password, String userName, int coinCount, int maxMark, int boomCount, int hammerCount, int newmapCount) {
+	public User(String uid, String password, String userName, int coinCount, int endLessMark, int timeLimitedMaxMark, int stepLimitedMaxMark,
+					int boomCount, int hammerCount, int newmapCount) {
 		this.uid = uid;
-		this.maxMark = maxMark;
+		this.endLessMaxMark = endLessMark;
+		this.timeLimitedMaxMark = timeLimitedMaxMark;
+		this.stepLimitedMaxMark = stepLimitedMaxMark;
 		this.password = password;
 		this.coinCount = coinCount;
 		this.myItems.put(ItemList.BOOM, boomCount);
@@ -123,7 +139,7 @@ public class User {
 	 * @throws Exception 如果遇到文件读写失败时候抛出
 	 */
 	public static User register(String uid, String password) throws Exception {
-		User user = new User(uid, password, uid, 0, 0, 0, 0, 0);
+		User user = new User(uid, password, uid, 0, 0, 0, 0, 0, 0, 0);
 		DataBase dataBase = new DataBase();
 		//假如写入数据不成功
 		if (!dataBase.write(user.toString())) {
@@ -150,7 +166,7 @@ public class User {
 			String[] userInfos = userInfo.split(" ");
 			if (userInfos[0].equals(uid) && userInfos[1].equals(password)) {
 				return new User(userInfos[0], userInfos[1], userInfos[2], Integer.valueOf(userInfos[3]), Integer.valueOf(userInfos[4]), Integer.valueOf(userInfos[5])
-						, Integer.valueOf(userInfos[6]), Integer.valueOf(userInfos[7]));
+						, Integer.valueOf(userInfos[6]), Integer.valueOf(userInfos[7]), Integer.valueOf(userInfos[8]), Integer.valueOf(userInfos[9]));
 			} else if (userInfos[0].equals(uid) && !userInfos[1].equals(password)) {
 				throw new Exception(WRONGPASSWORD);
 			}
@@ -167,7 +183,7 @@ public class User {
 	public boolean equals(Object anotherUser) {
 		User another = (User) anotherUser;
 		if (another.coinCount == coinCount &&
-				another.maxMark == maxMark &&
+				another.endLessMaxMark == endLessMaxMark &&
 				another.password.equals(password) &&
 				another.uid.equals(uid) &&
 				another.userName.equals(userName)) {
@@ -213,16 +229,18 @@ public class User {
 	 * 获取最高分数
 	 * @return
 	 */
-	public int getMaxMark() {
-		return maxMark;
+	public int getendLessMaxMark() {
+		return endLessMaxMark;
 	}
+	
+
 
 	/**
 	 * 设置最高分
-	 * @param maxMark
+	 * @param endLessMaxMark
 	 */
-	public void setMaxMark(int maxMark) {
-		this.maxMark = maxMark;
+	public void setEndLessMaxMark(int endLessMaxMark) {
+		this.endLessMaxMark = endLessMaxMark;
 	}
 	
 	/**
@@ -258,6 +276,38 @@ public class User {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * 获取时间有限模式最高分
+	 * @return
+	 */
+	public int getTimeLimitedMaxMark() {
+		return timeLimitedMaxMark;
+	}
+
+	/**
+	 * 设置时间优先模式最高分
+	 * @param timeLimitedMaxMark
+	 */
+	public void setTimeLimitedMaxMark(int timeLimitedMaxMark) {
+		this.timeLimitedMaxMark = timeLimitedMaxMark;
+	}
+
+	/**
+	 * 获取步数有限模式最高分
+	 * @return
+	 */
+	public int getStepLimitedMaxMark() {
+		return stepLimitedMaxMark;
+	}
+
+	/**
+	 * 设置步数有限模式最高分
+	 * @param stepLimitedMaxMark
+	 */
+	public void setStepLimitedMaxMark(int stepLimitedMaxMark) {
+		this.stepLimitedMaxMark = stepLimitedMaxMark;
 	}
 
 }
