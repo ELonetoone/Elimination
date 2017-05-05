@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * 用于操控数据库
+ * 主要是懒得再大规模改动了。。干脆改成互联网版本。。
  * @author iznauy
  *
  */

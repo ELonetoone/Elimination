@@ -2,6 +2,7 @@ package el.onetoone.back;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.IllformedLocaleException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -769,8 +770,10 @@ public class BaseDiamondGrid {
 					//iznauy 修改 2017.4.16
 					//用于增加分数
 //					gradeProperty.add(diamondMap[point.getX()][point.getY()].getGrade());
-					gradeProperty.set(gradeProperty.get() + diamondMap[point.getX()][point.getY()].getGrade());
-					
+	
+					if (diamondMap[point.getX()][point.getY()] != null) {
+						gradeProperty.set(gradeProperty.get() + diamondMap[point.getX()][point.getY()].getGrade());
+					}
 					diamondMap[point.getX()][point.getY()] = null;
 				}
 				
