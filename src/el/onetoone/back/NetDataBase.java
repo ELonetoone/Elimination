@@ -12,6 +12,10 @@ import java.net.InetAddress;
  */
 public class NetDataBase {
 	
+	private static final String add = "118.89.114.25";
+	
+	private static final int port = 21450;
+	
 	/**
 	 * 最长延时
 	 */
@@ -80,8 +84,8 @@ public class NetDataBase {
 		}
 		String receivedInfo = null;
 		try {
-			InetAddress address = InetAddress.getByName("127.0.0.1");
-			sendPocket = new DatagramPacket(("register " + info).getBytes(), ("register " + info).length(), address, 21445);
+			InetAddress address = InetAddress.getByName(add);
+			sendPocket = new DatagramPacket(("register " + info).getBytes(), ("register " + info).length(), address, port);
 			receivePocket = new DatagramPacket(dataReceive, 1024);
 			socket.send(sendPocket);
 			socket.receive(receivePocket);
@@ -94,6 +98,7 @@ public class NetDataBase {
 			e.printStackTrace();
 			return null;
 		}
+		System.out.println(receivedInfo);
 		return receivedInfo;
 	}
 	
@@ -110,8 +115,8 @@ public class NetDataBase {
 		}
 		String receivedInfo = null;
 		try {
-			InetAddress address = InetAddress.getByName("127.0.0.1");
-			sendPocket = new DatagramPacket(("update " + newInfo).getBytes(), ("update " + newInfo).length(), address, 21445);
+			InetAddress address = InetAddress.getByName(add);
+			sendPocket = new DatagramPacket(("update " + newInfo).getBytes(), ("update " + newInfo).length(), address, port);
 			receivePocket = new DatagramPacket(dataReceive, 1024);
 			socket.send(sendPocket);
 			socket.receive(receivePocket);
@@ -135,8 +140,8 @@ public class NetDataBase {
 		}
 		String receivedInfo = null;
 		try {
-			InetAddress address = InetAddress.getByName("127.0.0.1");
-			sendPocket = new DatagramPacket(("login " + userInfo).getBytes(), ("login " + userInfo).length(), address, 21445);
+			InetAddress address = InetAddress.getByName(add);
+			sendPocket = new DatagramPacket(("login " + userInfo).getBytes(), ("login " + userInfo).length(), address, port);
 			receivePocket = new DatagramPacket(dataReceive, 1024);
 			socket.send(sendPocket);
 			socket.receive(receivePocket);

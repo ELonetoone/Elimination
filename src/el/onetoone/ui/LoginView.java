@@ -151,15 +151,19 @@ public class LoginView extends Application {
 				String passwordStr = passwordField.getText();
 				if (usernameStr.equals("") || passwordStr.equals("")) {
 					actionResult.setText("用户名与密码不能为空");
-				} else if (User.hasRegister(usernameStr)) {
-					actionResult.setText("用户名已存在");
+			//	} else if (User.hasRegister(usernameStr)) {
+			//		actionResult.setText("用户名已存在");
 				} else {
 					user = User.register(username.getText().trim(), passwordField.getText());
 					initDegreeOfDiffcultyPane();
 				}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				if (e1.getMessage().equals(User.FAILTOCONNECTDATABASE)) {
+					actionResult.setText("网络连接失败");
+				} else if (e1.getMessage().equals(User.HASNOTREGISTER)) {
+					actionResult.setText("用户名已存在");
+				} 
 			}
 		});
 		HBox hBox = new HBox();
