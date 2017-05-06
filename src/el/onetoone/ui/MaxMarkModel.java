@@ -1,7 +1,14 @@
 package el.onetoone.ui;
 
+
+import org.omg.CORBA.INTERNAL;
+
+import el.onetoone.back.User;
+import el.onetoone.back.UserBox;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -12,7 +19,24 @@ public class MaxMarkModel implements FunctionModel {
 	private Scene maxMarkScene;
 	
 	//用于测试
+	//返回按钮
 	private Button returnButton;
+	
+	/**
+	 * 无尽模式最高分
+	 */
+	private Label commonMaxMark;
+	
+	/**
+	 * 有限步数模式最高分
+	 */
+	private Label limitedStepMaxMark;
+	
+	/**
+	 * 有限时间模式最高分
+	 */
+	private Label limitedTimeMaxMark;
+	
 	
 	/**
 	 * 保留指向综合界面的引用，返回综合界面
@@ -28,16 +52,34 @@ public class MaxMarkModel implements FunctionModel {
 	 * 初始化
 	 */
 	public void init() {
-		/**
-		 * 本方法暂时是测试成功的，可以删除内容
-		 */
+		commonMaxMark = new Label("无尽模式   ");
+		limitedStepMaxMark = new Label("举步维艰   ");
+		limitedTimeMaxMark = new Label("生死时速   ");
+		
+		commonMaxMark.setMinSize(200, 100);
+		
 		returnButton = new Button("返回");
 		returnButton.setOnAction(e -> {
-			returnToSyn();
+			stage.setScene(synScene);
 		});
+		
+		Label commonMax = new Label(String.valueOf(UserBox.getUser().getendLessMaxMark()));
+		Label limitedStepMax = new Label(String.valueOf(UserBox.getUser().getStepLimitedMaxMark()));
+		Label limitedTimeMax = new Label(String.valueOf(UserBox.getUser().getTimeLimitedMaxMark()));
+		
 		GridPane gridPane = new GridPane();
-		gridPane.add(returnButton, 4, 0);
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.add(commonMaxMark, 1, 1);
+		gridPane.add(returnButton, 3, 0);
+		gridPane.add(commonMax, 2, 1);
+		
+		gridPane.add(limitedStepMaxMark, 1, 2);
+		gridPane.add(limitedTimeMax, 2, 3);
+		gridPane.add(limitedStepMax, 2, 2);
+		gridPane.add(limitedTimeMaxMark, 1, 3);
+		
 		maxMarkScene = new Scene(gridPane, 1000, 700);
+		
 	}
 	
 	/**
