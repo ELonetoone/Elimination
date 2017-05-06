@@ -13,7 +13,7 @@ public class UserBox {
 		UserBox.user = user;
 	}
 	
-	public static User getUser(User user) {
+	public static User getUser() {
 		return UserBox.user;
 	}
 
