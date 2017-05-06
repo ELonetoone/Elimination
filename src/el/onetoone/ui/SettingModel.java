@@ -7,9 +7,15 @@ public class SettingModel implements FunctionModel{
 
 	private Scene settingScene;
 	
+	/**
+	 * 保留指向综合界面的引用，返回综合界面
+	 */
+	private Scene synScene;
+	
 	private Stage stage;
 	
-	public SettingModel(Stage stage) {
+	public SettingModel(Stage stage, Scene synScene) {
+		this.synScene = synScene;
 		this.stage = stage;
 	}
 
@@ -32,7 +38,7 @@ public class SettingModel implements FunctionModel{
 	 * 返回综合界面
 	 */
 	public void returnToSyn() {
-		
+		stage.setScene(synScene);
 	}
 	
 }

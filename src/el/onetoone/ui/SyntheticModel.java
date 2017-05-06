@@ -1,5 +1,6 @@
 package el.onetoone.ui;
 
+import el.onetoone.back.UserBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ public class SyntheticModel {
 	private Stage primStage;
 	
 	/**
-	 * 通过get方法可以获取，用于回到该界面
+	 * 当前界面
 	 */
 	private Scene scene;
 	
@@ -64,12 +65,15 @@ public class SyntheticModel {
 		return this.scene;
 	}
 	
+	private InitialView initialView;
+	
 	/**
 	 * 获取stage
 	 * @param stage
 	 */
-	public SyntheticModel(Stage stage) {
+	public SyntheticModel(Stage stage, InitialView initialView) {
 		this.primStage = stage;
+		this.initialView = initialView;
 	}
 	
 	public void init() {
@@ -115,6 +119,8 @@ public class SyntheticModel {
 		
 		logOutButton.setMinSize(50, 50);
 		
+		registerLogoutListener();
+		
 		gridPane.add(unlimitedMode, 1, 1);
 		gridPane.add(stepLimitedMode, 2, 1);
 		gridPane.add(timeLimitedMode, 3, 1);
@@ -128,6 +134,28 @@ public class SyntheticModel {
 		gridPane.add(logOutButton, 4, 0);
 		
 		scene = new Scene(gridPane, 1000, 700);
+		
+	}
+	
+	/**
+	 * 注册登出按钮监听器
+	 */
+	public void registerLogoutListener() {
+		
+		logOutButton.setOnMouseEntered(e -> {
+			logOutButton.setScaleX(1.3);
+			logOutButton.setScaleY(1.3);
+		});
+		
+		logOutButton.setOnMouseExited(e -> {
+			logOutButton.setScaleX(1.0);
+			logOutButton.setScaleY(1.0);
+		});
+		
+		logOutButton.setOnAction(e -> {
+			primStage.setScene(initialView.initialScene);
+			UserBox.setUser(null);
+		});
 		
 	}
 	
@@ -147,7 +175,7 @@ public class SyntheticModel {
 		});
 		
 		marketAndBackButton.setOnAction(e -> {
-			FunctionModel model =  new MarketAndBackModel(primStage);
+			FunctionModel model =  new MarketAndBackModel(primStage, scene);
 			model.init();
 			funcScene = model.getScene();
 			primStage.setScene(funcScene);
@@ -164,7 +192,7 @@ public class SyntheticModel {
 		});
 		
 		maxMarkButton.setOnAction(e -> {
-			FunctionModel model = new MaxMarkModel(primStage);
+			FunctionModel model = new MaxMarkModel(primStage, scene);
 			model.init();
 			funcScene = model.getScene();
 			primStage.setScene(funcScene);
@@ -181,7 +209,7 @@ public class SyntheticModel {
 		});
 		
 		topUpButton.setOnAction(e -> {
-			FunctionModel model = new TopUpModel(primStage);
+			FunctionModel model = new TopUpModel(primStage, scene);
 			model.init();
 			funcScene = model.getScene();
 			primStage.setScene(funcScene);
@@ -198,7 +226,7 @@ public class SyntheticModel {
 		});
 		
 		settingButton.setOnAction(e -> {
-			FunctionModel model = new SettingModel(primStage);
+			FunctionModel model = new SettingModel(primStage, scene);
 			model.init();
 			funcScene = model.getScene();
 			primStage.setScene(funcScene);

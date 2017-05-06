@@ -7,9 +7,15 @@ public class TopUpModel implements FunctionModel{
 
 	private Scene topUpScene;
 	
+	/**
+	 * 保留指向综合界面的引用，返回综合界面
+	 */
+	private Scene synScene;
+	
 	private Stage stage;
 	
-	public TopUpModel(Stage stage) {
+	public TopUpModel(Stage stage, Scene synScene) {
+		this.synScene = synScene;
 		this.stage = stage;
 	}
 
@@ -32,6 +38,6 @@ public class TopUpModel implements FunctionModel{
 	 * 返回综合界面
 	 */
 	public void returnToSyn() {
-		
+		stage.setScene(synScene);
 	}
 }

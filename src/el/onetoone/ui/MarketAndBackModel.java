@@ -7,9 +7,18 @@ public class MarketAndBackModel implements FunctionModel{
 	
 	private Scene marketAndBackScene;
 	
+	/**
+	 * 保留指向综合界面的引用，返回综合界面
+	 */
+	private Scene synScene;
+	
+	/**
+	 * 主界面stage
+	 */
 	private Stage stage;
 	
-	public MarketAndBackModel(Stage stage) {
+	public MarketAndBackModel(Stage stage, Scene synScene) {
+		this.synScene = synScene;
 		this.stage = stage;
 	}
 
@@ -32,7 +41,7 @@ public class MarketAndBackModel implements FunctionModel{
 	 * 返回综合界面
 	 */
 	public void returnToSyn() {
-		
+		stage.setScene(synScene);
 	}
 	
 }

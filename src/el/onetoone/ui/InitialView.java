@@ -37,7 +37,7 @@ public class InitialView extends Application {
 	 */
 	public User user = null;
 	
-	private Scene initialScene;
+	public Scene initialScene;
 	
 	private Stage primStage;
 	
@@ -96,7 +96,7 @@ public class InitialView extends Application {
 			user = null;
 			UserBox.setUser(user);
 			//转跳至综合界面
-			SyntheticModel synModel = new SyntheticModel(primStage);
+			SyntheticModel synModel = new SyntheticModel(primStage, this);
 			synModel.init();
 			Scene synScene = synModel.getScene();
 			primStage.setScene(synScene);
@@ -160,7 +160,7 @@ public class InitialView extends Application {
 							
 							UserBox.setUser(user);
 							//转换到综合界面
-							SyntheticModel synModel = new SyntheticModel(primStage);
+							SyntheticModel synModel = new SyntheticModel(primStage, this);
 							synModel.init();
 							Scene synScene = synModel.getScene();
 							primStage.setScene(synScene);
@@ -259,7 +259,7 @@ public class InitialView extends Application {
 							user = User.register(uid, passwd);
 							UserBox.setUser(user);
 							//转跳到综合界面
-							SyntheticModel synModel = new SyntheticModel(primStage);
+							SyntheticModel synModel = new SyntheticModel(primStage, this);
 							synModel.init();
 							Scene synScene = synModel.getScene();
 							primStage.setScene(synScene);
