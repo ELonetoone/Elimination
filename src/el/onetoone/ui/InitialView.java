@@ -1,6 +1,7 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.User;
+import el.onetoone.back.UserBox;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 
 public class InitialView extends Application {
 	
+	
 	private Button exitButton;
 	
 	private Button loginButton;
@@ -30,6 +32,9 @@ public class InitialView extends Application {
 	
 	private GridPane buttonPane;
 	
+	/**
+	 * 设置为public，全局可访问
+	 */
 	public User user = null;
 	
 	private Scene initialScene;
@@ -89,8 +94,12 @@ public class InitialView extends Application {
 		
 		trialButton.setOnAction(e -> {
 			user = null;
-			
+			UserBox.setUser(user);
 			//转跳至综合界面
+			SyntheticModel synModel = new SyntheticModel(primStage);
+			synModel.init();
+			Scene synScene = synModel.getScene();
+			primStage.setScene(synScene);
 		});
 		
 		exitButton.setOnAction(e ->{
@@ -143,13 +152,18 @@ public class InitialView extends Application {
 						}
 					}
 					if (hasSpace) {
+						
 						promptText.setText("用户名不能含有空格");
 					} else {
 						try {
 							user = User.login(uid, passwd);
 							
+							UserBox.setUser(user);
 							//转换到综合界面
-							
+							SyntheticModel synModel = new SyntheticModel(primStage);
+							synModel.init();
+							Scene synScene = synModel.getScene();
+							primStage.setScene(synScene);
 						} catch (Exception q) {
 							String qErrorMessage = q.getMessage();
 							
@@ -243,9 +257,12 @@ public class InitialView extends Application {
 					} else {
 						try {
 							user = User.register(uid, passwd);
-							
+							UserBox.setUser(user);
 							//转跳到综合界面
-							
+							SyntheticModel synModel = new SyntheticModel(primStage);
+							synModel.init();
+							Scene synScene = synModel.getScene();
+							primStage.setScene(synScene);
 						} catch(Exception q) {
 							String qErrorMessage = q.getMessage();
 							if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {
