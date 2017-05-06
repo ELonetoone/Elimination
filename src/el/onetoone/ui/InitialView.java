@@ -84,6 +84,7 @@ public class InitialView extends Application {
 		initialScene = new Scene(borderPane, 1000, 700);
 		initialScene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		primaryStage.setScene(initialScene);
+		GameMain gamePanel = new GameMain(primaryStage, initialScene, "noMode");
 		primStage = primaryStage;
 		primaryStage.show();
 		

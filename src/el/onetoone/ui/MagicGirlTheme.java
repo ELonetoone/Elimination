@@ -1,5 +1,6 @@
 package el.onetoone.ui;
 
+import el.onetoone.back.Config;
 import javafx.scene.image.Image;
 
 public class MagicGirlTheme extends Theme {
@@ -7,9 +8,9 @@ public class MagicGirlTheme extends Theme {
 	public MagicGirlTheme() {
 		
 		//set background
-		setBG_START(new Image("/image/bg_start.png", 1000, 700, true, true));
-		setBG_GAME(new Image("/image/bg_game.jpg",true));
-		setBG_SIGN(new Image("/image/bg_sign.png", true));
+		setBG_START(new Image("/image/bg_start.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, true, true));
+		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+		setBG_SIGN(new Image("/image/bg_sign.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, true, true));
 		
 		//set diamond
 		setDIAMOND_ONE(new Image("/image/diamond_1.png"));
