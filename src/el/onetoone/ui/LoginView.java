@@ -30,7 +30,7 @@ public class LoginView extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		primaryStage.setTitle("Happy Elimination");
+		primaryStage.setTitle("氪金消消乐");
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
