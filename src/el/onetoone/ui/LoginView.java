@@ -75,7 +75,7 @@ public class LoginView extends Application {
 		grid.add(resultText, 1, 6);
 		
 		//test code
-//		GameScreen gameScreen = new GameScreen(scene);
+		GameScreen gameScreen = new GameScreen(scene);
 //		GamePanel gamePanel = new GamePanel(scene);
 		
 		primaryStage.setScene(scene);

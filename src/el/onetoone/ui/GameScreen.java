@@ -14,6 +14,8 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -61,8 +63,11 @@ public class GameScreen {
 		scoreBoard = new ScoreBoard(diamondGrid);
 		
 		paintDiamonds();
-		
-		
+		Theme theme = new MagicGirlTheme();
+		ImageView backgroud = new ImageView(theme.getBG_GAME());
+		backgroud.setFitWidth(scene.getWidth());
+		backgroud.setFitHeight(scene.getHeight());
+		borderPane.getChildren().add(backgroud);
 		borderPane.setCenter(group);
 		borderPane.setTop(scoreBoard);
 		scene.setRoot(borderPane);
