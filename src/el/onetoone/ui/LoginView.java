@@ -31,6 +31,7 @@ public class LoginView extends Application {
 	public void start(Stage primaryStage) {
 		
 		primaryStage.setTitle("氪金消消乐");
+//		primaryStage.setResizable(false);
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -38,7 +39,7 @@ public class LoginView extends Application {
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 		
-		scene = new Scene(grid, 400, 400);
+		scene = new Scene(grid, 1000, 700);
 		
 		Text text = new Text("Happy Elimination");
 		text.setSmooth(true);

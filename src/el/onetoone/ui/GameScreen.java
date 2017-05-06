@@ -12,8 +12,10 @@ import el.onetoone.back.Point;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
@@ -22,18 +24,19 @@ import javafx.scene.text.Text;
 
 public class GameScreen {
 
-	private static final double CIRCLEDISTANCEE = 30;
+	private static final double CIRCLEDISTANCEE = 60;
 	private static final double RADIUS = 10;
 	
 	DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
 	BaseDiamondGrid diamondGrid;
-	DiamondCircle choosedCircle;
+	DiamondCircle choosedDiamond;
 	Diamond[][] diamonds;
 	
 	Scene scene;
 	ScoreBoard scoreBoard;
 	Group group;
 	BorderPane borderPane;
+	Theme theme;
 	
 	private SequentialTransition sequentialTransition;
 	private double startY;
@@ -44,6 +47,7 @@ public class GameScreen {
 	 */
 	public GameScreen(Scene scene) {
 		
+		theme = new MagicGirlTheme();
 		this.scene = scene;
 		init();
 	}
@@ -57,7 +61,6 @@ public class GameScreen {
 		diamondGrid = new BaseDiamondGrid(Config.height, Config.width);
 		diamonds = diamondGrid.getDiamondMap();
 		borderPane = new BorderPane();
-		borderPane.setPrefSize(500, 500);
 		group = new Group();
 		sequentialTransition = new SequentialTransition();
 		scoreBoard = new ScoreBoard(diamondGrid);
@@ -68,7 +71,9 @@ public class GameScreen {
 		backgroud.setFitWidth(scene.getWidth());
 		backgroud.setFitHeight(scene.getHeight());
 		borderPane.getChildren().add(backgroud);
-		borderPane.setCenter(group);
+		BorderPane.setAlignment(group, Pos.BASELINE_CENTER);
+		borderPane.setBottom(group);
+		
 		borderPane.setTop(scoreBoard);
 		scene.setRoot(borderPane);
 	}
@@ -81,7 +86,7 @@ public class GameScreen {
 				startY = scene.getWidth() / (Config.width * 2);
 				startX = scene.getHeight() / (Config.height * 2);
 //				circleDistance = 2 * centerV;
-				Color color;
+				Image diamondImage = null;
 				for (int i = 0; i < diamondCircles.length; i++) {
 					
 					for (int j = 0; j < diamondCircles[i].length; j++) {
@@ -90,77 +95,78 @@ public class GameScreen {
 						switch (diamonds[i + 2][j + 2].getColor().ordinal()) {
 						case 0:
 							
-							color = Color.GREEN;
+							diamondImage = theme.getDIAMOND_ONE();
 							break;
 
 						case 1:
 							
-							color = Color.RED;
+							diamondImage = theme.getDIAMOND_TWO();
 							break;
 						case 2:
 							
-							color = Color.BLUE;
+							diamondImage = theme.getDIAMOND_THREE();
 							break;
 							
 						case 3:
 							
-							color = Color.YELLOW;
+							diamondImage = theme.getDIAMOND_FOUR();
 							break;
 							
 						case 4:
 							
-							color = Color.ORANGE;
+							diamondImage = theme.getDIAMOND_FIVE();
 							break;
 							
 						case 5:
 							
-							color = Color.PURPLE;
+							diamondImage = theme.getDIAMOND_SIX();
 							break;
 							
 					    default:
-					    	color = Color.GRAY;
+					    	break;
 						}
 						
 						
 						diamondCircles[i][j] = new DiamondCircle();
 						diamondCircles[i][j].setPoint(new Point(i + 2, j + 2));
-						diamondCircles[i][j].setFill(color);
-						diamondCircles[i][j].setRadius(RADIUS);
-						diamondCircles[i][j].setCenterX(startY + CIRCLEDISTANCEE * j);
-						diamondCircles[i][j].setCenterY(startX + CIRCLEDISTANCEE * i);
+						diamondCircles[i][j].setImage(diamondImage);
+						diamondCircles[i][j].setFitWidth(100);
+						diamondCircles[i][j].setFitHeight(80);
+						diamondCircles[i][j].setLayoutX(startY + CIRCLEDISTANCEE * j);
+						diamondCircles[i][j].setLayoutY(startX + CIRCLEDISTANCEE * i);
 						group.getChildren().add(diamondCircles[i][j]);
 						
-						DiamondCircle currentCircle = diamondCircles[i][j];
+						DiamondCircle currentDiamond = diamondCircles[i][j];
 						
-						currentCircle.setOnMouseEntered(e -> {
-
-							currentCircle.setStroke(Color.BLACK);
-							currentCircle.setStrokeWidth(1);
-						});
+//						currentDiamond.setOnMouseEntered(e -> {
+//
+//							currentDiamond.setStroke(Color.BLACK);
+//							currentDiamond.setStrokeWidth(1);
+//						});
+//						
+//						currentDiamond.setOnMouseExited(e -> {
+//							
+//							currentDiamond.setStroke(null);
+//						});
 						
-						currentCircle.setOnMouseExited(e -> {
+						currentDiamond.setOnMousePressed(e -> {
 							
-							currentCircle.setStroke(null);
-						});
-						
-						currentCircle.setOnMousePressed(e -> {
-							
-							if (choosedCircle == null) {
-								choosedCircle = currentCircle;
-							} else if ((choosedCircle.getPoint().getX() + 1 == currentCircle.getPoint().getX()
-									|| choosedCircle.getPoint().getX() - 1 ==  currentCircle.getPoint().getX())
-									&& choosedCircle.getPoint().getY() == currentCircle.getPoint().getY()) {
+							if (choosedDiamond == null) {
+								choosedDiamond = currentDiamond;
+							} else if ((choosedDiamond.getPoint().getX() + 1 == currentDiamond.getPoint().getX()
+									|| choosedDiamond.getPoint().getX() - 1 ==  currentDiamond.getPoint().getX())
+									&& choosedDiamond.getPoint().getY() == currentDiamond.getPoint().getY()) {
 								//上下交换
-								boolean exchangeValid = diamondGrid.executeExchangeElimination(currentCircle.getPoint(), choosedCircle.getPoint());
-								TranslateTransition transition1 = choosedCircle.verticalTransition((currentCircle.getPoint().getX()
-										- choosedCircle.getPoint().getX()) * CIRCLEDISTANCEE);
-								TranslateTransition transition2 = currentCircle.verticalTransition((choosedCircle.getPoint().getX()
-										- currentCircle.getPoint().getX()) * CIRCLEDISTANCEE);
+								boolean exchangeValid = diamondGrid.executeExchangeElimination(currentDiamond.getPoint(), choosedDiamond.getPoint());
+								TranslateTransition transition1 = choosedDiamond.verticalTransition((currentDiamond.getPoint().getX()
+										- choosedDiamond.getPoint().getX()) * CIRCLEDISTANCEE);
+								TranslateTransition transition2 = currentDiamond.verticalTransition((choosedDiamond.getPoint().getX()
+										- currentDiamond.getPoint().getX()) * CIRCLEDISTANCEE);
 								
 								
 								if (exchangeValid) {
-									exchangeDiamondCircle(currentCircle);
-									exchangePoint(currentCircle);
+									exchangeDiamondCircle(currentDiamond);
+									exchangePoint(currentDiamond);
 
 								} else {
 									transition1.setCycleCount(2);
@@ -184,20 +190,20 @@ public class GameScreen {
 //								printCenterLocation();
 								
 								
-								choosedCircle = null;
-							} else if ((choosedCircle.getPoint().getY() + 1 == currentCircle.getPoint().getY()
-									|| choosedCircle.getPoint().getY() - 1 == currentCircle.getPoint().getY())
-									&& choosedCircle.getPoint().getX() == currentCircle.getPoint().getX()) {
+								choosedDiamond = null;
+							} else if ((choosedDiamond.getPoint().getY() + 1 == currentDiamond.getPoint().getY()
+									|| choosedDiamond.getPoint().getY() - 1 == currentDiamond.getPoint().getY())
+									&& choosedDiamond.getPoint().getX() == currentDiamond.getPoint().getX()) {
 								//左右交换
-								boolean exchangeValid = diamondGrid.executeExchangeElimination(currentCircle.getPoint(), choosedCircle.getPoint());
-								TranslateTransition transition1 = currentCircle.hrizontalTransition((choosedCircle.getPoint().getY()
-										- currentCircle.getPoint().getY()) * CIRCLEDISTANCEE);
-								TranslateTransition transition2 = choosedCircle.hrizontalTransition((currentCircle.getPoint().getY()
-										- choosedCircle.getPoint().getY()) * CIRCLEDISTANCEE);
+								boolean exchangeValid = diamondGrid.executeExchangeElimination(currentDiamond.getPoint(), choosedDiamond.getPoint());
+								TranslateTransition transition1 = currentDiamond.hrizontalTransition((choosedDiamond.getPoint().getY()
+										- currentDiamond.getPoint().getY()) * CIRCLEDISTANCEE);
+								TranslateTransition transition2 = choosedDiamond.hrizontalTransition((currentDiamond.getPoint().getY()
+										- choosedDiamond.getPoint().getY()) * CIRCLEDISTANCEE);
 								
 								if (exchangeValid) {
-									exchangeDiamondCircle(currentCircle);
-									exchangePoint(currentCircle);
+									exchangeDiamondCircle(currentDiamond);
+									exchangePoint(currentDiamond);
 
 								} else {
 									transition1.setCycleCount(2);
@@ -219,9 +225,9 @@ public class GameScreen {
 								
 								
 								
-								choosedCircle = null;
+								choosedDiamond = null;
 							} else {
-								choosedCircle = currentCircle;
+								choosedDiamond = currentDiamond;
 							}
 						});
 					}
@@ -280,46 +286,47 @@ public class GameScreen {
 		for (Point point : list) {
 			DiamondCircle temp = new DiamondCircle();
 			temp.setPoint(point);
-			temp.setCenterY(startX + ((point.getX() - 2) * CIRCLEDISTANCEE));
-			temp.setCenterX(startY + ((point.getY() - 2) * CIRCLEDISTANCEE));
+			temp.setLayoutY(startX + ((point.getX() - 2) * CIRCLEDISTANCEE));
+			temp.setLayoutX(startY + ((point.getY() - 2) * CIRCLEDISTANCEE));
 			
-			Color color;
+			Image diamondImage = null;
 			switch (diamonds[point.getX()][point.getY()].getColor().ordinal()) {
 			case 0:
 				
-				color = Color.GREEN;
+				diamondImage = theme.getDIAMOND_ONE();
 				break;
 
 			case 1:
 				
-				color = Color.RED;
+				diamondImage = theme.getDIAMOND_TWO();
 				break;
 			case 2:
 				
-				color = Color.BLUE;
+				diamondImage = theme.getDIAMOND_THREE();
 				break;
 				
 			case 3:
 				
-				color = Color.YELLOW;
+				diamondImage = theme.getDIAMOND_FOUR();
 				break;
 				
 			case 4:
 				
-				color = Color.ORANGE;
+				diamondImage = theme.getDIAMOND_FIVE();
 				break;
 				
 			case 5:
 				
-				color = Color.PURPLE;
+				diamondImage = theme.getDIAMOND_SIX();
 				break;
 				
 		    default:
-		    	color = Color.GRAY;
+		    	break;
 			}
 			
-			temp.setFill(color);
-			temp.setRadius(RADIUS);
+			temp.setImage(diamondImage);
+			temp.setFitHeight(50);
+			temp.setFitWidth(50);
 			
 			group.getChildren().add(temp);
 			appear.getChildren().add(temp.appearTransition());
@@ -376,15 +383,15 @@ public class GameScreen {
 	private void exchangeDiamondCircle(DiamondCircle currentCircle) {
 		
 		DiamondCircle tempCircle = currentCircle;
-		diamondCircles[currentCircle.getPoint().getX() - 2][currentCircle.getPoint().getY() - 2] = choosedCircle;
-		diamondCircles[choosedCircle.getPoint().getX() - 2][choosedCircle.getPoint().getY() - 2] = tempCircle;
+		diamondCircles[currentCircle.getPoint().getX() - 2][currentCircle.getPoint().getY() - 2] = choosedDiamond;
+		diamondCircles[choosedDiamond.getPoint().getX() - 2][choosedDiamond.getPoint().getY() - 2] = tempCircle;
 	}
 	
 	private void exchangePoint(DiamondCircle currentCircle) {
 		
 		Point temp = currentCircle.getPoint();
-		currentCircle.setPoint(choosedCircle.getPoint());
-		choosedCircle.setPoint(temp);
+		currentCircle.setPoint(choosedDiamond.getPoint());
+		choosedDiamond.setPoint(temp);
 	}
 	
 	/**
@@ -395,7 +402,7 @@ public class GameScreen {
 			System.out.printf("%-3d ", i);
 			for (int j = 0; j < diamondCircles[i].length; j++) {
 				if (diamondCircles[i][j] != null) {
-					System.out.printf("%-6s  ", diamondCircles[i][j].getFill());
+					System.out.printf("%-6s  ", diamondCircles[i][j].getImage());
 				} else {
 					System.out.printf("%-6s  ", diamondCircles[i][j]);
 				}

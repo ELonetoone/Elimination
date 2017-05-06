@@ -28,6 +28,7 @@ public abstract class Theme {
 	protected Image BUTTON_TIME_MODE;
 	protected Image BUTTON_INDEFINITE_MODE;
 	protected Image BUTTON_STEP_MODE;
+	private Image BUTTON_CONFIG = new Image("/image/config.png");
 	
 	//frame(框)
 	protected Image FRAME_STEP;
@@ -185,6 +186,12 @@ public abstract class Theme {
 	}
 	public void setFRAME_HIGHEST_SCORE(Image fRAME_HIGHEST_SCORE) {
 		FRAME_HIGHEST_SCORE = fRAME_HIGHEST_SCORE;
+	}
+	public Image getBUTTON_CONFIG() {
+		return BUTTON_CONFIG;
+	}
+	public void setBUTTON_CONFIG(Image bUTTON_CONFIG) {
+		BUTTON_CONFIG = bUTTON_CONFIG;
 	}
 	
 	

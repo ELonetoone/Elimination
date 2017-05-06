@@ -1,16 +1,39 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Point;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class DiamondCircle extends Circle{
+public class DiamondCircle extends ImageView{
 	
 	private static final double TRANSLATETRANSITIONTIME = 500;
 	private static final double FADETRANSITIONTIME = 300;
 	private Point point;
+	private Bloom bloomEffect;
+	
+	public DiamondCircle() {
+		
+		bloomEffect = new Bloom();
+		setEffect(bloomEffect);
+		Timeline blooming = new Timeline(
+				new KeyFrame(Duration.seconds(2), new KeyValue(bloomEffect.thresholdProperty(), 0.0, Interpolator.EASE_BOTH))
+				);
+		blooming.setAutoReverse(true);
+		blooming.setCycleCount(Animation.INDEFINITE);
+		blooming.play();
+	}
 
 	public Point getPoint() {
 		return point;
@@ -79,6 +102,6 @@ public class DiamondCircle extends Circle{
 	
 	public String loaction() {
 		
-		return getCenterX() + ", " + getCenterY();
+		return getLayoutX() + ", " + getLayoutY();
 	}
 }

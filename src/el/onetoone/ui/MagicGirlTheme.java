@@ -7,8 +7,8 @@ public class MagicGirlTheme extends Theme {
 	public MagicGirlTheme() {
 		
 		//set background
-		setBG_START(new Image("/image/bg_start.png", true));
-		setBG_GAME(new Image("/image/bg_game.jpg", true));
+		setBG_START(new Image("/image/bg_start.png", 1000, 700, true, true));
+		setBG_GAME(new Image("/image/bg_game.jpg",true));
 		setBG_SIGN(new Image("/image/bg_sign.png", true));
 		
 		//set diamond
