@@ -1,19 +1,15 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Point;
-import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.effect.Bloom;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.Light;
-import javafx.scene.effect.Lighting;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class DiamondCircle extends ImageView{
@@ -26,13 +22,8 @@ public class DiamondCircle extends ImageView{
 	public DiamondCircle() {
 		
 		bloomEffect = new Bloom();
-		setEffect(bloomEffect);
-		Timeline blooming = new Timeline(
-				new KeyFrame(Duration.seconds(2), new KeyValue(bloomEffect.thresholdProperty(), 0.0, Interpolator.EASE_BOTH))
-				);
-		blooming.setAutoReverse(true);
-		blooming.setCycleCount(Animation.INDEFINITE);
-		blooming.play();
+		bloomEffect.setThreshold(0.9);
+		setEffect(bloomEffect);		
 	}
 
 	public Point getPoint() {
@@ -73,14 +64,22 @@ public class DiamondCircle extends ImageView{
 	/**
 	 * 被消除时执行一个fadetransition
 	 */
-	public FadeTransition fade() {
+	public ParallelTransition fade() {
 		
+		ParallelTransition result = new ParallelTransition();
 		FadeTransition fade = new FadeTransition(Duration.millis(FADETRANSITIONTIME), this);
 		fade.setFromValue(1.0);
 		fade.setToValue(0.0);
 		fade.setCycleCount(1);
+		RotateTransition rotateTransition = new RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
+		rotateTransition.setByAngle(720);
+		rotateTransition.setCycleCount(1);
+		Timeline reduce = new Timeline(
+				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(this.scaleXProperty(), 0.0)),
+				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(this.scaleYProperty(), 0.0)));
+		result.getChildren().addAll(fade, rotateTransition, reduce);
 		
-		return fade;
+		return result;
 	}
 	
 	public TranslateTransition dropToTransition(double toY) {
