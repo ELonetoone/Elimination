@@ -1,5 +1,8 @@
 package el.onetoone.ui;
 
+import java.awt.Desktop;
+import java.net.URI;
+
 import el.onetoone.back.UserBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -209,10 +212,25 @@ public class SyntheticModel {
 		});
 		
 		topUpButton.setOnAction(e -> {
-			FunctionModel model = new TopUpModel(primStage, scene);
-			model.init();
-			funcScene = model.getScene();
-			primStage.setScene(funcScene);
+//			FunctionModel model = new TopUpModel(primStage, scene);
+//			model.init();
+//			funcScene = model.getScene();
+//			primStage.setScene(funcScene);
+			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE791.jpg";
+			URI uri = URI.create(url);
+			try {
+				Desktop desktop = Desktop.getDesktop();
+				if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+					desktop.browse(uri);
+				}
+			} catch (NullPointerException e1) {
+				// TODO: handle exception
+				e1.printStackTrace();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+			
 		});
 		
 		settingButton.setOnMouseEntered(e -> {
