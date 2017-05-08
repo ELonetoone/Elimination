@@ -54,6 +54,9 @@ public class GameMain {
 		root.setOnMousePressed(e -> {
 			System.out.println(e.getX() + " " + e.getSceneX() + " " + e.getSceneX());
 		});
+		
+		ExitPane exitPane = new ExitPane();
+		root.getChildren().add(exitPane);
 	}
 
 	private void createControls() {
