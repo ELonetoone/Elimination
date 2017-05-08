@@ -5,6 +5,9 @@ import javafx.scene.image.Image;
 
 public class MagicGirlTheme extends Theme {
 
+	private static final int FRAME_LITTLE_WIDTH = 300;
+	private static final int FRAME_LITTLE_HEIGHT = 400;
+	
 	public MagicGirlTheme() {
 		
 		//set background
@@ -32,11 +35,11 @@ public class MagicGirlTheme extends Theme {
 		setBUTTON_TIME_MODE(new Image("/image/button_time_mode.png"));
 		
 		//set frame
-		setFRAME_GAME(new Image("/image/frame_game.png"));
-		setFRAME_HIGHEST_SCORE(new Image("/image/frame_highest_score.png"));
-		setFRAME_MONEY(new Image("/image/frame_money.png"));
-		setFRAME_SIGN_IN(new Image("/image/frame_signIn.png"));
-		setFRAME_STEP(new Image("/image/frame_step.png"));
-		setFRAME_TIME(new Image("/image/frame_time.png"));
+		setFRAME_GAME(new Image("/image/frame_game.png", 1000, 1200, true, false, true));
+		setFRAME_HIGHEST_SCORE(new Image("/image/frame_highest_score.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+		setFRAME_MONEY(new Image("/image/frame_money.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+		setFRAME_SIGN_IN(new Image("/image/frame_signIn.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+		setFRAME_STEP(new Image("/image/frame_step.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+		setFRAME_TIME(new Image("/image/frame_time.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 	}
 }

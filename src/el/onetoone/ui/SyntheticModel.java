@@ -252,7 +252,7 @@ public class SyntheticModel {
 		unlimitedMode.setOnAction(e -> {
 			mode = UNLIMITE;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, "noMode");
+			GameMain gamePanel = new GameMain(primStage, scene, mode);
 		});
 		
 		timeLimitedMode.setOnMouseEntered(e -> {
@@ -268,7 +268,7 @@ public class SyntheticModel {
 		timeLimitedMode.setOnAction(e -> {
 			mode = TIMELIMITED;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, "noMode");
+			GameMain gamePanel = new GameMain(primStage, scene, mode);
 		});
 		
 		stepLimitedMode.setOnMouseEntered(e -> {
@@ -284,7 +284,7 @@ public class SyntheticModel {
 		stepLimitedMode.setOnAction(e -> {
 			mode = STEPLIMITED;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, "noMode");
+			GameMain gamePanel = new GameMain(primStage, scene, mode);
 		});
 		
 	}

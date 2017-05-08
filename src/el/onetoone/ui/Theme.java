@@ -4,6 +4,10 @@ import javafx.scene.image.Image;
 
 public abstract class Theme {
 
+	public static final Image SYSTEM_BUTTON_EXIT = new Image("image/system_button_exit.png");
+	public static final Image SYSTEM_BUTTON_PAUSE = new Image("/image/system_button_pause.png");
+	public static final Image SYSTEM_BUTTON_CONGIG = new Image("image/system_button_config.png");
+	
 	// backgroud image
 	protected Image BG_START;
 	protected Image BG_GAME;
