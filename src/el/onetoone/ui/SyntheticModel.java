@@ -1,14 +1,24 @@
 package el.onetoone.ui;
 
+import java.awt.Desktop;
+import java.net.URI;
+
+import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SyntheticModel {
+	
+	/**
+	 * 用于显示错误信息，比如尚未登录啊之类的
+	 */
+	private Text wrongMessage;
 	
 	private Stage primStage;
 	
@@ -78,6 +88,8 @@ public class SyntheticModel {
 	
 	public void init() {
 		
+		wrongMessage = new Text();
+		
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setHgap(40);
@@ -133,7 +145,7 @@ public class SyntheticModel {
 		//放在右上角
 		gridPane.add(logOutButton, 4, 0);
 		
-		scene = new Scene(gridPane, 1000, 700);
+		scene = new Scene(gridPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 	}
 	
@@ -175,10 +187,14 @@ public class SyntheticModel {
 		});
 		
 		marketAndBackButton.setOnAction(e -> {
-			FunctionModel model =  new MarketAndBackModel(primStage, scene);
-			model.init();
-			funcScene = model.getScene();
-			primStage.setScene(funcScene);
+			if (UserBox.hasNotLogin()) {
+				wrongMessage.setText("尚未登录！");
+			} else {
+				FunctionModel model =  new MarketAndBackModel(primStage, scene);
+				model.init();
+				funcScene = model.getScene();
+				primStage.setScene(funcScene);
+			}
 		});
 		
 		maxMarkButton.setOnMouseEntered(e -> {
@@ -192,10 +208,14 @@ public class SyntheticModel {
 		});
 		
 		maxMarkButton.setOnAction(e -> {
-			FunctionModel model = new MaxMarkModel(primStage, scene);
-			model.init();
-			funcScene = model.getScene();
-			primStage.setScene(funcScene);
+			if (UserBox.hasNotLogin()) {
+				wrongMessage.setText("尚未登录！");
+			} else {
+				FunctionModel model =  new MaxMarkModel(primStage, scene);
+				model.init();
+				funcScene = model.getScene();
+				primStage.setScene(funcScene);
+			}
 		});
 		
 		topUpButton.setOnMouseEntered(e -> {
@@ -209,10 +229,25 @@ public class SyntheticModel {
 		});
 		
 		topUpButton.setOnAction(e -> {
-			FunctionModel model = new TopUpModel(primStage, scene);
-			model.init();
-			funcScene = model.getScene();
-			primStage.setScene(funcScene);
+//			FunctionModel model = new TopUpModel(primStage, scene);
+//			model.init();
+//			funcScene = model.getScene();
+//			primStage.setScene(funcScene);
+			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE791.jpg";
+			URI uri = URI.create(url);
+			try {
+				Desktop desktop = Desktop.getDesktop();
+				if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+					desktop.browse(uri);
+				}
+			} catch (NullPointerException e1) {
+				// TODO: handle exception
+				e1.printStackTrace();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+			
 		});
 		
 		settingButton.setOnMouseEntered(e -> {
@@ -226,10 +261,14 @@ public class SyntheticModel {
 		});
 		
 		settingButton.setOnAction(e -> {
-			FunctionModel model = new SettingModel(primStage, scene);
-			model.init();
-			funcScene = model.getScene();
-			primStage.setScene(funcScene);
+			if (UserBox.hasNotLogin()) {
+				wrongMessage.setText("尚未登录！");
+			} else {
+				FunctionModel model =  new SettingModel(primStage, scene);
+				model.init();
+				funcScene = model.getScene();
+				primStage.setScene(funcScene);
+			}
 		});
 		
 	}
@@ -250,6 +289,7 @@ public class SyntheticModel {
 		});
 		
 		unlimitedMode.setOnAction(e -> {
+			wrongMessage.setText("");
 			mode = UNLIMITE;
 			//然后传递mode到主游戏界面
 			GameMain gamePanel = new GameMain(primStage, scene, mode);
@@ -266,6 +306,7 @@ public class SyntheticModel {
 		});
 		
 		timeLimitedMode.setOnAction(e -> {
+			wrongMessage.setText("");
 			mode = TIMELIMITED;
 			//然后传递mode到主游戏界面
 			GameMain gamePanel = new GameMain(primStage, scene, mode);
@@ -282,6 +323,7 @@ public class SyntheticModel {
 		});
 		
 		stepLimitedMode.setOnAction(e -> {
+			wrongMessage.setText("");
 			mode = STEPLIMITED;
 			//然后传递mode到主游戏界面
 			GameMain gamePanel = new GameMain(primStage, scene, mode);

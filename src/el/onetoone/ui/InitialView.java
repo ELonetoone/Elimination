@@ -1,5 +1,6 @@
 package el.onetoone.ui;
 
+import el.onetoone.back.Config;
 import el.onetoone.back.User;
 import el.onetoone.back.UserBox;
 import javafx.application.Application;
@@ -81,7 +82,7 @@ public class InitialView extends Application {
 		
 		borderPane.setRight(buttonPane);
 		
-		initialScene = new Scene(borderPane, 1000, 700);
+		initialScene = new Scene(borderPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		initialScene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		primaryStage.setScene(initialScene);
 		
@@ -116,7 +117,7 @@ public class InitialView extends Application {
 			grid.setVgap(20);
 			grid.setPadding(new Insets(30, 30, 30, 30));
 			
-			loginScene = new Scene(grid, 1000, 700);
+			loginScene = new Scene(grid, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 			
 			Text gameName = new Text("氪金消消乐");
 			gameName.setSmooth(true);
@@ -207,7 +208,7 @@ public class InitialView extends Application {
 			grid.setVgap(20);
 			grid.setPadding(new Insets(30, 30, 30, 30));
 			
-			regitserScene = new Scene(grid, 1000, 700);
+			regitserScene = new Scene(grid, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 			
 			Text gameName = new Text("氪金消消乐");
 			gameName.setSmooth(true);

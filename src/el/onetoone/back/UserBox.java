@@ -16,5 +16,13 @@ public class UserBox {
 	public static User getUser() {
 		return UserBox.user;
 	}
+	
+	/**
+	 * 判断用户是否登录
+	 * @return
+	 */
+	public static boolean hasNotLogin() { 
+		return UserBox.user == null;
+	}
 
 }
