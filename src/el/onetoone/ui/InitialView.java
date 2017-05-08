@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class InitialView extends Application {
 	
@@ -28,6 +29,8 @@ public class InitialView extends Application {
 	private Button registerButton;
 	
 	private Button trialButton;
+	
+	private SystemButton closeButton;
 	
 	private BorderPane borderPane;
 	
@@ -50,6 +53,7 @@ public class InitialView extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		primaryStage.setTitle("氪金消消乐");
+		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		
 		borderPane = new BorderPane();
 		exitButton = new Button("退出");
@@ -68,6 +72,11 @@ public class InitialView extends Application {
 		exitButton.setFont(Font.font("Tahoma", FontWeight.BLACK, 30));
 		trialButton.setFont(Font.font("Tahoma", FontWeight.BLACK, 30));
 		
+		closeButton = new SystemButton(0);
+		closeButton.setLayoutX(Config.SCREEN_WIDTH - 55);
+		closeButton.setLayoutY(10);
+		borderPane.getChildren().add(closeButton);
+		
 		registerButtonEventHandler();
 		
 		buttonPane.setAlignment(Pos.CENTER);
@@ -85,6 +94,9 @@ public class InitialView extends Application {
 		initialScene = new Scene(borderPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		initialScene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		primaryStage.setScene(initialScene);
+		
+		
+//		GameMain gameMain = new GameMain(primaryStage, initialScene, "noMode");
 		
 		primStage = primaryStage;
 		primaryStage.show();
@@ -105,6 +117,10 @@ public class InitialView extends Application {
 		});
 		
 		exitButton.setOnAction(e ->{
+			System.exit(0);
+		});
+		
+		closeButton.setOnAction(e -> {
 			System.exit(0);
 		});
 		

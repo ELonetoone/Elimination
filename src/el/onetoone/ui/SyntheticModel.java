@@ -58,6 +58,11 @@ public class SyntheticModel {
 	 */
 	private Button maxMarkButton;
 	
+	/**
+	 * 关闭按钮
+	 */
+	private SystemButton exitButton;
+	
 	public static final String UNLIMITE = "ASABCK";
 	
 	public static final String TIMELIMITED = "AFKLJCZX";
@@ -76,6 +81,8 @@ public class SyntheticModel {
 	}
 	
 	private InitialView initialView;
+
+	private GridPane gridPane;
 	
 	/**
 	 * 获取stage
@@ -90,7 +97,7 @@ public class SyntheticModel {
 		
 		wrongMessage = new Text();
 		
-		GridPane gridPane = new GridPane();
+		gridPane = new GridPane();
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setHgap(40);
 		gridPane.setVgap(40);
@@ -145,10 +152,24 @@ public class SyntheticModel {
 		//放在右上角
 		gridPane.add(logOutButton, 4, 0);
 		
+		createExitButton();
+		
 		scene = new Scene(gridPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 	}
 	
+	private void createExitButton() {
+		
+		exitButton = new SystemButton(0);
+		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
+		exitButton.setLayoutY(10);
+		gridPane.getChildren().add(exitButton);
+		
+		exitButton.setOnAction(e -> {
+			System.exit(0);
+		});
+	}
+
 	/**
 	 * 注册登出按钮监听器
 	 */
@@ -292,7 +313,7 @@ public class SyntheticModel {
 			wrongMessage.setText("");
 			mode = UNLIMITE;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, "noMode");
+			GameMain gamePanel = new GameMain(primStage, scene, mode);
 		});
 		
 		timeLimitedMode.setOnMouseEntered(e -> {
@@ -309,7 +330,7 @@ public class SyntheticModel {
 			wrongMessage.setText("");
 			mode = TIMELIMITED;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, "noMode");
+			GameMain gamePanel = new GameMain(primStage, scene, mode);
 		});
 		
 		stepLimitedMode.setOnMouseEntered(e -> {
@@ -326,7 +347,7 @@ public class SyntheticModel {
 			wrongMessage.setText("");
 			mode = STEPLIMITED;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, "noMode");
+			GameMain gamePanel = new GameMain(primStage, scene, mode);
 		});
 		
 	}

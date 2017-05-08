@@ -80,7 +80,7 @@ public class DiamondCircle extends ImageView {
 	 */
 	public TranslateTransition hrizontalTransition(double byX) {
 
-		TranslateTransition hTransition = new TranslateTransition(Duration.millis(TRANSLATETRANSITIONTIME), this);
+		TranslateTransition hTransition = new TranslateTransition(Duration.millis(TRANSLATETRANSITIONTIME / 2), this);
 		hTransition.setCycleCount(1);
 		hTransition.setByX(byX);
 
@@ -96,7 +96,7 @@ public class DiamondCircle extends ImageView {
 	 */
 	public TranslateTransition verticalTransition(double byY) {
 
-		TranslateTransition vTransition = new TranslateTransition(Duration.millis(TRANSLATETRANSITIONTIME), this);
+		TranslateTransition vTransition = new TranslateTransition(Duration.millis(TRANSLATETRANSITIONTIME / 2), this);
 		vTransition.setCycleCount(1);
 		vTransition.setByY(byY);
 
@@ -123,7 +123,7 @@ public class DiamondCircle extends ImageView {
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(this.opacityProperty(), 0.0)),
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME / 2), new KeyValue(this.scaleXProperty(), 1.2)),
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME/ 2), new KeyValue(this.scaleYProperty(), 1.2)));
-		result.getChildren().addAll(fade, rotateTransition, reduce);
+		result.getChildren().addAll(fade, reduce);
 
 		return result;
 	}
@@ -136,14 +136,21 @@ public class DiamondCircle extends ImageView {
 		return dropTransition;
 	}
 
-	public FadeTransition appearTransition() {
+	public ParallelTransition appearTransition() {
 
-		FadeTransition appear = new FadeTransition(Duration.millis(FADETRANSITIONTIME), this);
+		ParallelTransition result = new ParallelTransition();
+		
+		FadeTransition appear = new FadeTransition(Duration.millis(FADETRANSITIONTIME * 2), this);
 		appear.setFromValue(0.0);
 		appear.setToValue(1.0);
 		appear.setCycleCount(1);
+		
+//		RotateTransition rotateTransition = new RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
+//		rotateTransition.setByAngle(-360);
+		
+		result.getChildren().addAll(appear);
 
-		return appear;
+		return result;
 	}
 
 	public String loaction() {
