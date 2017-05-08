@@ -1,12 +1,16 @@
 package el.onetoone.ui;
 
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 
 public abstract class Theme {
 
 	public static final Image SYSTEM_BUTTON_EXIT = new Image("image/system_button_exit.png");
-	public static final Image SYSTEM_BUTTON_PAUSE = new Image("/image/system_button_pause.png");
-	public static final Image SYSTEM_BUTTON_CONGIG = new Image("image/system_button_config.png");
+//	public static final Image SYSTEM_BUTTON_PAUSE = new Image("/image/system_button_pause.png");
+//	public static final Image SYSTEM_BUTTON_CONGIG = new Image("image/system_button_config.png");
 	
 	// backgroud image
 	protected Image BG_START;
@@ -41,6 +45,32 @@ public abstract class Theme {
 	protected Image FRAME_TIME;
 	protected Image FRAME_GAME;
 	protected Image FRAME_HIGHEST_SCORE;
+	
+	public static void setBlur(Group root) {
+		
+		for (Node node : root.getChildren()) {
+			node.setEffect(new GaussianBlur());
+		}
+	}
+	
+	public static void setBlur(Pane pane) {
+		
+		for (Node node : pane.getChildren()) {
+			node.setEffect(new GaussianBlur());
+		}
+	}
+	
+	public static void removeBlur(Group group) {
+		
+		for (Node node : group.getChildren()) {
+			node.setEffect(null);
+		}
+	}
+	
+	public static void removeBlur(Pane pane) {
+		
+		pane.setEffect(null);
+	}
 
 	public Image getBG_START() {
 		return BG_START;

@@ -19,22 +19,28 @@ public class SystemButton extends Button{
 			imageView.setFitWidth(25);
 			break;
 
-		case 1:
-			
-			imageView = new ImageView(Theme.SYSTEM_BUTTON_PAUSE);
-			imageView.setFitWidth(25);
-			break;
-			
-		case 2:
-			
-			imageView = new ImageView(Theme.SYSTEM_BUTTON_CONGIG);
-			imageView.setFitWidth(25);
-			break;
+//		case 1:
+//			
+//			imageView = new ImageView(Theme.SYSTEM_BUTTON_PAUSE);
+//			imageView.setFitWidth(25);
+//			break;
+//			
+//		case 2:
+//			
+//			imageView = new ImageView(Theme.SYSTEM_BUTTON_CONGIG);
+//			imageView.setFitWidth(25);
+//			break;
 		}
 		
 		imageView.setPreserveRatio(true);
 		if (imageView != null) {
 			this.setGraphic(imageView);
 		}
+		this.setStyle("-fx-background-color: #ffffff;"
+				+ "-fx-pref-width: 50;"
+				+ "-fx-pref-height: 50;"
+				+ "	-fx-background-radius: 25;"
+				+ "	-fx-border-radius: 25;"
+				+ "	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);");
 	}
 }

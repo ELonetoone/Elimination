@@ -2,7 +2,9 @@ package el.onetoone.ui;
 
 import el.onetoone.back.Config;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -17,6 +19,7 @@ public class GameMain {
 	GamePanel gamePanel;
 	
 	ImageView backgroud, gameFrame, moneyFrame, timeFrame, stepFrame, scoreFrame;
+	SystemButton exitButton;
 
 	public GameMain(Stage primaryStage, Scene lastScene, String mode) {
 		
@@ -51,12 +54,13 @@ public class GameMain {
 		moneyFrame.setX(50);
 		moneyFrame.setLayoutY(0);
 		
-		root.setOnMousePressed(e -> {
-			System.out.println(e.getX() + " " + e.getSceneX() + " " + e.getSceneX());
+		root.getChildren().add(exitButton);
+		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
+		exitButton.setLayoutY(10);
+		exitButton.setOnAction(e -> {
+			Theme.setBlur(root);
+			root.getChildren().add(new ExitPane());
 		});
-		
-		ExitPane exitPane = new ExitPane();
-		root.getChildren().add(exitPane);
 	}
 
 	private void createControls() {
@@ -67,5 +71,7 @@ public class GameMain {
 		stepFrame = new ImageView(gamePanel.getTheme().getFRAME_STEP());
 		timeFrame = new ImageView(gamePanel.getTheme().getFRAME_TIME());
 		scoreFrame = new ImageView(gamePanel.getTheme().getFRAME_HIGHEST_SCORE());
-	}
+		
+		exitButton = new SystemButton(0);
+	}	
 }
