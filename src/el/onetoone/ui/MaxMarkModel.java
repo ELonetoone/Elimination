@@ -1,9 +1,8 @@
 package el.onetoone.ui;
 
 
-import org.omg.CORBA.INTERNAL;
 
-import el.onetoone.back.User;
+import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -78,7 +77,7 @@ public class MaxMarkModel implements FunctionModel {
 		gridPane.add(limitedStepMax, 2, 2);
 		gridPane.add(limitedTimeMaxMark, 1, 3);
 		
-		maxMarkScene = new Scene(gridPane, 1000, 700);
+		maxMarkScene = new Scene(gridPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 	}
 	
