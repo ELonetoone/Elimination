@@ -9,11 +9,11 @@ import javafx.scene.layout.Pane;
  * @author liao
  *
  */
-public class SettingPanel extends Pane {
+public class SettingPane extends Pane {
 
 	private SystemButton closeBtn;
 	
-	public SettingPanel() {
+	public SettingPane() {
 
 		setPrefSize(Config.SCREEN_WIDTH / 2 - 30, Config.SCREEN_HEIGHT - 30);
 		setStyle("-fx-background-color: #f9f9f9" + ";-fx-background-radius: 10" + ";-fx-border-radius: 10"

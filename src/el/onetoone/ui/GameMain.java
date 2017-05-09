@@ -100,7 +100,12 @@ public class GameMain {
 		configButton.setLayoutY(10);
 		configButton.setOnAction(e -> {
 			Theme.setBlur(root);
-			root.getChildren().add(new SettingPanel());
+			root.getChildren().add(new SettingPane());
 		});
+	}
+	
+	private void goBackToLastScene() {
+		
+		primaryStage.setScene(lastScene);
 	}
 }
