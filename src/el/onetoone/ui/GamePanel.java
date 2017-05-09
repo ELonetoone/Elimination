@@ -23,6 +23,10 @@ public class GamePanel extends Group {
 
 	DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
 	BaseDiamondGrid diamondGrid;
+	public BaseDiamondGrid getDiamondGrid() {
+		return diamondGrid;
+	}
+
 	DiamondCircle choosedDiamond;
 	Diamond[][] diamonds;
 

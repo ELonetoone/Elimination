@@ -13,5 +13,8 @@ public class ScoreText extends Text{
 	public ScoreText(BaseDiamondGrid diamondGrid) {
 		setFont(Font.font("Comic Sans MS"));
 		textProperty().bind(diamondGrid.gradeProperty().asString());
+		setStyle("-fx-fill: #ff00ff;"
+				+ "-fx-text-alignment: center;"
+				+ "-fx-font-size: 24");
 	}
 }

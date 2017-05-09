@@ -23,6 +23,8 @@ public class GameMain {
 	// 退出按钮
 	private SystemButton exitButton;
 	
+	//积分板
+	private ScorePanel scorePanel;
 	/**
 	 * 设置按钮
 	 */
@@ -41,45 +43,49 @@ public class GameMain {
 		this.mode = mode;
 		this.lastScene = lastScene;
 
-		gamePanel = new GamePanel();
 		root = new Group();
 
 		scene = new Scene(root, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		scene.setFill(Color.BLACK);
-		gamePanel.setLayoutX(500);
-		gamePanel.setLayoutY(100);
+		
 		primaryStage.setScene(scene);
 
-		createControls();
-		addControls();
+		createNode();
+		addNode();
 	}
 
 	/**
 	 * 讲创建的组件进行设置，并添加到root中
 	 */
-	private void addControls() {
+	private void addNode() {
 
 		root.getChildren().add(backgroud);
 		root.getChildren().add(gameFrame);
+		root.getChildren().add(gamePanel);
 
 		gameFrame.setLayoutX(260);
 		gameFrame.setLayoutY(-150);
 
-		root.getChildren().addAll(moneyFrame, stepFrame, timeFrame, scoreFrame);
-		root.getChildren().add(gamePanel);
+//		root.getChildren().addAll(moneyFrame, stepFrame, timeFrame, scoreFrame);
 
 		moneyFrame.setX(50);
 		moneyFrame.setLayoutY(0);
 
 		root.getChildren().add(exitButton);
 		root.getChildren().add(configButton);
+		root.getChildren().add(scorePanel);
+		scorePanel.initScoreText();
 	}
 
 	/**
 	 * 创建 组件
 	 */
-	private void createControls() {
+	private void createNode() {
 
+		gamePanel = new GamePanel();
+		gamePanel.setLayoutX(500);
+		gamePanel.setLayoutY(100);
+		
 		backgroud = new ImageView(gamePanel.getTheme().getBG_GAME());
 		gameFrame = new ImageView(gamePanel.getTheme().getFRAME_GAME());
 		moneyFrame = new ImageView(gamePanel.getTheme().getFRAME_MONEY());
@@ -102,6 +108,10 @@ public class GameMain {
 			Theme.setBlur(root);
 			root.getChildren().add(new SettingPane());
 		});
+		
+		scorePanel = new ScorePanel();
+		scorePanel.setLayoutX(50);
+		scorePanel.setLayoutY(400);
 	}
 	
 	private void goBackToLastScene() {
