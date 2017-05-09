@@ -53,7 +53,7 @@ public class InitialView extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		primaryStage.setTitle("氪金消消乐");
-		primaryStage.initStyle(StageStyle.TRANSPARENT);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		
 		borderPane = new BorderPane();
 		exitButton = new Button("退出");

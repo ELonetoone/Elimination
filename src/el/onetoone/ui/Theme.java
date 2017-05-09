@@ -1,5 +1,7 @@
 package el.onetoone.ui;
 
+import java.util.ArrayList;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.GaussianBlur;
@@ -69,7 +71,9 @@ public abstract class Theme {
 	
 	public static void removeBlur(Pane pane) {
 		
-		pane.setEffect(null);
+		for (Node node : pane.getChildren()) {
+			node.setEffect(null);
+		}
 	}
 
 	public Image getBG_START() {

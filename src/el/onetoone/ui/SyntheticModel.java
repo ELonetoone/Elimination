@@ -7,8 +7,10 @@ import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -84,6 +86,13 @@ public class SyntheticModel {
 
 	private GridPane gridPane;
 	
+	private Group root;
+	
+	/**
+	 * 背景图片
+	 */
+	private ImageView backgroundImg;
+	
 	/**
 	 * 获取stage
 	 * @param stage
@@ -95,6 +104,7 @@ public class SyntheticModel {
 	
 	public void init() {
 		
+		
 		wrongMessage = new Text();
 		
 		gridPane = new GridPane();
@@ -102,7 +112,16 @@ public class SyntheticModel {
 		gridPane.setHgap(40);
 		gridPane.setVgap(40);
 		gridPane.setPadding(new Insets(40, 40, 40, 40));
+
+		backgroundImg = new ImageView(Config.getTheme().BG_SIGN);
+		backgroundImg.setFitHeight(Config.SCREEN_HEIGHT);
+		backgroundImg.setFitWidth(Config.SCREEN_WIDTH);
 		
+		root = new Group();
+		root.getChildren().add(backgroundImg);
+		root.getChildren().add(gridPane);
+		
+//		gridPane.setAlignment(Pos.CENTER);
 		/**
 		 * 模式按钮
 		 */
@@ -154,7 +173,7 @@ public class SyntheticModel {
 		
 		createExitButton();
 		
-		scene = new Scene(gridPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+		scene = new Scene(root, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 	}
 	
@@ -163,7 +182,7 @@ public class SyntheticModel {
 		exitButton = new SystemButton(0);
 		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
 		exitButton.setLayoutY(10);
-		gridPane.getChildren().add(exitButton);
+		root.getChildren().add(exitButton);
 		
 		exitButton.setOnAction(e -> {
 			System.exit(0);
