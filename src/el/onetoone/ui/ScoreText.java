@@ -7,10 +7,10 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ScoreBoard extends Text{
+public class ScoreText extends Text{
 
 	
-	public ScoreBoard(BaseDiamondGrid diamondGrid) {
+	public ScoreText(BaseDiamondGrid diamondGrid) {
 		setFont(Font.font("Comic Sans MS"));
 		textProperty().bind(diamondGrid.gradeProperty().asString());
 	}
