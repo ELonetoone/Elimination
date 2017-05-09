@@ -22,7 +22,19 @@ public class GameMain {
 	private ImageView backgroud, gameFrame, moneyFrame, timeFrame, stepFrame, scoreFrame;
 	// 退出按钮
 	private SystemButton exitButton;
-
+	
+	/**
+	 * 设置按钮
+	 */
+	private SystemButton configButton;
+	
+	
+	/**
+	 * 
+	 * @param primaryStage
+	 * @param lastScene
+	 * @param mode
+	 */
 	public GameMain(Stage primaryStage, Scene lastScene, String mode) {
 
 		this.primaryStage = primaryStage;
@@ -60,12 +72,7 @@ public class GameMain {
 		moneyFrame.setLayoutY(0);
 
 		root.getChildren().add(exitButton);
-		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
-		exitButton.setLayoutY(10);
-		exitButton.setOnAction(e -> {
-			Theme.setBlur(root);
-			root.getChildren().add(new ExitPane());
-		});
+		root.getChildren().add(configButton);
 	}
 
 	/**
@@ -81,5 +88,19 @@ public class GameMain {
 		scoreFrame = new ImageView(gamePanel.getTheme().getFRAME_HIGHEST_SCORE());
 
 		exitButton = new SystemButton(0);
+		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
+		exitButton.setLayoutY(10);
+		exitButton.setOnAction(e -> {
+			Theme.setBlur(root);
+			root.getChildren().add(new ExitPane());
+		});
+		
+		configButton = new SystemButton(2);
+		configButton.setLayoutX(Config.SCREEN_WIDTH - 110);
+		configButton.setLayoutY(10);
+		configButton.setOnAction(e -> {
+			Theme.setBlur(root);
+			root.getChildren().add(new SettingPanel());
+		});
 	}
 }

@@ -25,11 +25,11 @@ public class SystemButton extends Button{
 //			imageView.setFitWidth(25);
 //			break;
 //			
-//		case 2:
-//			
-//			imageView = new ImageView(Theme.SYSTEM_BUTTON_CONGIG);
-//			imageView.setFitWidth(25);
-//			break;
+		case 2:
+			
+			imageView = new ImageView(Theme.SYSTEM_BUTTON_CONFIG);
+			imageView.setFitWidth(25);
+			break;
 		}
 		
 		imageView.setPreserveRatio(true);
