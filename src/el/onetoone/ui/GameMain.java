@@ -24,7 +24,7 @@ public class GameMain {
 	private SystemButton exitButton;
 	
 	//积分板
-	private ScorePanel scorePanel;
+	private FramePanel scorePanel;
 	/**
 	 * 设置按钮
 	 */
@@ -68,8 +68,8 @@ public class GameMain {
 
 //		root.getChildren().addAll(moneyFrame, stepFrame, timeFrame, scoreFrame);
 
-		moneyFrame.setX(50);
-		moneyFrame.setLayoutY(0);
+//		moneyFrame.setX(50);
+//		moneyFrame.setLayoutY(0);
 
 		root.getChildren().add(exitButton);
 		root.getChildren().add(configButton);
@@ -88,10 +88,10 @@ public class GameMain {
 		
 		backgroud = new ImageView(gamePanel.getTheme().getBG_GAME());
 		gameFrame = new ImageView(gamePanel.getTheme().getFRAME_GAME());
-		moneyFrame = new ImageView(gamePanel.getTheme().getFRAME_MONEY());
-		stepFrame = new ImageView(gamePanel.getTheme().getFRAME_STEP());
-		timeFrame = new ImageView(gamePanel.getTheme().getFRAME_TIME());
-		scoreFrame = new ImageView(gamePanel.getTheme().getFRAME_HIGHEST_SCORE());
+//		moneyFrame = new ImageView(gamePanel.getTheme().getFRAME_MONEY());
+//		stepFrame = new ImageView(gamePanel.getTheme().getFRAME_STEP());
+//		timeFrame = new ImageView(gamePanel.getTheme().getFRAME_TIME());
+//		scoreFrame = new ImageView(gamePanel.getTheme().getFRAME_HIGHEST_SCORE());
 
 		exitButton = new SystemButton(0);
 		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
@@ -109,7 +109,7 @@ public class GameMain {
 			root.getChildren().add(new SettingPane());
 		});
 		
-		scorePanel = new ScorePanel();
+		scorePanel = new FramePanel(0);
 		scorePanel.setLayoutX(50);
 		scorePanel.setLayoutY(400);
 	}
