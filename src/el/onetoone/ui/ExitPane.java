@@ -1,9 +1,12 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Config;
+import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class ExitPane extends Pane{
 
@@ -15,6 +18,8 @@ public class ExitPane extends Pane{
 	private Button cancelBtn;
 	
 	public ExitPane() {
+		
+		appearAnimation();
 		
 		setPrefSize(WIDTH, HEIGHT);
 		setStyle("-fx-background-color: #f9f9f9"
@@ -65,13 +70,38 @@ public class ExitPane extends Pane{
 		cancelBtn.setLayoutY(HEIGHT / 2);
 		cancelBtn.setOnAction(e -> {
 			Theme.removeBlur((Group)this.getParent());
-			((Group)this.getParent()).getChildren().remove(this);
+			disappearAnimation();
+			
 		});
 		
 		
 		this.getChildren().addAll(exitBtn, sureBtn, cancelBtn);
 		
 		setLayout();
+	}
+
+	private void appearAnimation() {
+		// TODO Auto-generated method stub
+		ScaleTransition appear = new ScaleTransition(Duration.seconds(0.3), this);
+		appear.setInterpolator(Interpolator.EASE_BOTH);
+		appear.setFromX(0);
+		appear.setFromY(0);
+		appear.setToX(1);
+		appear.setToY(1);
+		appear.play();
+	}
+	
+	public void disappearAnimation() {
+		
+		ScaleTransition disappear = new ScaleTransition(Duration.seconds(0.3), this);
+		disappear.setInterpolator(Interpolator.EASE_BOTH);
+		disappear.setByX(-1);
+		disappear.setByY(-1);
+		
+		disappear.play();
+		disappear.setOnFinished(e -> {
+			((Group)this.getParent()).getChildren().remove(this);
+		});
 	}
 
 	private void setLayout() {
