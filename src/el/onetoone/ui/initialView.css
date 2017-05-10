@@ -2,3 +2,10 @@
 	-fx-background-image: url("/image/bg_sign.png");
 	-fx-background-size: stretch stretch;
 }
+
+.button {
+	
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-content-display: center;
+}

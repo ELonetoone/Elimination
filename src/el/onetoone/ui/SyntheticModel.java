@@ -5,6 +5,7 @@ import java.net.URI;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
+import el.onetoone.ui.shop.MarketAndBackModel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;

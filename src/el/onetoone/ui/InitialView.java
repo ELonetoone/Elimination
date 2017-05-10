@@ -11,8 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -48,7 +50,10 @@ public class InitialView extends Application {
 	private Scene regitserScene;
 	
 	private Scene loginScene;
+	
+	private ImageView startImg;
 
+	private Pane root;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -92,6 +97,7 @@ public class InitialView extends Application {
 		
 		borderPane.setRight(buttonPane);
 		
+		
 		initialScene = new Scene(borderPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		initialScene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		primaryStage.setScene(initialScene);
@@ -101,6 +107,7 @@ public class InitialView extends Application {
 		
 		//方背景音乐
 		Config.getTheme().playBGM();
+		
 		
 		primStage = primaryStage;
 		primaryStage.show();
@@ -314,6 +321,19 @@ public class InitialView extends Application {
 			
 		});
 	}
+	
+//	private Timeline changeScreenAnimation() {
+//		
+//		final DoubleProperty opacity = initialScene.getRoot().opacityProperty();
+//		Timeline fade = new Timeline(
+//				new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
+//				new KeyFrame(Duration.millis(500), new KeyValue(opacity, 0.0))
+//				);
+//		
+//		fade.play();
+//		
+//		return fade;
+//	}
 	
 	public static void main(String[] args) {
 		launch(args);

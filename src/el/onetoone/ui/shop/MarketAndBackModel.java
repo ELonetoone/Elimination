@@ -1,6 +1,8 @@
-package el.onetoone.ui;
+package el.onetoone.ui.shop;
 
 import el.onetoone.back.Config;
+import el.onetoone.ui.FunctionModel;
+import el.onetoone.ui.SystemButton;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 

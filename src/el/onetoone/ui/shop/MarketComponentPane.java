@@ -1,4 +1,4 @@
-package el.onetoone.ui;
+package el.onetoone.ui.shop;
 
 import javafx.scene.layout.Pane;
 
