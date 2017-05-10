@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
 
 public abstract class Theme {
 
@@ -47,6 +48,15 @@ public abstract class Theme {
 	protected Image FRAME_TIME;
 	protected Image FRAME_GAME;
 	protected Image FRAME_HIGHEST_SCORE;
+	
+	protected MediaPlayer bgmPlayer;
+	
+	//播放背景音乐
+	abstract public void playBGM();
+	
+	public MediaPlayer getBGMPlayer() {
+		return bgmPlayer;
+	}
 	
 	public static void setBlur(Group root) {
 		

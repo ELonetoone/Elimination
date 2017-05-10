@@ -2,6 +2,7 @@ package el.onetoone.ui;
 
 import el.onetoone.back.Config;
 import javafx.scene.Group;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 
 /**
@@ -12,6 +13,8 @@ import javafx.scene.layout.Pane;
 public class SettingPane extends Pane {
 
 	private SystemButton closeBtn;
+	
+	private Slider volume;
 	
 	public SettingPane() {
 
@@ -29,6 +32,7 @@ public class SettingPane extends Pane {
 	private void addControlls() {
 		
 		getChildren().add(closeBtn);
+		getChildren().add(volume);
 	}
 
 	private void createControl() {
@@ -40,6 +44,12 @@ public class SettingPane extends Pane {
 		});
 		closeBtn.setLayoutX(this.getPrefWidth() - 55);
 		closeBtn.setLayoutY(10);
+		
+		volume = new Slider(0, 1, 1);
+		volume.setLayoutX(15);
+		volume.setLayoutY(100);
+		volume.setPrefWidth(200);
+		volume.valueProperty().bindBidirectional(Config.getTheme().getBGMPlayer().volumeProperty());
 	}
 
 }

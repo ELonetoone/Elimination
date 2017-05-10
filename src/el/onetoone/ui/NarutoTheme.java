@@ -1,6 +1,7 @@
 package el.onetoone.ui;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer;
 
 public class NarutoTheme extends Theme{
 
@@ -39,4 +40,11 @@ public class NarutoTheme extends Theme{
 		setFRAME_TIME(new Image("/image/narotu/frame_time.png"));
 
 	}
+
+	@Override
+	public void playBGM() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -2,12 +2,15 @@ package el.onetoone.ui;
 
 import el.onetoone.back.Config;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MagicGirlTheme extends Theme {
 
 	private static final int FRAME_LITTLE_WIDTH = 300;
 	private static final int FRAME_LITTLE_HEIGHT = 400;
 	
+
 	public MagicGirlTheme() {
 		
 		//set background
@@ -41,5 +44,15 @@ public class MagicGirlTheme extends Theme {
 		setFRAME_SIGN_IN(new Image("/image/frame_signIn.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_STEP(new Image("/image/frame_step.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_TIME(new Image("/image/frame_time.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+	}
+
+	@Override
+	public void playBGM() {
+		// TODO Auto-generated method stub
+		String source = getClass().getResource("/image/bgm_magic.mp3").toExternalForm();
+		Media bgm = new Media(source);
+		bgmPlayer = new MediaPlayer(bgm);
+		bgmPlayer.setAutoPlay(true);
+		bgmPlayer.play();
 	}
 }

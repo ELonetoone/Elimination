@@ -11,6 +11,11 @@ public class FramePanel extends Pane{
 	private ImageView backgourd;
 	private ScoreText score;
 	private Image bgImage;
+	
+	/**
+	 * 
+	 * @param num 0为分数，1为金钱，2为步数，3为时间
+	 */
 	public FramePanel(int num) {
 		// TODO Auto-generated constructor stub
 		

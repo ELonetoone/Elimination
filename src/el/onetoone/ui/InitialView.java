@@ -98,6 +98,9 @@ public class InitialView extends Application {
 		
 //		GameMain gameMain = new GameMain(primaryStage, initialScene, "noMode");
 		
+		//方背景音乐
+		Config.getTheme().playBGM();
+		
 		primStage = primaryStage;
 		primaryStage.show();
 		
