@@ -28,12 +28,6 @@ public class ExitPane extends Pane{
 				+ ";-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1)");
 		
 		exitBtn = new SystemButton(0);
-		exitBtn.setStyle("-fx-background-color: #ffffff;"
-				+ "-fx-pref-width: 50;"
-				+ "-fx-pref-height: 50;"
-				+ "	-fx-background-radius: 25;"
-				+ "	-fx-border-radius: 25;"
-				+ "	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);");
 		exitBtn.setLayoutX(475);
 		exitBtn.setLayoutY(-25);
 		exitBtn.setOnAction(e -> {

@@ -40,7 +40,7 @@ public class SystemButton extends Button{
 				+ "-fx-pref-width: 50;"
 				+ "-fx-pref-height: 50;"
 				+ "	-fx-background-radius: 25;"
-				+ "	-fx-border-radius: 25;"
+				+ "	-fx-border-radius: 100;"
 				+ "	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);");
 	}
 }

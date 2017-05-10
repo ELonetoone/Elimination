@@ -14,6 +14,7 @@ public abstract class Theme {
 	public static final Image SYSTEM_BUTTON_EXIT = new Image("image/system_button_exit.png");
 //	public static final Image SYSTEM_BUTTON_PAUSE = new Image("/image/system_button_pause.png");
 	public static final Image SYSTEM_BUTTON_CONFIG = new Image("image/system_button_config.png");
+	public static final Image IMAGE_MONEY = new Image("/image/icon_money.png");
 	
 	// backgroud image
 	protected Image BG_START;

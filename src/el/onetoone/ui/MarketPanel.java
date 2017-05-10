@@ -1,6 +1,7 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Config;
+import el.onetoone.back.ItemList;
 import javafx.scene.Group;
 
 public class MarketPanel extends Group{
@@ -13,6 +14,12 @@ public class MarketPanel extends Group{
 	
 	//购买状态
 	MarketComponentPane status;
+	
+	//商店物品
+	ItemPanel marketHammer;
+	
+	//背包物品
+	ItemPanel bagHammer;
 	
 	public MarketPanel() {
 		
@@ -28,6 +35,10 @@ public class MarketPanel extends Group{
 		shop.setLayoutX(15);
 		shop.setLayoutY(15);
 		
+		marketHammer = new ItemPanel(ItemList.HAMMER);
+		marketHammer.setLayoutX(20);
+		marketHammer.setLayoutY(20);
+		
 		bag = new MarketComponentPane(Config.SCREEN_WIDTH / 2 - 30, Config.SCREEN_HEIGHT * 3 / 5 - 30);
 		bag.setLayoutX(Config.SCREEN_WIDTH / 2 + 15);
 		bag.setLayoutY(Config.SCREEN_HEIGHT * 2 / 5 + 15);
@@ -40,5 +51,7 @@ public class MarketPanel extends Group{
 	private void addNode() {
 		
 		getChildren().addAll(shop, bag, status);
+		
+		shop.getChildren().add(marketHammer);
 	}
 }

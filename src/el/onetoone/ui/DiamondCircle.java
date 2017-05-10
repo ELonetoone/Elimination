@@ -24,7 +24,6 @@ public class DiamondCircle extends ImageView {
 	private static final double TRANSLATETRANSITIONTIME = 500;
 	private static final double FADETRANSITIONTIME = 300;
 	private Point point;
-	private Bloom bloomEffect;
 
 	public DiamondCircle() {
 

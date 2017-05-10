@@ -7,6 +7,7 @@ import el.onetoone.back.Config;
 import el.onetoone.back.Diamond;
 import el.onetoone.back.Point;
 import el.onetoone.back.Status;
+import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -236,6 +237,30 @@ public class GamePanel extends Group {
 		}
 
 		parallelTransition.play();
+		AnimationTimer timer = new AnimationTimer() {
+			
+			@Override
+			public void handle(long now) {
+				// TODO Auto-generated method stub
+				if (parallelTransition.getStatus() == javafx.animation.Animation.Status.RUNNING) {
+					lockDiamonds();
+					stop();
+				}
+			}
+
+			private void lockDiamonds() {
+				// TODO Auto-generated method stub
+				for (int i = 0; i < diamondCircles.length; i++) {
+
+					for (int j = 0; j < diamondCircles[i].length; j++) {
+				
+						diamondCircles[i][j].setOnMousePressed(null);
+					}
+				}	
+			}
+		};
+		
+		timer.start();
 		parallelTransition.setOnFinished(e -> {
 			appearDiamonds();
 		});

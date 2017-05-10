@@ -75,7 +75,8 @@ public class InitialView extends Application {
 		closeButton = new SystemButton(0);
 		closeButton.setLayoutX(Config.SCREEN_WIDTH - 55);
 		closeButton.setLayoutY(10);
-		borderPane.getChildren().add(closeButton);
+		borderPane.setTop(closeButton);
+		BorderPane.setAlignment(closeButton, Pos.TOP_RIGHT);
 		
 		registerButtonEventHandler();
 		
