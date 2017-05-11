@@ -22,4 +22,30 @@ public class ItemList {
 	 */
 	public static final String NEWMAP = "可以生成一张全新地图";
 	
+	/**
+	 * 价格50000？
+	 */
+	public static final String PlusFiveStep = "加五步";
+	
+	/**
+	 * 价格 30000 ？
+	 */
+	public static final String PlusThreeStep = "加三步";
+	
+	/**
+	 * 价格 999999！至尊神器+1s
+	 */
+	public static final String PlusOneSecond = "+1s";
+	
+	
+	/**
+	 * 价格 15000
+	 */
+	public static final String PlusFiveSecond = "+5s";
+	
+	/**
+	 * 价格 25000
+	 */
+	public static final String PlusTenSecond = "+10s";
+	
 }
