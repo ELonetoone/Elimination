@@ -778,7 +778,6 @@ public class BaseDiamondGrid {
 				}
 			}
 		}
-		testPrint();
 		System.out.println(getGrade());
 
 		return exchangeValid;
