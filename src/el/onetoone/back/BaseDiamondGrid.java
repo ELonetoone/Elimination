@@ -880,33 +880,6 @@ public class BaseDiamondGrid {
 	}
 
 	/**
-	 * use in test
-	 * 
-	 * @param diamonds
-	 */
-	public void setDiamondMap(Diamond[][] diamonds) {
-		this.diamondMap = diamonds;
-	}
-
-	/**
-	 * use in test
-	 */
-	public void testPrint() {
-		for (int i = 0; i < diamondMap.length; i++) {
-			System.out.printf("%-3d ", i);
-			for (int j = 0; j < diamondMap[i].length; j++) {
-				if (diamondMap[i][j] != null) {
-					System.out.printf("%-6s  ", diamondMap[i][j].getColor().toString());
-				} else {
-					System.out.printf("%-6s  ", diamondMap[i][j]);
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	/**
 	 * 道具消除的几个方法 等到debug结束后再处理
 	 */
 
