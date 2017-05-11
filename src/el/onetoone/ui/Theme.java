@@ -15,6 +15,9 @@ public abstract class Theme {
 //	public static final Image SYSTEM_BUTTON_PAUSE = new Image("/image/system_button_pause.png");
 	public static final Image SYSTEM_BUTTON_CONFIG = new Image("image/system_button_config.png");
 	public static final Image IMAGE_MONEY = new Image("/image/icon_money.png");
+	public static final Image PROPS_HAMMER = new Image("/image/props_hammer.png");
+	public static final Image PROPS_NEW_MAP = new Image("/image/props_new_map.png");
+	public static final Image PROPS_BOOM = new Image("/image/props_boom.png");
 	
 	// backgroud image
 	protected Image BG_START;
@@ -36,11 +39,14 @@ public abstract class Theme {
 	protected Image BUTTON_SIGN_UP;
 	protected Image BUTTON_SIGN_IN;
 	protected Image BUTTON_BACK;
-	protected Image BUTTON_PROPS;// 道具
 	protected Image BUTTON_TIME_MODE;
 	protected Image BUTTON_INDEFINITE_MODE;
 	protected Image BUTTON_STEP_MODE;
-	private Image BUTTON_CONFIG = new Image("/image/config.png");
+	protected Image BUTTON_CONFIG;
+	protected Image BUTTON_SHOP;
+	protected Image BUTTON_KEJIN;
+	protected Image BUTTON_HEIGHEST_SCORE;
+	protected Image BUTTON_LOG_OUT;
 
 	// frame(框)
 	protected Image FRAME_STEP;
@@ -208,11 +214,11 @@ public abstract class Theme {
 	}
 
 	public Image getBUTTON_PROPS() {
-		return BUTTON_PROPS;
+		return BUTTON_SHOP;
 	}
 
 	public void setBUTTON_PROPS(Image bUTTON_PROPS) {
-		BUTTON_PROPS = bUTTON_PROPS;
+		BUTTON_SHOP = bUTTON_PROPS;
 	}
 
 	public Image getBUTTON_TIME_MODE() {
@@ -293,6 +299,38 @@ public abstract class Theme {
 
 	public void setBUTTON_CONFIG(Image bUTTON_CONFIG) {
 		BUTTON_CONFIG = bUTTON_CONFIG;
+	}
+
+	public Image getBUTTON_SHOP() {
+		return BUTTON_SHOP;
+	}
+
+	public void setBUTTON_SHOP(Image bUTTON_SHOP) {
+		BUTTON_SHOP = bUTTON_SHOP;
+	}
+
+	public Image getBUTTON_KEJIN() {
+		return BUTTON_KEJIN;
+	}
+
+	public void setBUTTON_KEJIN(Image bUTTON_KEJIN) {
+		BUTTON_KEJIN = bUTTON_KEJIN;
+	}
+
+	public Image getBUTTON_HEIGHEST_SCORE() {
+		return BUTTON_HEIGHEST_SCORE;
+	}
+
+	public void setBUTTON_HEIGHEST_SCORE(Image bUTTON_HEIGHEST_SCORE) {
+		BUTTON_HEIGHEST_SCORE = bUTTON_HEIGHEST_SCORE;
+	}
+
+	public Image getBUTTON_LOG_OUT() {
+		return BUTTON_LOG_OUT;
+	}
+
+	public void setBUTTON_LOG_OUT(Image bUTTON_LOG_OUT) {
+		BUTTON_LOG_OUT = bUTTON_LOG_OUT;
 	}
 
 }
