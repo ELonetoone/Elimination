@@ -20,9 +20,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class SyntheticModel extends Pane{
+abstract public class SyntheticModel extends Pane{
 	
-	private static final int MODE_BUTTON_WIDTH = 150;
+	protected static final int MODE_BUTTON_WIDTH = 150;
 	
 	/**
 	 * 用于显示错误信息，比如尚未登录啊之类的
@@ -33,27 +33,26 @@ public class SyntheticModel extends Pane{
 	private Scene scene;
 	private GameMain gameMain;
 	
-	private ModeButton unlimitedMode;
-	private ModeButton timeLimitedMode;
-	private ModeButton stepLimitedMode;
+	protected ModeButton unlimitedMode;
+	protected ModeButton timeLimitedMode;
+	protected ModeButton stepLimitedMode;
 	
-	private Button marketAndBackButton;
-	private Button topUpButton;
-	private Button settingButton;
-	private Button logOutButton;
-	private Button maxMarkButton;
-	private SystemButton exitButton;
+	protected Button marketAndBackButton;
+	protected Button topUpButton;
+	protected Button settingButton;
+	protected Button logOutButton;
+	protected Button maxMarkButton;
+	protected SystemButton exitButton;
 	
 	public static final String UNLIMITE = "ASABCK";
 	public static final String TIMELIMITED = "AFKLJCZX";
 	public static final String STEPLIMITED = "DASCBXZ,ME";
 	private String mode = null;
 	
-	private InitialView initialView;
 	private MarketPanel marketPanel;
-	private ImageView backgroundImg;
+	protected ImageView backgroundImg;
 	
-	private HBox modeButtonBox;
+	
 	
 	/**
 	 * 切换出去的界面，比如主游戏界面啊，商城界面啊，设置界面啊之类的
@@ -116,42 +115,8 @@ public class SyntheticModel extends Pane{
 		
 	}
 	
-	private void createModeButton() {
-		// TODO Auto-generated method stub
-		
-		modeButtonBox = new HBox(50);
-		modeButtonBox.setLayoutX(Config.SCREEN_WIDTH / 4);
-		modeButtonBox.setLayoutY(Config.SCREEN_HEIGHT / 3 + 30);
-		
-		//无尽模式
-		ImageView unlimitedImg = new ImageView(Config.getTheme().BUTTON_INDEFINITE_MODE);
-		unlimitedImg.setFitWidth(MODE_BUTTON_WIDTH);
-		unlimitedImg.setPreserveRatio(true);
-		
-		unlimitedMode = new ModeButton();
-		unlimitedMode.setGraphic(unlimitedImg);	
-		
-		//限时模式
-		ImageView timeImg = new ImageView(Config.getTheme().BUTTON_TIME_MODE);
-		timeImg.setFitWidth(MODE_BUTTON_WIDTH);
-		timeImg.setPreserveRatio(true);
-		
-		timeLimitedMode = new ModeButton();
-		timeLimitedMode.setGraphic(timeImg);
-		
-		//步数模式
-		ImageView stepImg = new ImageView(Config.getTheme().BUTTON_STEP_MODE);
-		stepImg.setFitWidth(MODE_BUTTON_WIDTH);
-		stepImg.setPreserveRatio(true);
-		
-		stepLimitedMode = new ModeButton();
-		stepLimitedMode.setGraphic(stepImg);
-		
-		modeButtonBox.getChildren().addAll(unlimitedMode, timeLimitedMode, stepLimitedMode);
-		registerModeButtonListener();
-		
-		this.getChildren().add(modeButtonBox);
-	}
+	abstract protected void createModeButton();
+	
 	private void createExitButton() {
 		
 		exitButton = new SystemButton(0);
@@ -180,7 +145,7 @@ public class SyntheticModel extends Pane{
 		});
 		
 		logOutButton.setOnAction(e -> {
-			primStage.setScene(initialView.initialScene);
+			((Pane)getParent()).getChildren().remove(this);
 			UserBox.setUser(null);
 		});
 		

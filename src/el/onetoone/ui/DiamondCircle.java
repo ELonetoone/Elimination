@@ -27,11 +27,6 @@ public class DiamondCircle extends ImageView {
 
 	public DiamondCircle() {
 
-//		bloomEffect = new Bloom();
-//		bloomEffect.setThreshold(0.9);
-//		setEffect(bloomEffect);
-		
-
 		createEnterEffect();
 	}
 

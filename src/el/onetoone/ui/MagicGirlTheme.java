@@ -41,6 +41,12 @@ public class MagicGirlTheme extends Theme {
 		setBUTTON_KEJIN(new Image("/image/button_kejin.png"));
 		setBUTTON_HEIGHEST_SCORE(new Image("/image/button_heighest_score.png"));
 		
+		//设置初始界面的按钮
+		setINIT_BUTTON_QUIT(new Image("/image/init_button_quit.png"));
+		setINIT_BUTTON_SIGN_IN(new Image("/image/init_button_signIn.png"));
+		setINIT_BUTTON_SIGN_UP(new Image("/image/init_button_signUp.png"));
+		setINIT_BUTTON_TRY(new Image("/image/init_button_try.png"));
+		
 		//set frame
 		setFRAME_GAME(new Image("/image/frame_game.png", 1000, 1200, true, false, true));
 		setFRAME_HIGHEST_SCORE(new Image("/image/frame_highest_score.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));

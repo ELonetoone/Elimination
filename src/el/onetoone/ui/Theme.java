@@ -47,6 +47,12 @@ public abstract class Theme {
 	protected Image BUTTON_KEJIN;
 	protected Image BUTTON_HEIGHEST_SCORE;
 	protected Image BUTTON_LOG_OUT;
+	
+	//初始化界面的按钮
+	protected Image INIT_BUTTON_SIGN_IN;
+	protected Image INIT_BUTTON_SIGN_UP;
+	protected Image INIT_BUTTON_QUIT;
+	protected Image INIT_BUTTON_TRY;
 
 	// frame(框)
 	protected Image FRAME_STEP;
@@ -331,6 +337,38 @@ public abstract class Theme {
 
 	public void setBUTTON_LOG_OUT(Image bUTTON_LOG_OUT) {
 		BUTTON_LOG_OUT = bUTTON_LOG_OUT;
+	}
+
+	public Image getINIT_BUTTON_SIGN_IN() {
+		return INIT_BUTTON_SIGN_IN;
+	}
+
+	public void setINIT_BUTTON_SIGN_IN(Image iNIT_BUTTON_SIGN_IN) {
+		INIT_BUTTON_SIGN_IN = iNIT_BUTTON_SIGN_IN;
+	}
+
+	public Image getINIT_BUTTON_SIGN_UP() {
+		return INIT_BUTTON_SIGN_UP;
+	}
+
+	public void setINIT_BUTTON_SIGN_UP(Image iNIT_BUTTON_SIGH_UP) {
+		INIT_BUTTON_SIGN_UP = iNIT_BUTTON_SIGH_UP;
+	}
+
+	public Image getINIT_BUTTON_QUIT() {
+		return INIT_BUTTON_QUIT;
+	}
+
+	public void setINIT_BUTTON_QUIT(Image iNIT_BUTTON_QUIT) {
+		INIT_BUTTON_QUIT = iNIT_BUTTON_QUIT;
+	}
+
+	public Image getINIT_BUTTON_TRY() {
+		return INIT_BUTTON_TRY;
+	}
+
+	public void setINIT_BUTTON_TRY(Image iNIT_BUTTON_TRY) {
+		INIT_BUTTON_TRY = iNIT_BUTTON_TRY;
 	}
 
 }
