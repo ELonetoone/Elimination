@@ -2,7 +2,7 @@ package el.onetoone.exceptions;
 
 public class NotLoginException extends Exception {
 	
-	public static final String NotLogin = "sadfcjkslcna";
+	public static final String NOTLOGIN = "sadfcjkslcna";
 
 	public NotLoginException() {
 		super();
