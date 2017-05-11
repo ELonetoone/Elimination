@@ -25,27 +25,32 @@ public class ItemList {
 	/**
 	 * 价格50000？
 	 */
-	public static final String PlusFiveStep = "加五步";
+	public static final String PLUSFIVESTEPS = "加五步";
 	
 	/**
 	 * 价格 30000 ？
 	 */
-	public static final String PlusThreeStep = "加三步";
+	public static final String PLUSTHREESTEPS = "加三步";
 	
 	/**
 	 * 价格 999999！至尊神器+1s
 	 */
-	public static final String PlusOneSecond = "+1s";
+	public static final String PLUSONESECOND = "+1s";
 	
+	
+	/**
+	 * 价格10000
+	 */
+	public static final String PLUSONESTEP = "加一步";
 	
 	/**
 	 * 价格 15000
 	 */
-	public static final String PlusFiveSecond = "+5s";
+	public static final String PLUSFIVESECONDS = "+5s";
 	
 	/**
 	 * 价格 25000
 	 */
-	public static final String PlusTenSecond = "+10s";
+	public static final String PLUSTENSECONDS = "+10s";
 	
 }
