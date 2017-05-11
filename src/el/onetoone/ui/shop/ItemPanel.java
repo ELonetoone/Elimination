@@ -3,31 +3,41 @@ package el.onetoone.ui.shop;
 import el.onetoone.back.ItemList;
 import el.onetoone.back.UserBox;
 import el.onetoone.ui.Theme;
+import javafx.collections.ObservableMap;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
-public class ItemPanel extends Pane{
+public class ItemPanel extends StackPane{
 
 	private Image itemImg;
 	private ImageView itemImgView;
-	private String description;
-	
-	public ItemPanel(String item) {
+	private String item;
+	private Label quantityLabel;
+	private final ObservableMap<String, Integer> itemMap = UserBox.getUser().getObservableItemMap();
+	/**
+	 * 
+	 * @param item 0为商店中物品，1为背包中物品
+	 * @param type
+	 */
+	public ItemPanel(String item, int type) {
 		// TODO Auto-generated constructor stub
-		description = item;
+		this.item = item;
 		switch (item) {
 		case ItemList.BOOM:
-			//加载爆炸图
+			itemImg = Theme.PROPS_BOOM;
 			break;
 
 		case ItemList.HAMMER:
 			//加载锤子图
-			itemImg = Theme.IMAGE_MONEY;
+			itemImg = Theme.PROPS_HAMMER;
 			break;
 			
 		case ItemList.NEWMAP:
-			
+			itemImg = Theme.PROPS_NEW_MAP;
 			break;
 		}
 		
@@ -49,35 +59,31 @@ public class ItemPanel extends Pane{
 		
 		getChildren().add(itemImgView);
 		
-		UserBox.getUser().getObservableItemMap().put(ItemList.HAMMER, 0);
+		if (type == 1) {
+			quantityLabel = new Label();
+			quantityLabel.setText(itemMap.get(item).toString());
+			quantityLabel.setPrefSize(30, 30);
+			getChildren().add(quantityLabel);
+			StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
+		}
+		
 	}
 	
-	/**
-	 * 添加到MarketPanel之后再调用
-	 */
-	public void init() {
-		
-		setOnMousePressed( e-> {
-			((MarketPanel)getParent().getParent()).setItemDescription(description);
-			UserBox.getUser().getObservableItemMap().put(description, UserBox.getUser().getObservableItemMap().get(description) + 1);
-		});
-	}
+//	/**
+//	 * 添加到MarketPanel之后再调用
+//	 */
+//	public void init() {
+//		
+//		setOnMousePressed( e-> {
+//			((MarketPanel)getParent().getParent()).setItemDescription(item);
+//		});
+//	}
 	
+
 	/**
-	 * 放在背包界面的物品调用
+	 * 购买后，更新背包的物品数量
 	 */
-	public Pane createNumberPane() {
-		
-		Pane numberPane = new Pane();
-		numberPane.setLayoutX(getLayoutX() + 10);
-		numberPane.setLayoutY(getLayoutY() + 100);
-		numberPane.setStyle("-fx-background-color: #ffffff;"
-				+ "-fx-pref-width: 60;"
-				+ "-fx-pref-height: 40;"
-				+ "	-fx-background-radius: 20;"
-//				+ "	-fx-border-radius: 100;"
-				+ "	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);");
-		
-		return numberPane;
+	public void updateQuantity() {
+		quantityLabel.setText(itemMap.get(item).toString());
 	}
 }

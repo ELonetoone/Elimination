@@ -15,7 +15,7 @@ public class MagicGirlTheme extends Theme {
 		
 		//set background
 		setBG_START(new Image("/image/bg_start.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, true, true));
-		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false, false, true));
 		setBG_SIGN(new Image("/image/bg_sign.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 		
 		//set diamond
@@ -36,6 +36,10 @@ public class MagicGirlTheme extends Theme {
 		setBUTTON_SIGN_UP(new Image("/image/button_signUp.png"));
 		setBUTTON_STEP_MODE(new Image("/image/button_step_mode.png"));
 		setBUTTON_TIME_MODE(new Image("/image/button_time_mode.png"));
+		setBUTTON_CONFIG(new Image("/image/button_config.png"));
+		setBUTTON_LOG_OUT(new Image("/image/button_log_out.png"));
+		setBUTTON_KEJIN(new Image("/image/button_kejin.png"));
+		setBUTTON_HEIGHEST_SCORE(new Image("/image/button_heighest_score.png"));
 		
 		//set frame
 		setFRAME_GAME(new Image("/image/frame_game.png", 1000, 1200, true, false, true));

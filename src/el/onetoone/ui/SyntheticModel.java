@@ -6,6 +6,7 @@ import java.net.URI;
 import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
 import el.onetoone.ui.shop.MarketAndBackModel;
+import el.onetoone.ui.shop.MarketPanel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -13,10 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SyntheticModel {
+	
+	private static final int MODE_BUTTON_WIDTH = 150;
 	
 	/**
 	 * 用于显示错误信息，比如尚未登录啊之类的
@@ -24,55 +29,30 @@ public class SyntheticModel {
 	private Text wrongMessage;
 	
 	private Stage primStage;
-	
-	/**
-	 * 当前界面
-	 */
 	private Scene scene;
 	
-	private Button unlimitedMode;
+	private ModeButton unlimitedMode;
+	private ModeButton timeLimitedMode;
+	private ModeButton stepLimitedMode;
 	
-	private Button timeLimitedMode;
-	
-	private Button stepLimitedMode;
-	
-	/**
-	 * 背包和市场按钮
-	 */
 	private Button marketAndBackButton;
-	
-	/**
-	 * 氪金按钮！
-	 */
 	private Button topUpButton;
-	
-	/**
-	 * 设置按钮
-	 */
 	private Button settingButton;
-	
-	/**
-	 * 登出按钮
-	 */
 	private Button logOutButton;
-	
-	/**
-	 * 积分榜按钮
-	 */
 	private Button maxMarkButton;
-	
-	/**
-	 * 关闭按钮
-	 */
 	private SystemButton exitButton;
 	
 	public static final String UNLIMITE = "ASABCK";
-	
 	public static final String TIMELIMITED = "AFKLJCZX";
-	
 	public static final String STEPLIMITED = "DASCBXZ,ME";
-	
 	private String mode = null;
+	
+	private Pane root;
+	private InitialView initialView;
+	private MarketPanel marketPanel;
+	private ImageView backgroundImg;
+	
+	private HBox modeButtonBox;
 	
 	/**
 	 * 切换出去的界面，比如主游戏界面啊，商城界面啊，设置界面啊之类的
@@ -82,18 +62,6 @@ public class SyntheticModel {
 	public Scene getScene() {
 		return this.scene;
 	}
-	
-	private InitialView initialView;
-
-	private GridPane gridPane;
-	
-	private Group root;
-	
-	/**
-	 * 背景图片
-	 */
-	private ImageView backgroundImg;
-	
 	/**
 	 * 获取stage
 	 * @param stage
@@ -108,33 +76,19 @@ public class SyntheticModel {
 		
 		wrongMessage = new Text();
 		
-		gridPane = new GridPane();
-		gridPane.setAlignment(Pos.CENTER);
-		gridPane.setHgap(40);
-		gridPane.setVgap(40);
-		gridPane.setPadding(new Insets(40, 40, 40, 40));
 
-		backgroundImg = new ImageView(Config.getTheme().BG_SIGN);
+		backgroundImg = new ImageView(Config.getTheme().BG_GAME);
 		backgroundImg.setFitHeight(Config.SCREEN_HEIGHT);
 		backgroundImg.setFitWidth(Config.SCREEN_WIDTH);
 		
-		root = new Group();
+		root = new Pane();
 		root.getChildren().add(backgroundImg);
-		root.getChildren().add(gridPane);
 		
-//		gridPane.setAlignment(Pos.CENTER);
 		/**
 		 * 模式按钮
 		 */
-		unlimitedMode = new Button("无尽模式");
-		timeLimitedMode = new Button("生死时速");
-		stepLimitedMode = new Button("举步维艰");
+		createModeButton();
 		
-		unlimitedMode.setMinSize(200, 400);
-		timeLimitedMode.setMinSize(200, 400);
-		stepLimitedMode.setMinSize(200, 400);
-	
-		registerModeButtonListener();
 		
 		/**
 		 * 功能按钮
@@ -160,24 +114,49 @@ public class SyntheticModel {
 		
 		registerLogoutListener();
 		
-		gridPane.add(unlimitedMode, 1, 1);
-		gridPane.add(stepLimitedMode, 2, 1);
-		gridPane.add(timeLimitedMode, 3, 1);
-		
-		gridPane.add(settingButton, 1, 2);
-		gridPane.add(topUpButton, 2, 2);
-		gridPane.add(marketAndBackButton, 3, 2);
-		gridPane.add(maxMarkButton, 4, 2);
-		
-		//放在右上角
-		gridPane.add(logOutButton, 4, 0);
-		
 		createExitButton();
 		
 		scene = new Scene(root, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+		scene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		
 	}
 	
+	private void createModeButton() {
+		// TODO Auto-generated method stub
+		
+		modeButtonBox = new HBox(50);
+		modeButtonBox.setLayoutX(Config.SCREEN_WIDTH / 4);
+		modeButtonBox.setLayoutY(Config.SCREEN_HEIGHT / 3 + 30);
+		
+		//无尽模式
+		ImageView unlimitedImg = new ImageView(Config.getTheme().BUTTON_INDEFINITE_MODE);
+		unlimitedImg.setFitWidth(MODE_BUTTON_WIDTH);
+		unlimitedImg.setPreserveRatio(true);
+		
+		unlimitedMode = new ModeButton();
+		unlimitedMode.setGraphic(unlimitedImg);	
+		
+		//限时模式
+		ImageView timeImg = new ImageView(Config.getTheme().BUTTON_TIME_MODE);
+		timeImg.setFitWidth(MODE_BUTTON_WIDTH);
+		timeImg.setPreserveRatio(true);
+		
+		timeLimitedMode = new ModeButton();
+		timeLimitedMode.setGraphic(timeImg);
+		
+		//步数模式
+		ImageView stepImg = new ImageView(Config.getTheme().BUTTON_STEP_MODE);
+		stepImg.setFitWidth(MODE_BUTTON_WIDTH);
+		stepImg.setPreserveRatio(true);
+		
+		stepLimitedMode = new ModeButton();
+		stepLimitedMode.setGraphic(stepImg);
+		
+		modeButtonBox.getChildren().addAll(unlimitedMode, timeLimitedMode, stepLimitedMode);
+		registerModeButtonListener();
+		
+		root.getChildren().add(modeButtonBox);
+	}
 	private void createExitButton() {
 		
 		exitButton = new SystemButton(0);
@@ -372,4 +351,14 @@ public class SyntheticModel {
 		
 	}
  
+	class ModeButton extends Button {
+		
+		//加一些特效
+		public ModeButton() {
+			// TODO Auto-generated constructor stub
+			setStyle("-fx-background-color: transparent;"
+					+ "-fx-border-color: transparent;"
+					+ "-fx-content-display: center;");
+		}
+	}
 }
