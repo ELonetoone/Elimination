@@ -15,11 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Bloom;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.ColorInput;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Shadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -338,19 +335,6 @@ public class InitialView extends Application {
 		});
 	}
 
-	// private Timeline changeScreenAnimation() {
-	//
-	// final DoubleProperty opacity = initialScene.getRoot().opacityProperty();
-	// Timeline fade = new Timeline(
-	// new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
-	// new KeyFrame(Duration.millis(500), new KeyValue(opacity, 0.0))
-	// );
-	//
-	// fade.play();
-	//
-	// return fade;
-	// }
-
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -359,12 +343,9 @@ public class InitialView extends Application {
 
 		private DropShadow shadow;
 		private ColorAdjust colorAdjust;
-		
+
 		public InitButton() {
-			// TODO Auto-generated constructor stub
-			setStyle("-fx-background-color: transparent;" + "-fx-border-color: transparent;"
-					+ "-fx-content-display: center;");
-			
+
 			shadow = new DropShadow();
 			shadow.setColor(Color.TRANSPARENT);
 			colorAdjust = new ColorAdjust();
@@ -374,26 +355,31 @@ public class InitialView extends Application {
 			setOnMouseEntered(e -> {
 				setHighlight();
 			});
-			
+
 			setOnMouseExited(e -> setNormal());
 		}
 
 		public void setHighlight() {
 
-			Timeline highlight = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(shadow.colorProperty(), Color.TRANSPARENT)),
+			Timeline highlight = new Timeline(
+					new KeyFrame(Duration.ZERO, new KeyValue(shadow.colorProperty(), Color.TRANSPARENT)),
 					new KeyFrame(Duration.ZERO, new KeyValue(colorAdjust.brightnessProperty(), 0)),
-					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS), new KeyValue(shadow.colorProperty(), Color.PINK)),
-					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS),new KeyValue(colorAdjust.brightnessProperty(), 0.3)));
+					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS),
+							new KeyValue(shadow.colorProperty(), Color.PINK)),
+					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS),
+							new KeyValue(colorAdjust.brightnessProperty(), 0.3)));
 
 			highlight.play();
 		}
-		
+
 		public void setNormal() {
-			
+
 			Timeline normal = new Timeline(
-					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS), new KeyValue(shadow.colorProperty(), Color.TRANSPARENT)),
-					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS),new KeyValue(colorAdjust.brightnessProperty(), 0)));
-			
+					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS),
+							new KeyValue(shadow.colorProperty(), Color.TRANSPARENT)),
+					new KeyFrame(Duration.millis(BUTTON_HIGHLIGHT_MILLS),
+							new KeyValue(colorAdjust.brightnessProperty(), 0)));
+
 			normal.play();
 		}
 	}

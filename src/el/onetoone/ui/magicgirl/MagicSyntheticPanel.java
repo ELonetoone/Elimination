@@ -4,7 +4,7 @@ import el.onetoone.back.Config;
 import el.onetoone.ui.InitialView;
 import el.onetoone.ui.SyntheticModel;
 import el.onetoone.ui.SystemButton;
-import el.onetoone.ui.SyntheticModel.ModeButton;
+import el.onetoone.ui.SyntheticModel.SyntheticButton;
 import el.onetoone.ui.shop.MarketPanel;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -17,7 +17,7 @@ public class MagicSyntheticPanel extends SyntheticModel{
 	
 	public MagicSyntheticPanel() {
 		// TODO Auto-generated constructor stub
-		
+		super();
 		initBackgroud();
 	}
 
@@ -41,7 +41,7 @@ public class MagicSyntheticPanel extends SyntheticModel{
 		unlimitedImg.setFitWidth(MODE_BUTTON_WIDTH);
 		unlimitedImg.setPreserveRatio(true);
 		
-		unlimitedMode = new ModeButton();
+		unlimitedMode = new SyntheticButton();
 		unlimitedMode.setGraphic(unlimitedImg);	
 		
 		//限时模式
@@ -49,7 +49,7 @@ public class MagicSyntheticPanel extends SyntheticModel{
 		timeImg.setFitWidth(MODE_BUTTON_WIDTH);
 		timeImg.setPreserveRatio(true);
 		
-		timeLimitedMode = new ModeButton();
+		timeLimitedMode = new SyntheticButton();
 		timeLimitedMode.setGraphic(timeImg);
 		
 		//步数模式
@@ -57,12 +57,21 @@ public class MagicSyntheticPanel extends SyntheticModel{
 		stepImg.setFitWidth(MODE_BUTTON_WIDTH);
 		stepImg.setPreserveRatio(true);
 		
-		stepLimitedMode = new ModeButton();
+		stepLimitedMode = new SyntheticButton();
 		stepLimitedMode.setGraphic(stepImg);
 		
 		modeButtonBox.getChildren().addAll(unlimitedMode, timeLimitedMode, stepLimitedMode);
 		registerModeButtonListener();
 		
 		this.getChildren().add(modeButtonBox);
+	}
+
+	@Override
+	protected void createOtherButton() {
+		// TODO Auto-generated method stub
+		marketAndBackButton = new Button("商城");
+		maxMarkButton = new Button("积分榜");
+		topUpButton = new Button("充值");
+		settingButton = new Button("设置");
 	}
 }
