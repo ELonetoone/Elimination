@@ -10,6 +10,7 @@ import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
 import org.junit.internal.Throwables;
 
 import el.onetoone.exceptions.NotLoginException;
+import el.onetoone.ui.SyntheticModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -27,8 +28,22 @@ public class BaseDiamondGrid {
 	 * 用户死亡后别忘了增加相应的金币数 @廖均达
 	 */
 	// get it
+	
+	/**
+	 * 当前模式
+	 */
+	private String mode = null;
+	
+	/**
+	 * 用户行走步数
+	 */
+	private int step = 0;
 
 	private Color[] colors = Color.values();
+	
+	/**
+	 * 存储所有的宝石
+	 */
 	private Diamond[][] diamondMap;
 
 	/**
@@ -78,6 +93,17 @@ public class BaseDiamondGrid {
 		// 用户分数设置为0
 		gradeProperty = new SimpleIntegerProperty(0);
 
+	}
+	
+	/**
+	 * 另一个构造器，后端持有一个mode，这样就可以在一定模式在后端下限制用户道具使用
+	 * @param height
+	 * @param width
+	 * @param mode
+	 */
+	public BaseDiamondGrid(int height, int width, String mode) {
+		this(height, width);
+		this.mode = mode;
 	}
 
 	/**
@@ -886,7 +912,7 @@ public class BaseDiamondGrid {
 	 */
 	public boolean useHammer(int x, int y) throws NotLoginException {
 		if (UserBox.getUser() == null) {
-			throw new NotLoginException(NotLoginException.NotLogin);
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
 		} else if (UserBox.getUser().useItem(ItemList.HAMMER)) {
 			diamondMap[x][y] = null;
 			return true;
@@ -908,7 +934,7 @@ public class BaseDiamondGrid {
 	 */
 	public boolean useBoom(int x, int y) throws NotLoginException {
 		if (UserBox.getUser() == null) {
-			throw new NotLoginException(NotLoginException.NotLogin);
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
 		} else if (UserBox.getUser().useItem(ItemList.BOOM)) {
 			for (int i = x - 1; i <= x + 1; i++) {
 				for (int j = y - 1; j <= y + 1; j++) {
@@ -934,7 +960,7 @@ public class BaseDiamondGrid {
 	 */
 	public boolean useGenNewMap() throws NotLoginException {
 		if (UserBox.getUser() == null) {
-			throw new NotLoginException(NotLoginException.NotLogin);
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
 		} else if (UserBox.getUser().useItem(ItemList.NEWMAP)) {
 			do {
 				this.init();
@@ -945,6 +971,124 @@ public class BaseDiamondGrid {
 		}
 	}
 	
+	/**
+	 * 加五步道具
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean usePlusFiveSteps() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSFIVESTEPS)) {
+			stepPlus(5);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
+	/**
+	 * 加三步
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean usePlusThreeSteps() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSTHREESTEPS)) {
+			stepPlus(3);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 加一步
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean usePlusOneStep() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSTHREESTEPS)) {
+			stepPlus(1);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * +1s
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean usePlusOneSecond() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSONESECOND)) {
+			addTime(1);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * +5s
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean usePlusFiveSeconds() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSFIVESECONDS)) {
+			addTime(5);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * +10s
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean usePlusTenSeconds() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NOTLOGIN);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSTENSECONDS)) {
+			addTime(10);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void addTime(int second) {
+		
+	}
+	
+	/**
+	 * 获取当前行走步数  步数不足在前端进行判定
+	 * @return
+	 */
+	public int getStep(){
+		return this.step;
+	}
+	
+	/**
+	 * 步数减一
+	 */
+	public void stepMinOne() {
+		this.step -= 1;
+	}
+	
+	
+	public void stepPlus(int time) {
+		this.step += time;
+	}
 	
 }
