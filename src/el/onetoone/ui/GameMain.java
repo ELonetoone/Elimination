@@ -6,16 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class GameMain {
+public class GameMain extends Pane{
 
-	private Stage primaryStage;
-	private Scene lastScene;
-	private Scene scene;
 	private String mode;
-	private Group root;
 	private GamePanel gamePanel;
 
 	// 各种框
@@ -37,21 +34,15 @@ public class GameMain {
 	 * @param lastScene
 	 * @param mode
 	 */
-	public GameMain(Stage primaryStage, Scene lastScene, String mode) {
-
-		this.primaryStage = primaryStage;
-		this.mode = mode;
-		this.lastScene = lastScene;
-
-		root = new Group();
-
-		scene = new Scene(root, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-		scene.setFill(Color.BLACK);
-		
-		primaryStage.setScene(scene);
+	public GameMain() {
 
 		createNode();
 		addNode();
+	}
+	
+	public void setMode(String mode) {
+		
+		this.mode = mode;
 	}
 
 	/**
@@ -59,9 +50,9 @@ public class GameMain {
 	 */
 	private void addNode() {
 
-		root.getChildren().add(backgroud);
-		root.getChildren().add(gameFrame);
-		root.getChildren().add(gamePanel);
+		this.getChildren().add(backgroud);
+		this.getChildren().add(gameFrame);
+		this.getChildren().add(gamePanel);
 
 		gameFrame.setLayoutX(260);
 		gameFrame.setLayoutY(-150);
@@ -71,9 +62,9 @@ public class GameMain {
 //		moneyFrame.setX(50);
 //		moneyFrame.setLayoutY(0);
 
-		root.getChildren().add(exitButton);
-		root.getChildren().add(configButton);
-		root.getChildren().add(scorePanel);
+		this.getChildren().add(exitButton);
+		this.getChildren().add(configButton);
+		this.getChildren().add(scorePanel);
 		scorePanel.initScoreText();
 	}
 
@@ -97,16 +88,17 @@ public class GameMain {
 		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
 		exitButton.setLayoutY(10);
 		exitButton.setOnAction(e -> {
-			Theme.setBlur(root);
-			root.getChildren().add(new ExitPane());
+			Theme.setBlur(this);
+			this.getChildren().add(new ExitPane());
+//			goBackToLastScene();
 		});
 		
 		configButton = new SystemButton(2);
 		configButton.setLayoutX(Config.SCREEN_WIDTH - 110);
 		configButton.setLayoutY(10);
 		configButton.setOnAction(e -> {
-			Theme.setBlur(root);
-			root.getChildren().add(new SettingPane());
+			Theme.setBlur(this);
+			this.getChildren().add(new SettingPane());
 		});
 		
 		scorePanel = new FramePanel(0);
@@ -116,6 +108,6 @@ public class GameMain {
 	
 	private void goBackToLastScene() {
 		
-		primaryStage.setScene(lastScene);
+		((Pane)getParent()).getChildren().remove(this);
 	}
 }

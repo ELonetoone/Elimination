@@ -25,17 +25,13 @@ public class InitialView extends Application {
 	
 	
 	private Button exitButton;
-	
 	private Button loginButton;
-	
 	private Button registerButton;
-	
 	private Button trialButton;
 	
 	private SystemButton closeButton;
 	
 	private BorderPane borderPane;
-	
 	private GridPane buttonPane;
 	
 	/**
@@ -44,14 +40,13 @@ public class InitialView extends Application {
 	public User user = null;
 	
 	public Scene initialScene;
-	
 	private Stage primStage;
-	
 	private Scene regitserScene;
-	
 	private Scene loginScene;
 	
-	private ImageView startImg;
+	private SyntheticModel syntheticModel;
+	
+	private ImageView backgroud;
 
 	private Pane root;
 	@Override
@@ -59,6 +54,10 @@ public class InitialView extends Application {
 		
 		primaryStage.setTitle("氪金消消乐");
 		primaryStage.initStyle(StageStyle.UNDECORATED);
+		
+		root = new Pane();
+		
+		createBackground();
 		
 		borderPane = new BorderPane();
 		exitButton = new Button("退出");
@@ -97,8 +96,8 @@ public class InitialView extends Application {
 		
 		borderPane.setRight(buttonPane);
 		
-		
-		initialScene = new Scene(borderPane, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+		root.getChildren().add(borderPane);
+		initialScene = new Scene(root, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		initialScene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		primaryStage.setScene(initialScene);
 		
@@ -115,16 +114,22 @@ public class InitialView extends Application {
 		
 	}
 	
+	private void createBackground() {
+		// TODO Auto-generated method stub
+		backgroud = new ImageView(Config.getTheme().getBG_START());
+		backgroud.setFitWidth(Config.SCREEN_WIDTH);
+		backgroud.setPreserveRatio(true);
+		root.getChildren().add(backgroud);
+	}
+
 	private void registerButtonEventHandler() {
 		
 		trialButton.setOnAction(e -> {
 			user = null;
 			UserBox.setUser(user);
 			//转跳至综合界面
-			SyntheticModel synModel = new SyntheticModel(primStage, this);
-			synModel.init();
-			Scene synScene = synModel.getScene();
-			primStage.setScene(synScene);
+			syntheticModel = new SyntheticModel();
+			root.getChildren().add(syntheticModel);
 		});
 		
 		exitButton.setOnAction(e ->{
@@ -189,10 +194,8 @@ public class InitialView extends Application {
 							
 							UserBox.setUser(user);
 							//转换到综合界面
-							SyntheticModel synModel = new SyntheticModel(primStage, this);
-							synModel.init();
-							Scene synScene = synModel.getScene();
-							primStage.setScene(synScene);
+							syntheticModel = new SyntheticModel();
+							root.getChildren().add(syntheticModel);
 						} catch (Exception q) {
 							String qErrorMessage = q.getMessage();
 							
@@ -288,10 +291,8 @@ public class InitialView extends Application {
 							user = User.register(uid, passwd);
 							UserBox.setUser(user);
 							//转跳到综合界面
-							SyntheticModel synModel = new SyntheticModel(primStage, this);
-							synModel.init();
-							Scene synScene = synModel.getScene();
-							primStage.setScene(synScene);
+							syntheticModel = new SyntheticModel();
+							root.getChildren().add(syntheticModel);
 						} catch(Exception q) {
 							String qErrorMessage = q.getMessage();
 							if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {

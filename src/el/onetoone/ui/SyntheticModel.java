@@ -16,10 +16,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class SyntheticModel {
+public class SyntheticModel extends Pane{
 	
 	private static final int MODE_BUTTON_WIDTH = 150;
 	
@@ -30,6 +31,7 @@ public class SyntheticModel {
 	
 	private Stage primStage;
 	private Scene scene;
+	private GameMain gameMain;
 	
 	private ModeButton unlimitedMode;
 	private ModeButton timeLimitedMode;
@@ -47,7 +49,6 @@ public class SyntheticModel {
 	public static final String STEPLIMITED = "DASCBXZ,ME";
 	private String mode = null;
 	
-	private Pane root;
 	private InitialView initialView;
 	private MarketPanel marketPanel;
 	private ImageView backgroundImg;
@@ -59,30 +60,26 @@ public class SyntheticModel {
 	 */
 	public Scene funcScene;
 	
-	public Scene getScene() {
-		return this.scene;
-	}
 	/**
 	 * 获取stage
 	 * @param stage
 	 */
-	public SyntheticModel(Stage stage, InitialView initialView) {
-		this.primStage = stage;
-		this.initialView = initialView;
+	public SyntheticModel() {
+		
+		init();
 	}
 	
 	public void init() {
 		
-		
+		gameMain = new GameMain();
 		wrongMessage = new Text();
 		
 
-		backgroundImg = new ImageView(Config.getTheme().BG_GAME);
+		backgroundImg = new ImageView(Config.getTheme().getBG_GAME());
 		backgroundImg.setFitHeight(Config.SCREEN_HEIGHT);
 		backgroundImg.setFitWidth(Config.SCREEN_WIDTH);
 		
-		root = new Pane();
-		root.getChildren().add(backgroundImg);
+		this.getChildren().add(backgroundImg);
 		
 		/**
 		 * 模式按钮
@@ -116,8 +113,6 @@ public class SyntheticModel {
 		
 		createExitButton();
 		
-		scene = new Scene(root, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-		scene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		
 	}
 	
@@ -155,14 +150,14 @@ public class SyntheticModel {
 		modeButtonBox.getChildren().addAll(unlimitedMode, timeLimitedMode, stepLimitedMode);
 		registerModeButtonListener();
 		
-		root.getChildren().add(modeButtonBox);
+		this.getChildren().add(modeButtonBox);
 	}
 	private void createExitButton() {
 		
 		exitButton = new SystemButton(0);
 		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
 		exitButton.setLayoutY(10);
-		root.getChildren().add(exitButton);
+		this.getChildren().add(exitButton);
 		
 		exitButton.setOnAction(e -> {
 			System.exit(0);
@@ -312,7 +307,8 @@ public class SyntheticModel {
 			wrongMessage.setText("");
 			mode = UNLIMITE;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, mode);
+			gameMain.setMode(mode);
+			this.getChildren().add(gameMain);
 		});
 		
 		timeLimitedMode.setOnMouseEntered(e -> {
@@ -329,7 +325,9 @@ public class SyntheticModel {
 			wrongMessage.setText("");
 			mode = TIMELIMITED;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, mode);
+			gameMain.setMode(mode);
+			this.getChildren().add(gameMain);
+			
 		});
 		
 		stepLimitedMode.setOnMouseEntered(e -> {
@@ -346,12 +344,13 @@ public class SyntheticModel {
 			wrongMessage.setText("");
 			mode = STEPLIMITED;
 			//然后传递mode到主游戏界面
-			GameMain gamePanel = new GameMain(primStage, scene, mode);
+			gameMain.setMode(mode);
+			this.getChildren().add(gameMain);
 		});
 		
 	}
  
-	class ModeButton extends Button {
+	public class ModeButton extends Button {
 		
 		//加一些特效
 		public ModeButton() {
