@@ -5,6 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
+
+import org.junit.internal.Throwables;
+
+import el.onetoone.exceptions.NotLoginException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -778,7 +783,6 @@ public class BaseDiamondGrid {
 				}
 			}
 		}
-		testPrint();
 		System.out.println(getGrade());
 
 		return exchangeValid;
@@ -828,16 +832,6 @@ public class BaseDiamondGrid {
 		}
 
 		return list;
-		// if (haschanged) {
-		// executeFullScreenElimination();
-		// generateNewDiamonds();
-		// }
-
-		// 界面中的方块都落下后再执行后续的executeFullScreenElimination，这一点我觉得要结合动画来写，比如绘制一次执行一次该方法
-		// if (isDie()) {
-		// //死图则执行游戏结束的相关行为
-		// //用户金币也要相应的增加
-		// }
 	}
 
 	private void moveNullToTheTop() {
@@ -880,34 +874,77 @@ public class BaseDiamondGrid {
 	}
 
 	/**
-	 * use in test
-	 * 
-	 * @param diamonds
-	 */
-	public void setDiamondMap(Diamond[][] diamonds) {
-		this.diamondMap = diamonds;
-	}
-
-	/**
-	 * use in test
-	 */
-	public void testPrint() {
-		for (int i = 0; i < diamondMap.length; i++) {
-			System.out.printf("%-3d ", i);
-			for (int j = 0; j < diamondMap[i].length; j++) {
-				if (diamondMap[i][j] != null) {
-					System.out.printf("%-6s  ", diamondMap[i][j].getColor().toString());
-				} else {
-					System.out.printf("%-6s  ", diamondMap[i][j]);
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	/**
 	 * 道具消除的几个方法 等到debug结束后再处理
 	 */
-
+	
+	/**
+	 * 使用小锤子
+	 * @param x
+	 * @param y
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean useHammer(int x, int y) throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NotLogin);
+		} else if (UserBox.getUser().useItem(ItemList.HAMMER)) {
+			diamondMap[x][y] = null;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean useHammer(Point point) throws NotLoginException {
+		return useHammer(point.getX(), point.getY());
+	}
+	
+	/**
+	 * 使用炸弹
+	 * @param x
+	 * @param y
+	 * @return
+	 * @throws NotLoginException
+	 */
+	public boolean useBoom(int x, int y) throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NotLogin);
+		} else if (UserBox.getUser().useItem(ItemList.BOOM)) {
+			for (int i = x - 1; i <= x + 1; i++) {
+				for (int j = y - 1; j <= y + 1; j++) {
+					if (i >= 2 && i <= width + 1 && j >= 2 && j <= height + 1) {
+						diamondMap[i][j] = null;
+					}
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean useBoom(Point point) throws NotLoginException {
+		return useBoom(point.getX(), point.getY());
+	}
+	
+	/**
+	 * 使用生成新地图道具
+	 * @return 是否使用成功
+	 * @throws NotLoginException
+	 */
+	public boolean useGenNewMap() throws NotLoginException {
+		if (UserBox.getUser() == null) {
+			throw new NotLoginException(NotLoginException.NotLogin);
+		} else if (UserBox.getUser().useItem(ItemList.NEWMAP)) {
+			do {
+				this.init();
+			} while (isDie() || canDirectlyEliminated());
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
 }

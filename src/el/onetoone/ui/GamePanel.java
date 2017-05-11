@@ -385,59 +385,6 @@ public class GamePanel extends Group {
 		choosedDiamond.setPoint(temp);
 	}
 
-	/**
-	 * 调试代码
-	 */
-	public void testPrint() {
-		for (int i = 0; i < diamondCircles.length; i++) {
-			System.out.printf("%-3d ", i);
-			for (int j = 0; j < diamondCircles[i].length; j++) {
-				if (diamondCircles[i][j] != null) {
-					System.out.printf("%-6s  ", diamondCircles[i][j].getImage());
-				} else {
-					System.out.printf("%-6s  ", diamondCircles[i][j]);
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	/**
-	 * 调试代码
-	 */
-	private void printPoint() {
-		for (int i = 0; i < diamondCircles.length; i++) {
-			System.out.printf("%-3d ", i);
-			for (int j = 0; j < diamondCircles[i].length; j++) {
-				if (diamondCircles[i][j] != null) {
-					System.out.printf("%-6s  ", diamondCircles[i][j].getPoint());
-				} else {
-					System.out.printf("%-6s  ", diamondCircles[i][j]);
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	/**
-	 * 调试代码，用于打印圆的位置
-	 */
-	private void printCenterLocation() {
-		for (int i = 0; i < diamondCircles.length; i++) {
-			System.out.printf("%-3d ", i);
-			for (int j = 0; j < diamondCircles[i].length; j++) {
-				if (diamondCircles[i][j] != null) {
-					System.out.printf("%-6s  ", diamondCircles[i][j].loaction());
-				} else {
-					System.out.printf("%-6s  ", diamondCircles[i][j]);
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
 
 	private void repaintTheBoard() {
 		this.getChildren().clear();
