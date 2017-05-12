@@ -114,11 +114,6 @@ public class InitialView extends Application {
 		trialButton = new InitButton();
 		trialButton.setGraphic(trialImg);
 
-		// exitButton.setMinSize(150, 75);
-		// loginButton.setMinSize(150, 75);
-		// registerButton.setMinSize(150, 75);
-		// trialButton.setMinSize(150, 75);
-
 		buttonBox = new VBox();
 		buttonBox.setSpacing(-5);
 		buttonBox.setAlignment(Pos.BASELINE_RIGHT);
@@ -209,7 +204,6 @@ public class InitialView extends Application {
 							// 转换到综合界面
 							syntheticModel = new MagicSyntheticPanel();
 							root.getChildren().add(syntheticModel);
-							syntheticModel.toFront();
 						} catch (Exception q) {
 							String qErrorMessage = q.getMessage();
 
