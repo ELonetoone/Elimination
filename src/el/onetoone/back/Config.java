@@ -1,6 +1,7 @@
 package el.onetoone.back;
 
 import el.onetoone.ui.MagicGirlTheme;
+import el.onetoone.ui.Main;
 import el.onetoone.ui.Theme;
 
 public class Config {
@@ -19,6 +20,16 @@ public class Config {
 	
 	public static void setTheme(Theme theme) {
 		Config.theme = theme;
+	}
+	
+	public static Main main;
+	
+	public static void setMain(Main main) {
+		Config.main = main;
+	}
+	
+	public static Main getMain() {
+		return Config.main;
 	}
 	
 }
