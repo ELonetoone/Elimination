@@ -62,6 +62,8 @@ public abstract class InitialPanel extends Scene {
 	
 	public User user;
 	
+	public abstract Scene getInitialScene();
+	
 	public void createButton () {
 		
 		ImageView exitImg = new ImageView(Config.getTheme().getINIT_BUTTON_QUIT());
@@ -100,7 +102,7 @@ public abstract class InitialPanel extends Scene {
 	public void registerButtonEventHandler() {
 		
 		trialButton.setOnAction(e -> {
-			
+			Config.getMain().setScene(Config.getTheme().getSynScene());
 		});
 		
 		exitButton.setOnAction(e -> {
@@ -108,7 +110,11 @@ public abstract class InitialPanel extends Scene {
 		});
 		
 		registerButton.setOnAction(e -> {
+			Config.getMain().setScene(Config.getTheme().getRegisterScene());
+		});
 		
+		loginButton.setOnAction(e -> {
+			Config.getMain().setScene(Config.getTheme().getLoginScene());
 		});
 		
 	}

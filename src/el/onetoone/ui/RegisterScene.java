@@ -37,5 +37,7 @@ public abstract class RegisterScene extends Scene {
 		super(root, width, height, depthBuffer, antiAliasing);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }

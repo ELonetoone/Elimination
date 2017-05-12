@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -372,5 +373,21 @@ public abstract class Theme {
 	public void setINIT_BUTTON_TRY(Image iNIT_BUTTON_TRY) {
 		INIT_BUTTON_TRY = iNIT_BUTTON_TRY;
 	}
+	
+	public abstract Scene getInitialScene();
+	
+	public abstract Scene getLoginScene();
+	
+	public abstract Scene getRegisterScene();
+	
+	public abstract Scene getSettingScene();
+	
+	public abstract Scene getMaxMarkScene();
+	
+	public abstract Scene getMarketScene();
+	
+	public abstract Scene getGameScene();
+	
+	public abstract Scene getSynScene();
 
 }

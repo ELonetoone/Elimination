@@ -1,6 +1,7 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Config;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -65,5 +66,53 @@ public class MagicGirlTheme extends Theme {
 		bgmPlayer = new MediaPlayer(bgm);
 		bgmPlayer.setAutoPlay(true);
 		bgmPlayer.play();
+	}
+
+	@Override
+	public Scene getInitialScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getLoginScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getRegisterScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getSettingScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getMaxMarkScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getMarketScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getGameScene() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scene getSynScene() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
