@@ -14,7 +14,7 @@ public class NetDataBase {
 	
 	private static final String add = "118.89.114.25";
 	
-	private static final int port = 21450;
+	private static final int port = 21500;
 	
 	/**
 	 * 最长延时
@@ -129,6 +129,7 @@ public class NetDataBase {
 			e.printStackTrace();
 			return null;
 		}
+		System.out.println(receivedInfo);
 		return receivedInfo;
 	}
 	
@@ -154,6 +155,7 @@ public class NetDataBase {
 			e.printStackTrace();
 			return null;
 		}
+		System.out.println(receivedInfo);
 		return receivedInfo;
 	}
 

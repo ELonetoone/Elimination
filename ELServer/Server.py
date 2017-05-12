@@ -1,7 +1,7 @@
 from DataBase import *
 from ELSocket import *
 
-udpSock = ELSocket(21445)
+udpSock = ELSocket(21450)
 db = DataBase()
 
 while True:
