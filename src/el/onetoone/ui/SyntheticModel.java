@@ -50,7 +50,7 @@ abstract public class SyntheticModel extends Pane {
 	private MarketPanel marketPanel;
 	protected ImageView backgroundImg;
 
-	abstract protected void createOtherButton();
+	abstract protected void createFuncButton();
 	abstract protected void createModeButton();
 	
 	public SyntheticModel() {
@@ -65,11 +65,7 @@ abstract public class SyntheticModel extends Pane {
 
 		createBackgroud();
 		createModeButton();
-		createOtherButton();
-		/**
-		 * 功能按钮
-		 */
-		
+		createFuncButton();
 
 		marketAndBackButton.setMinSize(50, 50);
 		maxMarkButton.setMinSize(50, 50);
@@ -77,16 +73,7 @@ abstract public class SyntheticModel extends Pane {
 		settingButton.setMinSize(50, 50);
 
 		registerFuncButtonListener();
-
-		/**
-		 * 登出按钮，之后会修改成自己的类
-		 */
-		logOutButton = new Button("登出");
-
-		logOutButton.setMinSize(50, 50);
-
 		registerLogoutListener();
-
 		createExitButton();
 
 	}
@@ -119,8 +106,8 @@ abstract public class SyntheticModel extends Pane {
 	public void registerLogoutListener() {
 
 		logOutButton.setOnMouseEntered(e -> {
-			logOutButton.setScaleX(1.3);
-			logOutButton.setScaleY(1.3);
+			logOutButton.setScaleX(BUTTON_CHAGE_SCALE);
+			logOutButton.setScaleY(BUTTON_CHAGE_SCALE);
 		});
 
 		logOutButton.setOnMouseExited(e -> {

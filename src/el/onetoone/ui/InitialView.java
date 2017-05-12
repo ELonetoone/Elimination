@@ -209,6 +209,7 @@ public class InitialView extends Application {
 							// 转换到综合界面
 							syntheticModel = new MagicSyntheticPanel();
 							root.getChildren().add(syntheticModel);
+							syntheticModel.toFront();
 						} catch (Exception q) {
 							String qErrorMessage = q.getMessage();
 

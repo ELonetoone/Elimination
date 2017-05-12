@@ -40,6 +40,7 @@ public class MagicGirlTheme extends Theme {
 		setBUTTON_LOG_OUT(new Image("/image/button_log_out.png"));
 		setBUTTON_KEJIN(new Image("/image/button_kejin.png"));
 		setBUTTON_HEIGHEST_SCORE(new Image("/image/button_heighest_score.png"));
+		setBUTTON_SHOP(new Image("/image/button_shop.png"));
 		
 		//设置初始界面的按钮
 		setINIT_BUTTON_QUIT(new Image("/image/init_button_quit.png"));

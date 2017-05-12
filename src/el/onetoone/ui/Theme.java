@@ -42,6 +42,8 @@ public abstract class Theme {
 	protected Image BUTTON_TIME_MODE;
 	protected Image BUTTON_INDEFINITE_MODE;
 	protected Image BUTTON_STEP_MODE;
+	
+	//主界面的几个按钮
 	protected Image BUTTON_CONFIG;
 	protected Image BUTTON_SHOP;
 	protected Image BUTTON_KEJIN;

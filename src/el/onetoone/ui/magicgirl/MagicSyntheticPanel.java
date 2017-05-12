@@ -6,14 +6,19 @@ import el.onetoone.ui.SyntheticModel;
 import el.onetoone.ui.SystemButton;
 import el.onetoone.ui.SyntheticModel.SyntheticButton;
 import el.onetoone.ui.shop.MarketPanel;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class MagicSyntheticPanel extends SyntheticModel{
 
+	
+	private static final int FUNC_BUTTON_HEIGHT = 60;
 	private HBox modeButtonBox;
+	private VBox funcButtonBox;
 	
 	public MagicSyntheticPanel() {
 		// TODO Auto-generated constructor stub
@@ -67,11 +72,53 @@ public class MagicSyntheticPanel extends SyntheticModel{
 	}
 
 	@Override
-	protected void createOtherButton() {
-		// TODO Auto-generated method stub
-		marketAndBackButton = new Button("商城");
-		maxMarkButton = new Button("积分榜");
-		topUpButton = new Button("充值");
-		settingButton = new Button("设置");
+	protected void createFuncButton() {
+		
+		//商城按钮
+		ImageView shopImg =  new ImageView(Config.getTheme().getBUTTON_SHOP());
+		shopImg.setFitHeight(FUNC_BUTTON_HEIGHT);
+		shopImg.setPreserveRatio(true);
+		
+		marketAndBackButton = new Button();
+		marketAndBackButton.setGraphic(shopImg);
+		
+		//最高分按钮
+		ImageView maxMarkImg = new ImageView(Config.getTheme().getBUTTON_HEIGHEST_SCORE());
+		maxMarkImg.setFitHeight(FUNC_BUTTON_HEIGHT);
+		maxMarkImg.setPreserveRatio(true);
+		
+		maxMarkButton = new Button();
+		maxMarkButton.setGraphic(maxMarkImg);
+		
+		//氪金按钮
+		ImageView kejinImg = new ImageView(Config.getTheme().getBUTTON_KEJIN());
+		kejinImg.setFitHeight(FUNC_BUTTON_HEIGHT);
+		kejinImg.setPreserveRatio(true);
+		
+		topUpButton = new Button();
+		topUpButton.setGraphic(kejinImg);
+		
+		//设置按钮
+		ImageView settingImg = new ImageView(Config.getTheme().getBUTTON_CONFIG());
+		settingImg.setFitHeight(FUNC_BUTTON_HEIGHT);
+		settingImg.setPreserveRatio(true);
+		
+		settingButton = new Button();
+		settingButton.setGraphic(settingImg);
+		
+		//登出按钮
+		ImageView logoutImg = new ImageView(Config.getTheme().getBUTTON_LOG_OUT());
+		logoutImg.setFitHeight(FUNC_BUTTON_HEIGHT);
+		logoutImg.setPreserveRatio(true);
+		
+		logOutButton = new Button();
+		logOutButton.setGraphic(logoutImg);
+		
+		funcButtonBox = new VBox(settingButton, maxMarkButton, topUpButton, marketAndBackButton, logOutButton);
+		funcButtonBox.setSpacing(-10);
+		funcButtonBox.setAlignment(Pos.CENTER_LEFT);
+		funcButtonBox.setLayoutX(50);
+		funcButtonBox.setLayoutY(80);
+		this.getChildren().add(funcButtonBox);
 	}
 }
