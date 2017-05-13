@@ -25,7 +25,7 @@ public class NarutoTheme extends Theme{
 		setDIAMOND_SIX(new Image("/image/naruto/diamond_6.png"));
 
 		// set button
-		setBUTTON_BACK(new Image("/image/naruto/button_back.png"));
+		setBUTTON_BACK(new Image("/image/naruto/button_back.png", 70, 70, false, true));
 		setBUTTON_GAME_EXIT(new Image("/image/naruto/button_game_exit.png"));
 		setBUTTON_GAME_RESTART(new Image("/image/naruto/button_restart.png"));
 		setBUTTON_INDEFINITE_MODE(new Image("/image/naruto/button_indefinite_mode.png"));
@@ -71,7 +71,8 @@ public class NarutoTheme extends Theme{
 	@Override
 	public Scene getLoginScene() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("login");
+		return new NarutoLoginScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getLoginScene();
 	}
 
 	@Override
