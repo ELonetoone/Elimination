@@ -134,22 +134,27 @@ public class GamePanel extends Group {
 					if (gameOver) {
 						return;
 					}
+					
 					if (gameMain.getCurrentProps() != null) {
 						gameMain.setCursor(Cursor.DEFAULT);
 						try {
-							switch (gameMain.getCurrentProps()) {
-							case ItemList.BOOM:
-								diamondGrid.useBoom(currentDiamond.getPoint());
-								break;
-
-							case ItemList.HAMMER:
-								diamondGrid.useHammer(currentDiamond.getPoint());
-								break;
+							if (UserBox.getUser().useItem(gameMain.getCurrentProps())) {
 								
-							case ItemList.NEWMAP:
-								diamondGrid.useGenNewMap();
-								repaintTheBoard();
-								break;
+								switch (gameMain.getCurrentProps()) {
+								case ItemList.BOOM:
+									diamondGrid.useBoom(currentDiamond.getPoint());
+									break;
+									
+								case ItemList.HAMMER:
+									diamondGrid.useHammer(currentDiamond.getPoint());
+									break;
+									
+								case ItemList.NEWMAP:
+									diamondGrid.useGenNewMap();
+									repaintTheBoard();
+									break;
+									
+								}
 							}
 							gameMain.setCurrentProps(null);
 							paintNullToNoColor(sequentialTransition);
@@ -434,7 +439,7 @@ public class GamePanel extends Group {
 	}
 	
 	public void gameOver() {
-//		UserBox.getUser().updateUserInfo();
+		UserBox.getUser().updateUserInfo();
 		gameOver = true;
 	}
 }
