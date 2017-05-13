@@ -1,6 +1,9 @@
 package el.onetoone.ui.naruto;
 
 import el.onetoone.back.Config;
+import el.onetoone.back.User;
+import el.onetoone.back.UserBox;
+import el.onetoone.ui.InitialView;
 import el.onetoone.ui.RegisterScene;
 import el.onetoone.ui.naruto.NarutoLoginScene.LoginAndRegisterButton;
 import javafx.scene.Parent;
@@ -49,8 +52,9 @@ public class NarutoRegisterScene extends RegisterScene {
 	public Scene getRegisterScene() {
 		// TODO Auto-generated method stub
 		setBackground();
-		
-		return null;
+		putButton();
+	//	getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
+		return this;
 	}
 	
 	private ImageView gameName;
@@ -106,6 +110,49 @@ public class NarutoRegisterScene extends RegisterScene {
 		
 		exitButton.setOnAction(e -> {
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
+		});
+		
+		registerButton.setOnAction(p -> {
+			User user;
+			String uid = userName.getText().trim();
+			String passwd = passwordField.getText().trim();
+			String confirmPasswd = confirmField.getText().trim();
+
+			if (uid == null || uid.equals("")) {
+				wrongMessage.setText("用户名不得为空");
+			} else if (passwd == null || passwd.equals("") || confirmPasswd == null || confirmPasswd.equals("")) {
+				wrongMessage.setText("密码不得为空");
+			} else if (!passwd.equals(confirmPasswd)) {
+				wrongMessage.setText("两次输入的密码不一致");
+			} else {
+				boolean hasSpace = false;
+				for (int i = 0; i < uid.length(); i++) {
+					if (uid.charAt(i) == ' ') {
+						hasSpace = true;
+						break;
+					}
+				}
+				if (hasSpace) {
+					wrongMessage.setText("用户名不能含有空格");
+				} else {
+					try {
+						user = User.register(uid, passwd);
+						UserBox.setUser(user);
+						// 转跳到综合界面
+						Config.getMain().setScene(Config.getTheme().getSynScene());
+					} catch (Exception q) {
+						String qErrorMessage = q.getMessage();
+						if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {
+							wrongMessage.setText("网络连接失败");
+						} else if (qErrorMessage.equals(User.HASBEENREGISTERED)) {
+							wrongMessage.setText("用户名已被注册");
+						} else {
+
+						}
+					}
+				}
+			}
+
 		});
 	}
 	

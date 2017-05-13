@@ -77,8 +77,8 @@ public class NarutoTheme extends Theme{
 
 	@Override
 	public Scene getRegisterScene() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("register");
+		return new NarutoRegisterScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getRegisterScene();
 	}
 
 	@Override
