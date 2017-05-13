@@ -59,8 +59,6 @@ public class MagicLoginScene extends LoginScene {
 	
 	public void putButton() {
 		
-		wrongMessage = new Text();
-		
 		super.createItems();
 		ImageView pane = new ImageView(new Image("/image/lg_pane.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, false));
 		pane.setLayoutX(295);
