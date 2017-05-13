@@ -92,6 +92,16 @@ public class GameMain extends Pane{
 			setCursor(new ImageCursor(Theme.PROPS_BOOM));
 			currentProps = ItemList.BOOM;
 		});
+		
+		propsHammer.setOnMousePressed(e -> {
+			setCursor(new ImageCursor(Theme.PROPS_HAMMER));
+			currentProps = ItemList.HAMMER;
+		});
+		
+		propsNewMap.setOnMousePressed(e -> {
+			setCursor(new ImageCursor(Theme.PROPS_NEW_MAP));
+			currentProps = ItemList.NEWMAP;
+		});
 	}
 
 	public void setMode(String mode) {

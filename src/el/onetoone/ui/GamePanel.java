@@ -128,11 +128,24 @@ public class GamePanel extends Group {
 
 				currentDiamond.setOnMousePressed(e -> {
 
-					if (gameMain.getCurrentProps() == ItemList.BOOM) {
+					if (gameMain.getCurrentProps() != null) {
 						gameMain.setCursor(Cursor.DEFAULT);
-						gameMain.setCurrentProps(null);
 						try {
-							diamondGrid.useBoom(currentDiamond.getPoint());
+							switch (gameMain.getCurrentProps()) {
+							case ItemList.BOOM:
+								diamondGrid.useBoom(currentDiamond.getPoint());
+								break;
+
+							case ItemList.HAMMER:
+								diamondGrid.useHammer(currentDiamond.getPoint());
+								break;
+								
+							case ItemList.NEWMAP:
+								diamondGrid.useGenNewMap();
+								repaintTheBoard();
+								break;
+							}
+							gameMain.setCurrentProps(null);
 							paintNullToNoColor(sequentialTransition);
 							sequentialTransition.play();
 							sequentialTransition.setOnFinished(e2 -> {
@@ -144,7 +157,7 @@ public class GamePanel extends Group {
 							e1.printStackTrace();
 						}
 						return;
-					}
+					} 
 					if (choosedDiamond == null) {
 						choosedDiamond = currentDiamond;
 					} else if ((choosedDiamond.getPoint().getX() + 1 == currentDiamond.getPoint().getX()
