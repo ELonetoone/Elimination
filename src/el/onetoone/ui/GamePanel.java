@@ -5,13 +5,17 @@ import java.util.List;
 import el.onetoone.back.BaseDiamondGrid;
 import el.onetoone.back.Config;
 import el.onetoone.back.Diamond;
+import el.onetoone.back.ItemList;
 import el.onetoone.back.Point;
 import el.onetoone.back.Status;
+import el.onetoone.exceptions.NotLoginException;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 
 public class GamePanel extends Group {
@@ -22,18 +26,19 @@ public class GamePanel extends Group {
 	private static final double DIAMOND_WIDTH = 100;
 	private static final double DIAMOND_HEIGHT = 80;
 
-	DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
-	BaseDiamondGrid diamondGrid;
+	private DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
+	private BaseDiamondGrid diamondGrid;
 
 	public BaseDiamondGrid getDiamondGrid() {
 		return diamondGrid;
 	}
 
-	DiamondCircle choosedDiamond;
-	Diamond[][] diamonds;
+	private DiamondCircle choosedDiamond;
+	private Diamond[][] diamonds;
 
-	Theme theme;
-
+	private Theme theme;
+	private GameMain gameMain;
+	
 	public Theme getTheme() {
 		return theme;
 	}
@@ -43,9 +48,10 @@ public class GamePanel extends Group {
 	/**
 	 * 执行初始化,并设置游戏屏幕的scene
 	 */
-	public GamePanel() {
+	public GamePanel(GameMain gameMain) {
 
-		theme = new MagicGirlTheme();
+		this.gameMain = gameMain;
+		theme = Config.getTheme();
 		init();
 	}
 
@@ -122,6 +128,23 @@ public class GamePanel extends Group {
 
 				currentDiamond.setOnMousePressed(e -> {
 
+					if (gameMain.getCurrentProps() == ItemList.BOOM) {
+						gameMain.setCursor(Cursor.DEFAULT);
+						gameMain.setCurrentProps(null);
+						try {
+							diamondGrid.useBoom(currentDiamond.getPoint().getY(), currentDiamond.getPoint().getX());
+							paintNullToNoColor(sequentialTransition);
+							sequentialTransition.play();
+							sequentialTransition.setOnFinished(e2 -> {
+								sequentialTransition.getChildren().clear();
+								dropDiamonds();
+							});
+						} catch (NotLoginException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						return;
+					}
 					if (choosedDiamond == null) {
 						choosedDiamond = currentDiamond;
 					} else if ((choosedDiamond.getPoint().getX() + 1 == currentDiamond.getPoint().getX()
