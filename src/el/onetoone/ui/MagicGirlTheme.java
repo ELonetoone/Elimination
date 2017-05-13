@@ -5,6 +5,7 @@ import java.awt.event.MouseWheelEvent;
 import el.onetoone.back.Config;
 import el.onetoone.ui.magicgirl.MagicInitialScene;
 import el.onetoone.ui.magicgirl.MagicLoginScene;
+import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
 import el.onetoone.ui.magicgirl.MagicRegisterScene;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,7 +17,7 @@ public class MagicGirlTheme extends Theme {
 
 	private static final int FRAME_LITTLE_WIDTH = 300;
 	private static final int FRAME_LITTLE_HEIGHT = 400;
-	
+	public static final Image BG_GAME_ING = new Image("/image/bg_game_ing.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true);
 
 	public MagicGirlTheme() {
 		
@@ -56,7 +57,7 @@ public class MagicGirlTheme extends Theme {
 		setINIT_BUTTON_TRY(new Image("/image/init_button_try.png"));
 		
 		//set frame
-		setFRAME_GAME(new Image("/image/frame_game.png", 1000, 1200, true, false, true));
+		setFRAME_GAME(new Image("/image/frame_game.png", 900, 1000, true, false, true));
 		setFRAME_HIGHEST_SCORE(new Image("/image/frame_highest_score.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_MONEY(new Image("/image/frame_money.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_SIGN_IN(new Image("/image/frame_signIn.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
@@ -122,6 +123,6 @@ public class MagicGirlTheme extends Theme {
 	@Override
 	public Scene getSynScene() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MagicSyntheticPanel().getSyntheticScene();
 	}
 }

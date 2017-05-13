@@ -54,7 +54,7 @@ public class MagicInitialScene extends InitialScene {
 		// TODO Auto-generated method stub
 		setBackground();
 		putButton();
-		this.getStylesheets().add(MagicInitialScene.class.getResource("initialView.css").toExternalForm());
+		this.getStylesheets().add(MagicInitialScene.class.getResource("textField.css").toExternalForm());
 		return this;
 	}
 
