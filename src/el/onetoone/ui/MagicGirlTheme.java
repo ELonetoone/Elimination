@@ -1,8 +1,10 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Config;
+import el.onetoone.ui.magicgirl.MagicInitialPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -71,7 +73,8 @@ public class MagicGirlTheme extends Theme {
 	@Override
 	public Scene getInitialScene() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("OK");
+		return new MagicInitialPanel(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getInitialScene();
 	}
 
 	@Override
