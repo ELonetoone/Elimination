@@ -61,7 +61,6 @@ abstract public class SyntheticModel extends Pane {
 
 	public void init() {
 
-		gameMain = new GameMain();
 		wrongMessage = new Text();
 
 		createBackgroud();
@@ -217,7 +216,7 @@ abstract public class SyntheticModel extends Pane {
 			wrongMessage.setText("");
 			mode = UNLIMITE;
 			// 然后传递mode到主游戏界面
-			gameMain.setMode(mode);
+			gameMain = new GameMain(mode);
 			this.getChildren().add(gameMain);
 		});
 
@@ -225,7 +224,7 @@ abstract public class SyntheticModel extends Pane {
 			wrongMessage.setText("");
 			mode = TIMELIMITED;
 			// 然后传递mode到主游戏界面
-			gameMain.setMode(mode);
+			gameMain = new GameMain(mode);
 			this.getChildren().add(gameMain);
 
 		});
@@ -234,7 +233,7 @@ abstract public class SyntheticModel extends Pane {
 			wrongMessage.setText("");
 			mode = STEPLIMITED;
 			// 然后传递mode到主游戏界面
-			gameMain.setMode(mode);
+			gameMain = new GameMain(mode);
 			this.getChildren().add(gameMain);
 		});
 

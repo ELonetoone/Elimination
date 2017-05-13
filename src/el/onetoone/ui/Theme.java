@@ -19,6 +19,9 @@ public abstract class Theme {
 	public static final Image PROPS_NEW_MAP = new Image("/image/props_new_map.png");
 	public static final Image PROPS_BOOM = new Image("/image/props_boom.png");
 
+	
+	protected Image ICON_INDEFINITE;
+
 	// backgroud image
 	protected Image BG_START;
 	protected Image BG_GAME;
@@ -371,6 +374,14 @@ public abstract class Theme {
 
 	public void setINIT_BUTTON_TRY(Image iNIT_BUTTON_TRY) {
 		INIT_BUTTON_TRY = iNIT_BUTTON_TRY;
+	}
+	
+	public Image getICON_INDEFINITE() {
+		return ICON_INDEFINITE;
+	}
+
+	public void setICON_INDEFINITE(Image iCON_INDEFINITE) {
+		ICON_INDEFINITE = iCON_INDEFINITE;
 	}
 
 	public abstract Scene getInitialScene();

@@ -4,6 +4,7 @@ import el.onetoone.back.BaseDiamondGrid;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.concurrent.Task;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -28,6 +29,23 @@ public class ContentText extends Text{
 	}
 	
 	public void bindTime() {
+		diamondGrid.setTime(60);
+		Task<Void> task = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+				// TODO Auto-generated method stub
+				int currentTime = diamondGrid.timeProperty().get();
+				while (currentTime != 0) {
+					
+					Thread.sleep(1000);
+					diamondGrid.timeProperty().set(--currentTime);
+				}
+				return null;
+			}
+		};
+		
 		textProperty().bind(diamondGrid.timeProperty().asString());
+		new Thread(task).start();
 	}
 }

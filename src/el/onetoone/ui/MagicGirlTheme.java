@@ -63,6 +63,8 @@ public class MagicGirlTheme extends Theme {
 		setFRAME_SIGN_IN(new Image("/image/frame_signIn.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_STEP(new Image("/image/frame_step.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_TIME(new Image("/image/frame_time.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+		
+		setICON_INDEFINITE(new Image("/image/icon_indefinite.png"));
 	}
 
 	@Override

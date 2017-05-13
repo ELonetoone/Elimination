@@ -72,6 +72,8 @@ public class BaseDiamondGrid {
 
 		// 用户分数设置为0
 		gradeProperty = new SimpleIntegerProperty(0);
+		timeProperty = new SimpleIntegerProperty();
+		stepProperty = new SimpleIntegerProperty();
 
 	}
 
@@ -1058,6 +1060,10 @@ public class BaseDiamondGrid {
 		}
 	}
 
+	public void setTime(int seconds) {
+		timeProperty.set(seconds);
+	}
+	
 	public void addTime(int second) {
 		timeProperty.set(timeProperty.get() + second);
 	}
