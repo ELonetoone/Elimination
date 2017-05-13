@@ -16,7 +16,7 @@ public class Main extends Application {
 		Config.setMain(this);
 		stage = primaryStage;
 		
-		InitialScene initialPanel = null; //用非抽象类初始化
+		Scene initialPanel = Config.getTheme().getInitialScene(); //用非抽象类初始化
 		
 		primaryStage.setTitle("氪金消消乐");
 		primaryStage.initStyle(StageStyle.UNDECORATED);

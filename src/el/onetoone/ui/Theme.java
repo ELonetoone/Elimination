@@ -1,7 +1,5 @@
 package el.onetoone.ui;
 
-import java.util.ArrayList;
-
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -13,13 +11,14 @@ import javafx.scene.media.MediaPlayer;
 public abstract class Theme {
 
 	public static final Image SYSTEM_BUTTON_EXIT = new Image("image/system_button_exit.png");
-//	public static final Image SYSTEM_BUTTON_PAUSE = new Image("/image/system_button_pause.png");
+	// public static final Image SYSTEM_BUTTON_PAUSE = new
+	// Image("/image/system_button_pause.png");
 	public static final Image SYSTEM_BUTTON_CONFIG = new Image("image/system_button_config.png");
 	public static final Image IMAGE_MONEY = new Image("/image/icon_money.png");
 	public static final Image PROPS_HAMMER = new Image("/image/props_hammer.png");
 	public static final Image PROPS_NEW_MAP = new Image("/image/props_new_map.png");
 	public static final Image PROPS_BOOM = new Image("/image/props_boom.png");
-	
+
 	// backgroud image
 	protected Image BG_START;
 	protected Image BG_GAME;
@@ -43,15 +42,15 @@ public abstract class Theme {
 	protected Image BUTTON_TIME_MODE;
 	protected Image BUTTON_INDEFINITE_MODE;
 	protected Image BUTTON_STEP_MODE;
-	
-	//主界面的几个按钮
+
+	// 主界面的几个按钮
 	protected Image BUTTON_CONFIG;
 	protected Image BUTTON_SHOP;
 	protected Image BUTTON_KEJIN;
 	protected Image BUTTON_HEIGHEST_SCORE;
 	protected Image BUTTON_LOG_OUT;
-	
-	//初始化界面的按钮
+
+	// 初始化界面的按钮
 	protected Image INIT_BUTTON_SIGN_IN;
 	protected Image INIT_BUTTON_SIGN_UP;
 	protected Image INIT_BUTTON_QUIT;
@@ -64,39 +63,39 @@ public abstract class Theme {
 	protected Image FRAME_TIME;
 	protected Image FRAME_GAME;
 	protected Image FRAME_HIGHEST_SCORE;
-	
+
 	protected MediaPlayer bgmPlayer;
-	
-	//播放背景音乐
+
+	// 播放背景音乐
 	abstract public void playBGM();
-	
+
 	public MediaPlayer getBGMPlayer() {
 		return bgmPlayer;
 	}
-	
+
 	public static void setBlur(Group root) {
-		
+
 		for (Node node : root.getChildren()) {
 			node.setEffect(new GaussianBlur());
 		}
 	}
-	
+
 	public static void setBlur(Pane pane) {
-		
+
 		for (Node node : pane.getChildren()) {
 			node.setEffect(new GaussianBlur());
 		}
 	}
-	
+
 	public static void removeBlur(Group group) {
-		
+
 		for (Node node : group.getChildren()) {
 			node.setEffect(null);
 		}
 	}
-	
+
 	public static void removeBlur(Pane pane) {
-		
+
 		for (Node node : pane.getChildren()) {
 			node.setEffect(null);
 		}
@@ -373,21 +372,21 @@ public abstract class Theme {
 	public void setINIT_BUTTON_TRY(Image iNIT_BUTTON_TRY) {
 		INIT_BUTTON_TRY = iNIT_BUTTON_TRY;
 	}
-	
+
 	public abstract Scene getInitialScene();
-	
+
 	public abstract Scene getLoginScene();
-	
+
 	public abstract Scene getRegisterScene();
-	
+
 	public abstract Scene getSettingScene();
-	
+
 	public abstract Scene getMaxMarkScene();
-	
+
 	public abstract Scene getMarketScene();
-	
+
 	public abstract Scene getGameScene();
-	
+
 	public abstract Scene getSynScene();
 
 }

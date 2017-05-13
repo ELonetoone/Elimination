@@ -5,20 +5,12 @@ import java.net.URI;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
-import el.onetoone.ui.shop.MarketAndBackModel;
 import el.onetoone.ui.shop.MarketPanel;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 abstract public class SyntheticModel extends Pane {
 
@@ -27,6 +19,8 @@ abstract public class SyntheticModel extends Pane {
 	/**
 	 * 用于显示错误信息，比如尚未登录啊之类的
 	 */
+	
+	private Scene scene;
 	private Text wrongMessage;
 
 	private GameMain gameMain;
@@ -57,6 +51,13 @@ abstract public class SyntheticModel extends Pane {
 
 		init();
 	}
+	
+	public Scene getSyntheticScene() {
+		
+		scene = new Scene(this, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+		scene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
+		return scene;
+	}
 
 	public void init() {
 
@@ -66,11 +67,6 @@ abstract public class SyntheticModel extends Pane {
 		createBackgroud();
 		createModeButton();
 		createFuncButton();
-
-		marketAndBackButton.setMinSize(50, 50);
-		maxMarkButton.setMinSize(50, 50);
-		topUpButton.setMinSize(50, 50);
-		settingButton.setMinSize(50, 50);
 
 		registerFuncButtonListener();
 		registerLogoutListener();

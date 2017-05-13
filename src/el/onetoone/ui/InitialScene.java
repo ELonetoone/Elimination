@@ -60,6 +60,8 @@ public abstract class InitialScene extends Scene {
 	
 	public InitButton trialButton;
 	
+	protected ImageView backgroud;
+	
 	public User user;
 	
 	public abstract Scene getInitialScene();
@@ -96,7 +98,6 @@ public abstract class InitialScene extends Scene {
 
 		trialButton = new InitButton();
 		trialButton.setGraphic(trialImg);
-		
 	}
 	
 	public void registerButtonEventHandler() {
