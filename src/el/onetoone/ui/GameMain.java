@@ -24,6 +24,8 @@ public class GameMain extends Pane{
 	private GamePanel gamePanel;
 	private TilePane propPane;
 	private BaseDiamondGrid diamondGrid;
+	private ContentText scoreText;
+	
 
 	// 各种框
 	private ImageView backgroud, gameFrame, moneyFrame, timeFrame, stepFrame, scoreFrame;
@@ -61,8 +63,18 @@ public class GameMain extends Pane{
 		createNode();
 		addNode();
 		createProps();
+		setFrameContent();
 	}
 	
+	private void setFrameContent() {
+		// TODO Auto-generated method stub
+		scoreText = new ContentText(diamondGrid);
+		scoreText.setLayoutX(frameBox.getLayoutX() + 30);
+		scoreText.setLayoutY(frameBox.getLayoutY() + FRAMR_HEIGHT * 3 + 30);
+		
+		getChildren().addAll(scoreText);
+	}
+
 	private void createProps() {
 		
 		diamondGrid = gamePanel.getDiamondGrid();
@@ -160,7 +172,7 @@ public class GameMain extends Pane{
 		scoreFrame = new ImageView(gamePanel.getTheme().getFRAME_HIGHEST_SCORE());
 		scoreFrame.setFitHeight(FRAMR_HEIGHT);
 		scoreFrame.setPreserveRatio(true);
-
+		
 		exitButton = new SystemButton(0);
 		exitButton.setLayoutX(Config.SCREEN_WIDTH - 55);
 		exitButton.setLayoutY(10);

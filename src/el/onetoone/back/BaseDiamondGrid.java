@@ -5,12 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
-
-import org.junit.internal.Throwables;
-
 import el.onetoone.exceptions.NotLoginException;
-import el.onetoone.ui.SyntheticModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -24,25 +19,14 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class BaseDiamondGrid {
 
-	/**
-	 * 用户死亡后别忘了增加相应的金币数 @廖均达
-	 */
-	// get it
-	
-	private int time = 0;
-	
-	/**
-	 * 当前模式
-	 */
+	private IntegerProperty timeProperty;
+	private IntegerProperty stepProperty;
+	private IntegerProperty gradeProperty;
+
 	private String mode = null;
-	
-	/**
-	 * 用户行走步数
-	 */
-	private int step = 0;
 
 	private Color[] colors = Color.values();
-	
+
 	/**
 	 * 存储所有的宝石
 	 */
@@ -61,13 +45,7 @@ public class BaseDiamondGrid {
 	/**
 	 * 玩家获取的分数
 	 */
-	private IntegerProperty gradeProperty;
 
-	/**
-	 * 获取用户分数
-	 * 
-	 * @return 用户分数
-	 */
 	public int getGrade() {
 		return gradeProperty.get();
 	}
@@ -96,9 +74,10 @@ public class BaseDiamondGrid {
 		gradeProperty = new SimpleIntegerProperty(0);
 
 	}
-	
+
 	/**
 	 * 另一个构造器，后端持有一个mode，这样就可以在一定模式在后端下限制用户道具使用
+	 * 
 	 * @param height
 	 * @param width
 	 * @param mode
@@ -905,9 +884,10 @@ public class BaseDiamondGrid {
 	/**
 	 * 道具消除的几个方法 等到debug结束后再处理
 	 */
-	
+
 	/**
 	 * 使用小锤子
+	 * 
 	 * @param x
 	 * @param y
 	 * @return
@@ -923,13 +903,14 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	public boolean useHammer(Point point) throws NotLoginException {
 		return useHammer(point.getX(), point.getY());
 	}
-	
+
 	/**
 	 * 使用炸弹
+	 * 
 	 * @param x
 	 * @param y
 	 * @return
@@ -951,13 +932,14 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	public boolean useBoom(Point point) throws NotLoginException {
 		return useBoom(point.getX(), point.getY());
 	}
-	
+
 	/**
 	 * 使用生成新地图道具
+	 * 
 	 * @return 是否使用成功
 	 * @throws NotLoginException
 	 */
@@ -973,9 +955,10 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 加五步道具
+	 * 
 	 * @return
 	 * @throws NotLoginException
 	 */
@@ -989,9 +972,10 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 加三步
+	 * 
 	 * @return
 	 * @throws NotLoginException
 	 */
@@ -1005,9 +989,10 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 加一步
+	 * 
 	 * @return
 	 * @throws NotLoginException
 	 */
@@ -1021,9 +1006,10 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * +1s
+	 * 
 	 * @return
 	 * @throws NotLoginException
 	 */
@@ -1037,9 +1023,10 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * +5s
+	 * 
 	 * @return
 	 * @throws NotLoginException
 	 */
@@ -1053,9 +1040,10 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * +10s
+	 * 
 	 * @return
 	 * @throws NotLoginException
 	 */
@@ -1069,29 +1057,25 @@ public class BaseDiamondGrid {
 			return false;
 		}
 	}
-	
+
 	public void addTime(int second) {
-		
+		timeProperty.set(timeProperty.get() + second);
+	}
+
+	public IntegerProperty stepProperty() {
+		return stepProperty;
+	}
+
+	public IntegerProperty timeProperty() {
+		return timeProperty;
 	}
 	
-	/**
-	 * 获取当前行走步数  步数不足在前端进行判定
-	 * @return
-	 */
-	public int getStep(){
-		return this.step;
-	}
-	
-	/**
-	 * 步数减一
-	 */
 	public void stepMinOne() {
-		this.step -= 1;
+		stepProperty.set(stepProperty.get() - 1);
 	}
-	
-	
+
 	public void stepPlus(int time) {
-		this.step += time;
+		stepProperty.set(stepProperty.get() + time);
 	}
-	
+
 }
