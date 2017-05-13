@@ -29,6 +29,8 @@ public class BaseDiamondGrid {
 	 */
 	// get it
 	
+	private int time = 0;
+	
 	/**
 	 * 当前模式
 	 */
@@ -826,6 +828,7 @@ public class BaseDiamondGrid {
 			}
 
 			for (Point point : list.getToBeEliminatedPoints()) {
+				gradeProperty.set(gradeProperty.get() + diamondMap[point.getX()][point.getY()].getGrade());
 				diamondMap[point.getX()][point.getY()] = null;
 			}
 			flag = true;
