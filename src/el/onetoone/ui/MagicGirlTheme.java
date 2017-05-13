@@ -1,9 +1,12 @@
 package el.onetoone.ui;
 
+import java.awt.event.MouseWheelEvent;
+
 import el.onetoone.back.Config;
 import el.onetoone.ui.magicgirl.MagicInitialScene;
 import el.onetoone.ui.magicgirl.MagicLoginScene;
 import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
+import el.onetoone.ui.magicgirl.MagicRegisterScene;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -89,7 +92,8 @@ public class MagicGirlTheme extends Theme {
 	@Override
 	public Scene getRegisterScene() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("register");
+		return new MagicRegisterScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getRegisterScene();
 	}
 
 	@Override
