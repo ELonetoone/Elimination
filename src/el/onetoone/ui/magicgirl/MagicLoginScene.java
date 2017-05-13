@@ -56,7 +56,6 @@ public class MagicLoginScene extends LoginScene {
 		return this;
 	}
 	
-	public GridPane gridPane = new GridPane();
 	
 	public void putButton() {
 		

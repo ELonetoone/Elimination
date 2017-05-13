@@ -10,6 +10,13 @@
 	-fx-text-fill: blue;
 }
 
+#confirmField {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-text-fill: blue;
+	
+}
+
 .button {
 	
 	-fx-background-color: transparent;

@@ -21,6 +21,12 @@ public class Market {
 		itemList.put(ItemList.BOOM, 10000);
 		itemList.put(ItemList.HAMMER, 5000);
 		itemList.put(ItemList.NEWMAP, 10000);
+		itemList.put(ItemList.PLUSONESECOND, 999999);
+		itemList.put(ItemList.PLUSFIVESECONDS, 15000);
+		itemList.put(ItemList.PLUSTENSECONDS, 25000);
+		itemList.put(ItemList.PLUSONESTEP, 10000);
+		itemList.put(ItemList.PLUSTHREESTEPS, 30000);
+		itemList.put(ItemList.PLUSFIVESTEPS, 50000);
 	}
 	
 	/**
