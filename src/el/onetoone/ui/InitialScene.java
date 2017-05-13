@@ -16,34 +16,34 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
-public abstract class InitialPanel extends Scene {
+public abstract class InitialScene extends Scene {
 	
-	public InitialPanel(Parent root, double width, double height, boolean depthBuffer, SceneAntialiasing antiAliasing) {
+	public InitialScene(Parent root, double width, double height, boolean depthBuffer, SceneAntialiasing antiAliasing) {
 		super(root, width, height, depthBuffer, antiAliasing);
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitialPanel(Parent root, double width, double height, boolean depthBuffer) {
+	public InitialScene(Parent root, double width, double height, boolean depthBuffer) {
 		super(root, width, height, depthBuffer);
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitialPanel(Parent root, double width, double height, Paint fill) {
+	public InitialScene(Parent root, double width, double height, Paint fill) {
 		super(root, width, height, fill);
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitialPanel(Parent root, double width, double height) {
+	public InitialScene(Parent root, double width, double height) {
 		super(root, width, height);
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitialPanel(Parent root, Paint fill) {
+	public InitialScene(Parent root, Paint fill) {
 		super(root, fill);
 		// TODO Auto-generated constructor stub
 	}
 
-	public InitialPanel(Parent root) {
+	public InitialScene(Parent root) {
 		super(root);
 		// TODO Auto-generated constructor stub
 	}

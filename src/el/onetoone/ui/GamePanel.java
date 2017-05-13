@@ -24,6 +24,7 @@ public class GamePanel extends Group {
 
 	DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
 	BaseDiamondGrid diamondGrid;
+
 	public BaseDiamondGrid getDiamondGrid() {
 		return diamondGrid;
 	}
@@ -103,9 +104,9 @@ public class GamePanel extends Group {
 				default:
 					break;
 				}
-				
+
 				if (diamonds[i + 2][j + 2].getStatus() != Status.COMMON) {
-					
+
 				}
 
 				diamondCircles[i][j] = new DiamondCircle();
@@ -238,7 +239,7 @@ public class GamePanel extends Group {
 
 		parallelTransition.play();
 		AnimationTimer timer = new AnimationTimer() {
-			
+
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
@@ -253,13 +254,13 @@ public class GamePanel extends Group {
 				for (int i = 0; i < diamondCircles.length; i++) {
 
 					for (int j = 0; j < diamondCircles[i].length; j++) {
-				
+
 						diamondCircles[i][j].setOnMousePressed(null);
 					}
-				}	
+				}
 			}
 		};
-		
+
 		timer.start();
 		parallelTransition.setOnFinished(e -> {
 			appearDiamonds();
@@ -384,7 +385,6 @@ public class GamePanel extends Group {
 		currentCircle.setPoint(choosedDiamond.getPoint());
 		choosedDiamond.setPoint(temp);
 	}
-
 
 	private void repaintTheBoard() {
 		this.getChildren().clear();

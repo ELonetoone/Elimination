@@ -1,5 +1,7 @@
-package el.onetoone.ui;
+package el.onetoone.ui.naruto;
 
+import el.onetoone.back.Config;
+import el.onetoone.ui.Theme;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.media.MediaPlayer;
@@ -9,7 +11,7 @@ public class NarutoTheme extends Theme{
 	public NarutoTheme() {
 		
 		// set background
-		setBG_START(new Image("/image/narotu/bg_start.png", true));
+		setBG_START(new Image("/image/narotu/init_bg.jpg", true));
 		setBG_GAME(new Image("/image/narotu/bg_game.jpg", true));
 		setBG_SIGN(new Image("/image/narotu/bg_sign.png", true));
 
@@ -31,7 +33,10 @@ public class NarutoTheme extends Theme{
 		setBUTTON_SIGN_UP(new Image("/image/narotu/button_signUp.png"));
 		setBUTTON_STEP_MODE(new Image("/image/narotu/button_step_mode.png"));
 		setBUTTON_TIME_MODE(new Image("/image/narotu/button_time_mode.png"));
-
+		
+		setINIT_BUTTON_QUIT(new Image("/image/naruto/init_game_quit.png"));
+		setINIT_BUTTON_SIGN_IN(new Image("/image/naruto/init_game_start.png"));
+		setINIT_BUTTON_SIGN_UP(new Image("/image/naruto/init_game_signUp.png"));
 		// set frame
 		setFRAME_GAME(new Image("/image/narotu/frame_game.png"));
 		setFRAME_HIGHEST_SCORE(new Image("/image/narotu/frame_highest_score.png"));
