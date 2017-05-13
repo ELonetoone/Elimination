@@ -71,6 +71,8 @@ public class NarutoLoginScene extends LoginScene {
 	
 	private Button exitButton;
 	
+	private ImageView gameName;
+	
 
 	@Override
 	public Scene getLoginScene() {
@@ -166,13 +168,21 @@ public class NarutoLoginScene extends LoginScene {
 	}
 	
 	public void addNodes() {
+		((Pane) getRoot()).getChildren().add(frame);
+		((Pane) getRoot()).getChildren().add(frame2);
+		((Pane) getRoot()).getChildren().add(gameName);
+		((Pane) getRoot()).getChildren().add(passwordImage);
+		((Pane) getRoot()).getChildren().add(userNameImage);
+		((Pane) getRoot()).getChildren().add(wrongMessage);
+		((Pane) getRoot()).getChildren().add(userNameField);
+		((Pane) getRoot()).getChildren().add(passwordField);
 		((Pane) getRoot()).getChildren().add(exitButton);
 		((Pane) getRoot()).getChildren().add(loginButton);
 	}
 	
 	
 	
-	public class LoginAndRegisterButton extends Button {
+	public static class LoginAndRegisterButton extends Button {
 
 		private DropShadow shadow;
 		private ColorAdjust colorAdjust;
