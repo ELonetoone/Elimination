@@ -9,6 +9,8 @@ import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -55,6 +57,8 @@ public abstract class LoginScene extends Scene {
 	public TextField userNameField;
 
 	public PasswordField passwordField;
+	
+	public ImageView background;
 
 	public void createItems() {
 
@@ -65,6 +69,13 @@ public abstract class LoginScene extends Scene {
 		userNameField = new TextField();
 
 		passwordField = new PasswordField();
+	}
+	
+	public void setBackground() {
+		background = new ImageView(Config.getTheme().getBG_SIGN());
+		background.setFitWidth(Config.SCREEN_WIDTH);
+		background.setPreserveRatio(true);
+		((Pane) getRoot()).getChildren().add(background);
 	}
 
 	public void registerListener() {

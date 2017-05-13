@@ -1,0 +1,18 @@
+#userName {
+	-fx-background-color: transparent; 
+	-fx-border-color: transparent;
+	-fx-text-fill: blue;
+}
+
+#password {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-text-fill: blue;
+}
+
+.button {
+	
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-content-display: center;
+}
