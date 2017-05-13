@@ -1,6 +1,5 @@
 package el.onetoone.ui.magicgirl;
 
-import javax.swing.text.html.InlineView;
 
 import el.onetoone.back.Config;
 import el.onetoone.ui.InitialScene;
