@@ -941,7 +941,7 @@ public class BaseDiamondGrid {
 		} else if (UserBox.getUser().useItem(ItemList.BOOM)) {
 			for (int i = x - 1; i <= x + 1; i++) {
 				for (int j = y - 1; j <= y + 1; j++) {
-					if (i >= 2 && i <= width + 1 && j >= 2 && j <= height + 1) {
+					if (i >= 2 && i <= height + 1 && j >= 2 && j <= width + 1) {
 						diamondMap[i][j] = null;
 					}
 				}

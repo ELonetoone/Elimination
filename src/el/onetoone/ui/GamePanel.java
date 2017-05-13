@@ -132,7 +132,7 @@ public class GamePanel extends Group {
 						gameMain.setCursor(Cursor.DEFAULT);
 						gameMain.setCurrentProps(null);
 						try {
-							diamondGrid.useBoom(currentDiamond.getPoint().getY(), currentDiamond.getPoint().getX());
+							diamondGrid.useBoom(currentDiamond.getPoint());
 							paintNullToNoColor(sequentialTransition);
 							sequentialTransition.play();
 							sequentialTransition.setOnFinished(e2 -> {
