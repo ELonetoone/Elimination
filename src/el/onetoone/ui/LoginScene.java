@@ -69,6 +69,8 @@ public abstract class LoginScene extends Scene {
 		userNameField = new TextField();
 
 		passwordField = new PasswordField();
+		
+		wrongMessage = new Text();
 	}
 	
 	public void setBackground() {
