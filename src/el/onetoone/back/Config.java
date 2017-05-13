@@ -13,7 +13,7 @@ public class Config {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
 	
-	public static Theme theme = new NarutoTheme();
+	public static Theme theme = new MagicGirlTheme();
 	
 	public static Theme getTheme() {
 		return Config.theme;

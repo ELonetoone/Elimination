@@ -48,8 +48,6 @@ public abstract class InitialScene extends Scene {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static int BUTTON_HEIGHT = 60;
-	
 	public static int BUTTON_HIGHLIGHT_MILLS = 300;
 	
 	public InitButton exitButton;
@@ -66,7 +64,7 @@ public abstract class InitialScene extends Scene {
 	
 	public abstract Scene getInitialScene();
 	
-	public void createButton () {
+	public void createButton (int BUTTON_HEIGHT) {
 		
 		ImageView exitImg = new ImageView(Config.getTheme().getINIT_BUTTON_QUIT());
 		exitImg.setFitHeight(BUTTON_HEIGHT);
