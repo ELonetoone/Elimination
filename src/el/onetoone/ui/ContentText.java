@@ -1,6 +1,7 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.BaseDiamondGrid;
+import el.onetoone.back.Config;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -27,7 +28,7 @@ public class ContentText extends Text{
 	}
 	
 	public void bindStep() {
-		diamondGrid.stepProperty().set(5);
+		diamondGrid.stepProperty().set(Config.START_STEP);
 		textProperty().bind(diamondGrid.stepProperty().asString());
 		textProperty().addListener((o, oldValue, newValue) -> {
 			if (textProperty().get().equals("0")) {
@@ -37,14 +38,15 @@ public class ContentText extends Text{
 	}
 	
 	public void bindTime() {
-		diamondGrid.setTime(60);
+		diamondGrid.setTime(Config.START_TIME);
 		Task<Void> task = new Task<Void>() {
 
 			@Override
 			protected Void call() throws Exception {
 				// TODO Auto-generated method stub
 				int currentTime = diamondGrid.timeProperty().get();
-				while (currentTime != 0) {
+				while ((currentTime = diamondGrid.timeProperty().get()) != 0) {
+					
 					
 					Thread.sleep(1000);
 					diamondGrid.timeProperty().set(--currentTime);

@@ -12,6 +12,8 @@ public class Config {
 	
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
+	public static final int START_TIME = 60;
+	public static final int START_STEP = 2;
 	
 	public static Theme theme = new MagicGirlTheme();
 	

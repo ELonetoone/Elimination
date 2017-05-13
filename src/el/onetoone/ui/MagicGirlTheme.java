@@ -35,7 +35,7 @@ public class MagicGirlTheme extends Theme {
 		setDIAMOND_SIX(new Image("/image/diamond_6.png"));
 		
 		//set button
-		setBUTTON_BACK(new Image("/image/button_back.jpg"));
+		setBUTTON_BACK(new Image("/image/button_back.png"));
 		setBUTTON_GAME_EXIT(new Image("/image/button_game_exit.png"));
 		setBUTTON_GAME_RESTART(new Image("/image/button_restart.png"));
 		setBUTTON_INDEFINITE_MODE(new Image("/image/button_indefinite_mode.png"));

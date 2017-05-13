@@ -7,8 +7,10 @@ import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -21,6 +23,7 @@ public class GameMain extends Pane {
 	private static final int PROPS_WIDTH = 80;
 	private static final int FRAME_CONTENT_LAYOUT_X = 200;
 	private static final int FRAME_CONTENT_LAYOUT_Y = 290;
+	private static final int BUTTON_WIDTH = 80;
 	private String mode;
 	private GamePanel gamePanel;
 	private TilePane propPane;
@@ -31,7 +34,9 @@ public class GameMain extends Pane {
 	private ImageView backgroud, gameFrame, moneyFrame, timeFrame, stepFrame, scoreFrame;
 	private ImageView propsBoom, propsHammer, propsNewMap;
 	private ImageView timeIndefiniteImg, stepIndefiniteImg;
+	private Button backBtn, restartBtn;
 	private VBox frameBox;
+	private HBox buttonBox;
 	private String currentProps;
 
 	public String getCurrentProps() {
@@ -174,6 +179,12 @@ public class GameMain extends Pane {
 		frameBox.setLayoutX(170);
 		frameBox.setLayoutY(260);
 		getChildren().add(frameBox);
+		
+		buttonBox = new HBox(backBtn, restartBtn);
+		buttonBox.setLayoutX(Config.SCREEN_WIDTH - 250);
+		buttonBox.setLayoutY(Config.SCREEN_HEIGHT - 150);
+		buttonBox.setSpacing(10);
+		getChildren().add(buttonBox);
 	}
 
 	/**
@@ -225,6 +236,30 @@ public class GameMain extends Pane {
 			Theme.setBlur(this);
 			this.getChildren().add(new SettingPane());
 		});
+		
+		ImageView backImg = new ImageView(Config.getTheme().getBUTTON_BACK());
+		backImg.setFitWidth(BUTTON_WIDTH);
+		backImg.setPreserveRatio(true);
+		
+		backBtn = new Button();
+		backBtn.setGraphic(backImg);
+		backBtn.setOnAction(e -> {
+			gamePanel.gameOver();
+			Config.getMain().setScene(Config.getTheme().getSynScene());
+		});
+		
+		ImageView restartImg = new ImageView(Config.getTheme().getBUTTON_GAME_RESTART());
+		restartImg.setFitWidth(BUTTON_WIDTH);
+		restartImg.setPreserveRatio(true);
+		
+		restartBtn = new Button();
+		restartBtn.setGraphic(restartImg);
+		restartBtn.setOnAction(e -> {
+			diamondGrid.gradeProperty().set(0);
+			diamondGrid.stepProperty().set(Config.START_STEP);
+			diamondGrid.timeProperty().set(Config.START_TIME);
+			gamePanel.restart();
+		});
 	}
 
 	private void goBackToLastScene() {
@@ -232,4 +267,7 @@ public class GameMain extends Pane {
 		((Pane) getParent()).getChildren().remove(this);
 	}
 
+	public String getMode() {
+		return mode;
+	}
 }

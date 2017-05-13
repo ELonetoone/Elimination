@@ -1,7 +1,5 @@
 package el.onetoone.ui.magicgirl;
 
-
-
 import el.onetoone.back.Config;
 import el.onetoone.ui.LoginScene;
 import javafx.scene.Parent;
@@ -55,15 +53,16 @@ public class MagicLoginScene extends LoginScene {
 		this.getStylesheets().add(MagicInitialScene.class.getResource("textField.css").toExternalForm());
 		return this;
 	}
-	
-	
+
 	public void putButton() {
-		
+
 		super.createItems();
-		ImageView pane = new ImageView(new Image("/image/lg_pane.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, false));
+		ImageView pane = new ImageView(
+				new Image("/image/lg_pane.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, false));
 		pane.setLayoutX(295);
 		pane.setLayoutY(130);
 		((Pane) getRoot()).getChildren().add(pane);
+
 		userNameField.setId("userName");
 		passwordField.setId("password");
 		userNameField.setPrefSize(350, 45);
@@ -74,14 +73,17 @@ public class MagicLoginScene extends LoginScene {
 		passwordField.setLayoutY(445);
 		((Pane) getRoot()).getChildren().add(userNameField);
 		((Pane) getRoot()).getChildren().add(passwordField);
+
 		sureButton.setPrefSize(190, 90);
 		sureButton.setLayoutX(520);
 		sureButton.setLayoutY(550);
 		((Pane) getRoot()).getChildren().add(sureButton);
+
 		returnButton.setPrefSize(190, 90);
 		returnButton.setLayoutY(550);
 		returnButton.setLayoutX(750);
 		((Pane) getRoot()).getChildren().add(returnButton);
+
 		wrongMessage.setLayoutX(650);
 		wrongMessage.setLayoutY(510);
 		((Pane) getRoot()).getChildren().add(wrongMessage);

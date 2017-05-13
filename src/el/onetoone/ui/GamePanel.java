@@ -31,6 +31,7 @@ public class GamePanel extends Group {
 	private DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
 	private BaseDiamondGrid diamondGrid;
 	private boolean gameOver = false;
+	private String mode;
 
 	public BaseDiamondGrid getDiamondGrid() {
 		return diamondGrid;
@@ -54,6 +55,7 @@ public class GamePanel extends Group {
 	public GamePanel(GameMain gameMain) {
 
 		this.gameMain = gameMain;
+		mode = gameMain.getMode();
 		theme = Config.getTheme();
 		init();
 	}
@@ -439,7 +441,22 @@ public class GamePanel extends Group {
 	}
 	
 	public void gameOver() {
-		UserBox.getUser().updateUserInfo();
+		if (UserBox.getUser() != null) {
+			System.out.println(mode);
+			if (diamondGrid.gradeProperty().get() > UserBox.getUser().getendLessMaxMark() && mode.equals(SyntheticModel.UNLIMITE)) {
+				UserBox.getUser().setEndLessMaxMark(diamondGrid.gradeProperty().get());
+			} else if (diamondGrid.gradeProperty().get() > UserBox.getUser().getStepLimitedMaxMark() && mode.equals(SyntheticModel.STEPLIMITED)) {
+				UserBox.getUser().setStepLimitedMaxMark(diamondGrid.gradeProperty().get());
+			} else if (diamondGrid.gradeProperty().get() > UserBox.getUser().getTimeLimitedMaxMark() && mode.equals(SyntheticModel.TIMELIMITED)) {
+				UserBox.getUser().setTimeLimitedMaxMark(diamondGrid.gradeProperty().get());
+			}
+			UserBox.getUser().updateUserInfo();
+		}
 		gameOver = true;
+	}
+	
+	public void restart() {
+		diamondGrid.restart();
+		repaintTheBoard();
 	}
 }

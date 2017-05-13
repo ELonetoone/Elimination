@@ -1087,4 +1087,9 @@ public class BaseDiamondGrid {
 		stepProperty.set(stepProperty.get() + time);
 	}
 
+	public void restart() {
+		do {
+			this.init();
+		} while (isDie() || canDirectlyEliminated());
+	}
 }
