@@ -54,12 +54,4 @@ public class FramePanel extends Pane{
 		backgourd.setFitWidth(getPrefWidth());
 
 	}
-	public void initScoreText() {
-		
-		score = new ContentText(((GamePanel)((Pane)this.getParent()).getChildren().get(2)).getDiamondGrid());
-		score.setLayoutX(backgourd.getFitWidth() / 2 - 10);
-		score.setLayoutY(backgourd.getFitHeight() / 2 - 10);
-		
-		getChildren().add(score);
-	}
 }

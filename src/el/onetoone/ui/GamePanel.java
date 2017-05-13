@@ -8,6 +8,7 @@ import el.onetoone.back.Diamond;
 import el.onetoone.back.ItemList;
 import el.onetoone.back.Point;
 import el.onetoone.back.Status;
+import el.onetoone.back.UserBox;
 import el.onetoone.exceptions.NotLoginException;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
@@ -16,6 +17,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 
 public class GamePanel extends Group {
@@ -28,6 +30,7 @@ public class GamePanel extends Group {
 
 	private DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
 	private BaseDiamondGrid diamondGrid;
+	private boolean gameOver = false;
 
 	public BaseDiamondGrid getDiamondGrid() {
 		return diamondGrid;
@@ -128,6 +131,9 @@ public class GamePanel extends Group {
 
 				currentDiamond.setOnMousePressed(e -> {
 
+					if (gameOver) {
+						return;
+					}
 					if (gameMain.getCurrentProps() != null) {
 						gameMain.setCursor(Cursor.DEFAULT);
 						try {
@@ -425,5 +431,10 @@ public class GamePanel extends Group {
 	private void repaintTheBoard() {
 		this.getChildren().clear();
 		paintDiamonds();
+	}
+	
+	public void gameOver() {
+//		UserBox.getUser().updateUserInfo();
+		gameOver = true;
 	}
 }

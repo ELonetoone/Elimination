@@ -11,8 +11,10 @@ import javafx.scene.text.Text;
 public class ContentText extends Text{
 
 	BaseDiamondGrid diamondGrid;
+	GamePanel gamePanel;
 	
-	public ContentText(BaseDiamondGrid diamondGrid) {
+	public ContentText(BaseDiamondGrid diamondGrid, GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
 		this.diamondGrid = diamondGrid;
 		setFont(Font.font("Comic Sans MS"));
 		setStyle("-fx-fill: #ff00ff;"
@@ -25,7 +27,13 @@ public class ContentText extends Text{
 	}
 	
 	public void bindStep() {
+		diamondGrid.stepProperty().set(5);
 		textProperty().bind(diamondGrid.stepProperty().asString());
+		textProperty().addListener((o, oldValue, newValue) -> {
+			if (textProperty().get().equals("0")) {
+				gamePanel.gameOver();
+			}
+		});
 	}
 	
 	public void bindTime() {
@@ -41,6 +49,7 @@ public class ContentText extends Text{
 					Thread.sleep(1000);
 					diamondGrid.timeProperty().set(--currentTime);
 				}
+				gamePanel.gameOver();
 				return null;
 			}
 		};

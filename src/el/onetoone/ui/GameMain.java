@@ -82,7 +82,7 @@ public class GameMain extends Pane {
 		switch (mode) {
 		case SyntheticModel.TIMELIMITED:
 			getChildren().add(stepIndefiniteImg);
-			timeText = new ContentText(diamondGrid);
+			timeText = new ContentText(diamondGrid, gamePanel);
 			timeText.bindTime();
 			timeText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 			timeText.setLayoutY(FRAME_CONTENT_LAYOUT_Y + 50);
@@ -91,6 +91,11 @@ public class GameMain extends Pane {
 
 		case SyntheticModel.STEPLIMITED:
 			getChildren().add(timeIndefiniteImg);
+			stepText = new ContentText(diamondGrid, gamePanel);
+			stepText.bindStep();
+			stepText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
+			stepText.setLayoutY(FRAME_CONTENT_LAYOUT_Y + FRAMR_HEIGHT + 50);
+			getChildren().add(stepText);
 			break;
 
 		case SyntheticModel.UNLIMITE:
@@ -98,7 +103,7 @@ public class GameMain extends Pane {
 			break;
 		}
 		
-		scoreText = new ContentText(diamondGrid);
+		scoreText = new ContentText(diamondGrid, gamePanel);
 		scoreText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 		scoreText.setLayoutY(frameBox.getLayoutY() + FRAMR_HEIGHT * 3 + 30);
 		scoreText.bindGrade();

@@ -793,6 +793,9 @@ public class BaseDiamondGrid {
 			}
 		}
 		System.out.println(getGrade());
+		if (exchangeValid) {
+			stepMinOne();
+		}
 
 		return exchangeValid;
 	}
