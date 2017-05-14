@@ -1,13 +1,11 @@
 package el.onetoone.ui;
 
-import java.awt.event.MouseWheelEvent;
-
 import el.onetoone.back.Config;
 import el.onetoone.ui.magicgirl.MagicInitialScene;
 import el.onetoone.ui.magicgirl.MagicLoginScene;
 import el.onetoone.ui.magicgirl.MagicMaxMarkScene;
-import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
 import el.onetoone.ui.magicgirl.MagicRegisterScene;
+import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -28,6 +26,7 @@ public class MagicGirlTheme extends Theme {
 		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false, false, true));
 		setBG_SIGN(new Image("/image/bg_sign.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 		setBG_HEIGHEST_SCORE(new Image("/image/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+		setBG_SETTING_PANE(new Image("/image/bg_setting_pane.png", true));
 		
 		//set diamond
 		setDIAMOND_ONE(new Image("/image/diamond_1.png"));
@@ -70,7 +69,7 @@ public class MagicGirlTheme extends Theme {
 		setICON_INDEFINITE(new Image("/image/icon_indefinite.png"));
 		
 		for (int i = 0; i < nums.length; i++) {
-			nums[i] = new Image("/image/num_" + i + ".png");
+			nums[i] = new Image("/image/number_" + i + ".png");
 		}
 	}
 

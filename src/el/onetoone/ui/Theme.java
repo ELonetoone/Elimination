@@ -27,6 +27,7 @@ public abstract class Theme {
 	protected Image BG_GAME;
 	protected Image BG_SIGN;
 	protected Image BG_HEIGHEST_SCORE;
+	protected Image BG_SETTING_PANE;
 
 	// diamond
 	protected Image DIAMOND_ONE;
@@ -417,6 +418,14 @@ public abstract class Theme {
 
 	public void setNums(Image[] nums) {
 		this.nums = nums;
+	}
+
+	public Image getBG_SETTING_PANE() {
+		return BG_SETTING_PANE;
+	}
+
+	public void setBG_SETTING_PANE(Image bG_SETTING_PANE) {
+		BG_SETTING_PANE = bG_SETTING_PANE;
 	}
 
 }

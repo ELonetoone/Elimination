@@ -21,6 +21,8 @@ public class Main extends Application {
 		
 		stage.setScene(initialPanel);
 		
+		Config.getTheme().playBGM();
+		
 		primaryStage.setTitle("氪金消消乐");
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setScene(initialPanel);

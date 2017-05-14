@@ -5,6 +5,7 @@ import java.net.URI;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
+import el.onetoone.ui.magicgirl.MagicSettingPane;
 import el.onetoone.ui.shop.MarketPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -201,6 +202,7 @@ abstract public class SyntheticModel extends Pane {
 
 		settingButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
+				getChildren().add(new MagicSettingPane());
 				wrongMessage.setText("尚未登录！");
 			} else {
 			}

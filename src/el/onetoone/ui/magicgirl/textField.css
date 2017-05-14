@@ -23,3 +23,20 @@
 	-fx-border-color: transparent;
 	-fx-content-display: center;
 }
+
+.slider .track {
+	-fx-background-color:transparent;  /* Hide the track */
+    -fx-background-insets: 1.0 0.0 -1.0 0.0, 0.0, 1.0;
+    -fx-background-radius: 2.5, 2.5, 1.5;
+    -fx-padding: 0.208333em; /* 2.5 */
+}
+
+.slider .thumb {
+	-fx-background-color: transparent;
+}
+
+.progress-bar .track {
+	-fx-box-border: transparent;
+	-fx-background-color: transparent;
+	-fx-accent: red;
+}

@@ -17,13 +17,15 @@ public class DynamicNumber extends HBox{
 	
 	public DynamicNumber(int bits) {
 		
+		setSpacing(5);
 		numImgs = Config.getTheme().getNums();
 		this.bits = bits;
 		numImgViews = new ImageView[bits];
 		for (int i = 0; i < numImgViews.length; i++) {
 			numImgViews[i] = new ImageView(numImgs[0]);
 			numImgViews[i].setFitWidth(25);
-			numImgViews[i].setPreserveRatio(true);
+			numImgViews[i].setFitHeight(35);
+//			numImgViews[i].setPreserveRatio(true);
 		}
 		
 		for (int i = 0; i < bits; i++) {
