@@ -1,6 +1,7 @@
 package el.onetoone.ui.magicgirl;
 
 import el.onetoone.back.Config;
+import el.onetoone.ui.Main;
 import el.onetoone.ui.RegisterScene;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
 public class MagicRegisterScene extends RegisterScene {
 
@@ -86,6 +88,10 @@ public class MagicRegisterScene extends RegisterScene {
 		
 		wrongMessage.setLayoutX(690);
 		wrongMessage.setLayoutY(540);
+		
+		Font font = Font.loadFont(Main.class.getResource("font/magic.ttf").toExternalForm(), 25);
+		wrongMessage.setFont(font);
+		userName.setFont(font);
 		
 		((Pane) getRoot()).getChildren().add(userName);
 		((Pane) getRoot()).getChildren().add(passwordField);
