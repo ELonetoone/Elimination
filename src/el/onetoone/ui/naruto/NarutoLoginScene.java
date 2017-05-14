@@ -121,7 +121,7 @@ public class NarutoLoginScene extends LoginScene {
 		frame1.setLayoutY(265);
 		
 		frame2.setLayoutX(180);
-		frame2.setLayoutY(315);
+		frame2.setLayoutY(325);
 		
 		gameName = new ImageView(new Image("/image/naruto/g_name.png", 400, 250, true, true));
 		gameName.setLayoutX(50);
@@ -134,14 +134,16 @@ public class NarutoLoginScene extends LoginScene {
 		userNameField.setLayoutY(265);
 		userNameField.setStyle("-fx-background-color: transparent;"
 				+ "-fx-border-color: transparent;");
+//		userName.setFont(value);
 		
 		passwordField = new PasswordField();
 		passwordField.setPrefWidth(270);
 		passwordField.setPrefHeight(40);
 		passwordField.setLayoutX(190);
-		passwordField.setLayoutY(315);
+		passwordField.setLayoutY(325);
 		passwordField.setStyle("-fx-background-color: transparent;"
 				+ "-fx-border-color: transparent;");
+//		passwordField.setFont(value);
 		
 		wrongMessage.setLayoutX(250);
 		wrongMessage.setLayoutY(390);
