@@ -172,7 +172,7 @@ abstract public class SyntheticModel extends Pane {
 			// model.init();
 			// funcScene = model.getScene();
 			// primStage.setScene(funcScene);
-			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE791.jpg";
+			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE7911.jpg";
 			URI uri = URI.create(url);
 			try {
 				Desktop desktop = Desktop.getDesktop();
