@@ -111,7 +111,7 @@ abstract public class SyntheticModel extends Pane {
 		});
 
 		logOutButton.setOnAction(e -> {
-			((Pane) getParent()).getChildren().remove(this);
+			Config.getMain().setScene(Config.getTheme().getInitialScene());
 			UserBox.setUser(null);
 		});
 
@@ -153,6 +153,7 @@ abstract public class SyntheticModel extends Pane {
 			if (UserBox.hasNotLogin()) {
 				wrongMessage.setText("尚未登录！");
 			} else {
+				Config.getMain().setScene(Config.getTheme().getMaxMarkScene());
 			}
 		});
 

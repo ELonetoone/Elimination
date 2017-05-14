@@ -5,6 +5,7 @@ import java.awt.event.MouseWheelEvent;
 import el.onetoone.back.Config;
 import el.onetoone.ui.magicgirl.MagicInitialScene;
 import el.onetoone.ui.magicgirl.MagicLoginScene;
+import el.onetoone.ui.magicgirl.MagicMaxMarkScene;
 import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
 import el.onetoone.ui.magicgirl.MagicRegisterScene;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class MagicGirlTheme extends Theme {
 	private static final int FRAME_LITTLE_WIDTH = 300;
 	private static final int FRAME_LITTLE_HEIGHT = 400;
 	public static final Image BG_GAME_ING = new Image("/image/bg_game_ing.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true);
+	public static final Image MAX_SCORE_BACK_BUTTON = new Image("/image/max_score_back.png");
 
 	public MagicGirlTheme() {
 		
@@ -25,6 +27,7 @@ public class MagicGirlTheme extends Theme {
 		setBG_START(new Image("/image/bg_start.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, true, true));
 		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false, false, true));
 		setBG_SIGN(new Image("/image/bg_sign.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+		setBG_HEIGHEST_SCORE(new Image("/image/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 		
 		//set diamond
 		setDIAMOND_ONE(new Image("/image/diamond_1.png"));
@@ -107,7 +110,8 @@ public class MagicGirlTheme extends Theme {
 	@Override
 	public Scene getMaxMarkScene() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("heighest score");
+		return new MagicMaxMarkScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getMaxMarkScene();
 	}
 
 	@Override

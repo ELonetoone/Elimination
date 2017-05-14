@@ -26,6 +26,7 @@ public abstract class Theme {
 	protected Image BG_START;
 	protected Image BG_GAME;
 	protected Image BG_SIGN;
+	protected Image BG_HEIGHEST_SCORE;
 
 	// diamond
 	protected Image DIAMOND_ONE;
@@ -399,5 +400,13 @@ public abstract class Theme {
 	public abstract Scene getGameScene();
 
 	public abstract Scene getSynScene();
+
+	public Image getBG_HEIGHEST_SCORE() {
+		return BG_HEIGHEST_SCORE;
+	}
+
+	public void setBG_HEIGHEST_SCORE(Image bG_HEIGHEST_SCORE) {
+		BG_HEIGHEST_SCORE = bG_HEIGHEST_SCORE;
+	}
 
 }
