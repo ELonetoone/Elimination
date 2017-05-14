@@ -10,10 +10,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class NarutoRegisterScene extends RegisterScene {
 
@@ -53,7 +58,7 @@ public class NarutoRegisterScene extends RegisterScene {
 		// TODO Auto-generated method stub
 		setBackground();
 		putButton();
-	//	getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
+		getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		return this;
 	}
 	
@@ -65,11 +70,17 @@ public class NarutoRegisterScene extends RegisterScene {
 	
 	private ImageView confirmImage;
 	
-	private ImageView frame;
+//	private ImageView frame;
+//	
+//	private ImageView frame2;
+//	
+//	private ImageView frame3;
 	
-	private ImageView frame2;
+	private Rectangle frame1;
 	
-	private ImageView frame3;
+	private Rectangle frame2;
+	
+	private Rectangle frame3;
 	
 	private LoginAndRegisterButton registerButton;
 	
@@ -79,16 +90,95 @@ public class NarutoRegisterScene extends RegisterScene {
 		
 		super.createItems();
 		
+		userNameImage = new ImageView(new Image("/image/naruto/u_name.png", 120, 50, true, true));
+		userNameImage.setLayoutX(50);
+		userNameImage.setLayoutY(220);
+		
+		passwordImage = new ImageView(new Image("/image/naruto/password.png", 120, 50, true, true));
+		passwordImage.setLayoutX(50);
+		passwordImage.setLayoutY(280);
+		
+		confirmImage = new ImageView(new Image("/image/naruto/sure.png", 120, 40, true, true));
+		confirmImage.setLayoutX(60);
+		confirmImage.setLayoutY(345);
+		
+		frame1 = new Rectangle(290, 40);
+		frame2 = new Rectangle(290, 40);
+		frame3 = new Rectangle(290, 40);
+		
+		frame1.setStroke(Color.BLACK);
+		frame1.setStrokeWidth(2);
+		frame1.setFill(null);
+		frame1.setArcHeight(20);
+		frame1.setArcWidth(20);
+		
+		frame2.setStroke(Color.BLACK);
+		frame2.setStrokeWidth(2);
+		frame2.setFill(null);
+		frame2.setArcHeight(20);
+		frame2.setArcWidth(20);
+		
+		frame3.setStroke(Color.BLACK);
+		frame3.setStrokeWidth(2);
+		frame3.setFill(null);
+		frame3.setArcHeight(20);
+		frame3.setArcWidth(20);
+		
+		frame1.setLayoutX(180);
+		frame1.setLayoutY(225);
+		
+		frame2.setLayoutX(180);
+		frame2.setLayoutY(285);
+		
+		frame3.setLayoutX(180);
+		frame3.setLayoutY(345);
+		
+		gameName = new ImageView(new Image("/image/naruto/g_name.png", 400, 250, true, true));
+		gameName.setLayoutX(50);
+		gameName.setLayoutY(100);
+		
+		wrongMessage = new Text();
+		wrongMessage.setLayoutX(250);
+		wrongMessage.setLayoutY(410);
+//		wrongMessage.setFont(value);
+		
 		registerButton = new LoginAndRegisterButton();
-		registerButton.setGraphic(new ImageView(new Image("/image/naruto/login.png", 70, 70, false, true)));
+		registerButton.setGraphic(new ImageView(new Image("/image/naruto/reg.png", 150, 66, true, true)));
 		registerButton.setPrefSize(70, 70);
 		registerButton.setLayoutX(300);
-		registerButton.setLayoutY(300);
+		registerButton.setLayoutY(440);
 		
 		exitButton = new Button();
 		exitButton.setGraphic(new ImageView(Config.getTheme().getBUTTON_BACK()));
 		exitButton.setLayoutX(1150);
 		exitButton.setLayoutY(30);
+		
+		userName = new TextField();
+		userName.setPrefHeight(40);
+		userName.setPrefWidth(270);
+		userName.setLayoutX(190);
+		userName.setLayoutY(225);
+		userName.setStyle("-fx-background-color: transparent;"
+				+ "-fx-border-color: transparent;");
+//		userName.setFont(value);
+		
+		passwordField = new PasswordField();
+		passwordField.setPrefWidth(270);
+		passwordField.setPrefHeight(40);
+		passwordField.setLayoutX(190);
+		passwordField.setLayoutY(285);
+		passwordField.setStyle("-fx-background-color: transparent;"
+				+ "-fx-border-color: transparent;");
+//		passwordField.setFont(value);
+		
+		confirmField = new PasswordField();
+		confirmField.setPrefWidth(270);
+		confirmField.setPrefHeight(40);
+		confirmField.setLayoutX(190);
+		confirmField.setLayoutY(345);
+		confirmField.setStyle("-fx-background-color: transparent;"
+				+ "-fx-border-color: transparent;");
+//		confirmField.setFont(value);
 		
 		registerButton();
 		
@@ -157,9 +247,9 @@ public class NarutoRegisterScene extends RegisterScene {
 	}
 	
 	public void addNodes() {
-		((Pane) getRoot()).getChildren().add(frame);
-		((Pane) getRoot()).getChildren().add(frame2);
-		((Pane) getRoot()).getChildren().add(frame3);
+//		((Pane) getRoot()).getChildren().add(frame);
+//		((Pane) getRoot()).getChildren().add(frame2);
+//		((Pane) getRoot()).getChildren().add(frame3);
 		((Pane) getRoot()).getChildren().add(gameName);
 		((Pane) getRoot()).getChildren().add(passwordImage);
 		((Pane) getRoot()).getChildren().add(userNameImage);
@@ -170,6 +260,9 @@ public class NarutoRegisterScene extends RegisterScene {
 		((Pane) getRoot()).getChildren().add(exitButton);
 		((Pane) getRoot()).getChildren().add(registerButton);
 		((Pane) getRoot()).getChildren().add(confirmImage);
+		((Pane) getRoot()).getChildren().add(frame1);
+		((Pane) getRoot()).getChildren().add(frame2);
+		((Pane) getRoot()).getChildren().add(frame3);
 	}
  
 }
