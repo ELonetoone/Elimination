@@ -1,12 +1,7 @@
 package el.onetoone.ui.shop;
 
 import el.onetoone.back.Config;
-import el.onetoone.back.ItemList;
-import el.onetoone.back.UserBox;
-import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
-import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 

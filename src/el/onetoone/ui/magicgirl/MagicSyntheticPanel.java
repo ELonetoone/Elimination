@@ -1,16 +1,11 @@
 package el.onetoone.ui.magicgirl;
 
 import el.onetoone.back.Config;
-import el.onetoone.ui.InitialView;
 import el.onetoone.ui.SyntheticModel;
-import el.onetoone.ui.SystemButton;
-import el.onetoone.ui.SyntheticModel.SyntheticButton;
-import el.onetoone.ui.shop.MarketPanel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class MagicSyntheticPanel extends SyntheticModel {

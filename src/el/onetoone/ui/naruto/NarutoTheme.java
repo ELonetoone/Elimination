@@ -82,11 +82,6 @@ public class NarutoTheme extends Theme{
 		return new NarutoRegisterScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getRegisterScene();
 	}
 
-	@Override
-	public Scene getSettingScene() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Scene getMaxMarkScene() {
@@ -110,6 +105,12 @@ public class NarutoTheme extends Theme{
 	public Scene getSynScene() {
 		
 		return new NarutoSynthetic().getSyntheticScene();
+	}
+
+	@Override
+	public Pane getSettingPane() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

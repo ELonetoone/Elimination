@@ -3,7 +3,6 @@ package el.onetoone.back;
 import el.onetoone.ui.MagicGirlTheme;
 import el.onetoone.ui.Main;
 import el.onetoone.ui.Theme;
-import el.onetoone.ui.naruto.NarutoTheme;
 
 public class Config {
 
@@ -15,7 +14,7 @@ public class Config {
 	public static final int START_TIME = 60;
 	public static final int START_STEP = 2;
 	
-	public static Theme theme = new NarutoTheme();
+	public static Theme theme = new MagicGirlTheme();
 	
 	public static Theme getTheme() {
 		return Config.theme;

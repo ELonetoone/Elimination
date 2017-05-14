@@ -1,7 +1,6 @@
 package el.onetoone.ui;
 
 import el.onetoone.back.Config;
-import javafx.scene.Group;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

@@ -21,7 +21,7 @@ abstract public class SyntheticModel extends Pane {
 	/**
 	 * 用于显示错误信息，比如尚未登录啊之类的
 	 */
-	
+
 	private Scene scene;
 	private Text wrongMessage;
 
@@ -47,15 +47,16 @@ abstract public class SyntheticModel extends Pane {
 	protected ImageView backgroundImg;
 
 	abstract protected void createFuncButton();
+
 	abstract protected void createModeButton();
-	
+
 	public SyntheticModel() {
 
 		init();
 	}
-	
+
 	public Scene getSyntheticScene() {
-		
+
 		scene = new Scene(this, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		scene.getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		return scene;
@@ -84,7 +85,6 @@ abstract public class SyntheticModel extends Pane {
 		this.getChildren().add(backgroundImg);
 	}
 
-
 	private void createExitButton() {
 
 		exitButton = new SystemButton(0);
@@ -94,7 +94,7 @@ abstract public class SyntheticModel extends Pane {
 
 		exitButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
+			// System.out.println("OK");
 			audioClip.play();
 			System.exit(0);
 		});
@@ -117,7 +117,7 @@ abstract public class SyntheticModel extends Pane {
 
 		logOutButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
+			// System.out.println("OK");
 			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 			UserBox.setUser(null);
@@ -239,13 +239,9 @@ abstract public class SyntheticModel extends Pane {
 		});
 
 		settingButton.setOnAction(e -> {
-			if (UserBox.hasNotLogin()) {
-				
-			} else {
-				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//				System.out.println("OK");
-				audioClip.play();
-			}
+			getChildren().add(Config.getTheme().getSettingPane());
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			audioClip.play();
 		});
 
 	}

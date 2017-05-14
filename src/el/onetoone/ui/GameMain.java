@@ -3,19 +3,13 @@ package el.onetoone.ui;
 import el.onetoone.back.BaseDiamondGrid;
 import el.onetoone.back.Config;
 import el.onetoone.back.ItemList;
-import javafx.scene.Group;
 import javafx.scene.ImageCursor;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class GameMain extends Pane {
 
@@ -260,11 +254,6 @@ public class GameMain extends Pane {
 			diamondGrid.timeProperty().set(Config.START_TIME);
 			gamePanel.restart();
 		});
-	}
-
-	private void goBackToLastScene() {
-
-		((Pane) getParent()).getChildren().remove(this);
 	}
 
 	public String getMode() {

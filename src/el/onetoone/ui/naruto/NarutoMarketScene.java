@@ -1,6 +1,5 @@
 package el.onetoone.ui.naruto;
 
-import el.onetoone.back.Config;
 import el.onetoone.ui.MarketScene;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -10,7 +10,6 @@ import el.onetoone.ui.naruto.NarutoLoginScene.LoginAndRegisterButton;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;

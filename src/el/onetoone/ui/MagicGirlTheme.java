@@ -5,6 +5,7 @@ import el.onetoone.ui.magicgirl.MagicInitialScene;
 import el.onetoone.ui.magicgirl.MagicLoginScene;
 import el.onetoone.ui.magicgirl.MagicMaxMarkScene;
 import el.onetoone.ui.magicgirl.MagicRegisterScene;
+import el.onetoone.ui.magicgirl.MagicSettingPane;
 import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -105,11 +106,6 @@ public class MagicGirlTheme extends Theme {
 		return new MagicRegisterScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getRegisterScene();
 	}
 
-	@Override
-	public Scene getSettingScene() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Scene getMaxMarkScene() {
@@ -134,5 +130,11 @@ public class MagicGirlTheme extends Theme {
 	public Scene getSynScene() {
 		// TODO Auto-generated method stub
 		return new MagicSyntheticPanel().getSyntheticScene();
+	}
+
+	@Override
+	public Pane getSettingPane() {
+		// TODO Auto-generated method stub
+		return new MagicSettingPane();
 	}
 }

@@ -18,6 +18,7 @@ public abstract class Theme {
 	public static final Image PROPS_HAMMER = new Image("/image/props_hammer.png");
 	public static final Image PROPS_NEW_MAP = new Image("/image/props_new_map.png");
 	public static final Image PROPS_BOOM = new Image("/image/props_boom.png");
+	public static final Image BG_SHOP_PANEL = new Image("/image/bg_shop_panel.png", true);
 
 	
 	protected Image ICON_INDEFINITE;
@@ -395,7 +396,7 @@ public abstract class Theme {
 
 	public abstract Scene getRegisterScene();
 
-	public abstract Scene getSettingScene();
+	public abstract Pane getSettingPane();
 
 	public abstract Scene getMaxMarkScene();
 

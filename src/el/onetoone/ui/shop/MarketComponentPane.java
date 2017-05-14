@@ -1,7 +1,6 @@
 package el.onetoone.ui.shop;
 
 import javafx.geometry.Insets;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 /**
