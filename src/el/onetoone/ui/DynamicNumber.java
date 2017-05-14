@@ -8,6 +8,8 @@ import javafx.scene.layout.HBox;
 
 public class DynamicNumber extends HBox{
 
+//	private static final int NUMBER_CHANGE_MILLS = 100;
+	
 	private int bits;
 	private Image[] numImgs;
 	private ImageView[] numImgViews;
@@ -50,4 +52,5 @@ public class DynamicNumber extends HBox{
 			numImgViews[bits - i - 1].setImage(numImgs[score.charAt(score.length() - 1 - i) - '0']);
 		}
 	}
+	
 }

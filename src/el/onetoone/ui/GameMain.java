@@ -234,7 +234,7 @@ public class GameMain extends Pane {
 		configButton.setLayoutY(10);
 		configButton.setOnAction(e -> {
 			Theme.setBlur(this);
-			this.getChildren().add(new SettingPane());
+//			this.getChildren().add(new SettingPane());
 		});
 		
 		ImageView backImg = new ImageView(Config.getTheme().getBUTTON_BACK());

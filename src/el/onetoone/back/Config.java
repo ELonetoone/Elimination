@@ -15,7 +15,7 @@ public class Config {
 	public static final int START_TIME = 60;
 	public static final int START_STEP = 2;
 	
-	public static Theme theme = new NarutoTheme();
+	public static Theme theme = new MagicGirlTheme();
 	
 	public static Theme getTheme() {
 		return Config.theme;

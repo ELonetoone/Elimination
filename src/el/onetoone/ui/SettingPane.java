@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
  * @author liao
  *
  */
-public class SettingPane extends Pane {
+public abstract class SettingPane extends Pane {
 
 	private SystemButton closeBtn;
 	

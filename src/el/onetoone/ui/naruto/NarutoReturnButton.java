@@ -40,7 +40,7 @@ public class NarutoReturnButton extends Button {
 		
 		this.setOnMouseExited(e -> {
 			this.setScaleX(1.0);
-//			this.setScaleY(1.0);
+			this.setScaleY(1.0);
 		});
 	}
 	
