@@ -6,6 +6,7 @@ import el.onetoone.back.User;
 import el.onetoone.back.UserBox;
 import el.onetoone.ui.InitialView;
 import el.onetoone.ui.LoginScene;
+import el.onetoone.ui.Main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -23,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 public class NarutoLoginScene extends LoginScene {
@@ -133,7 +135,8 @@ public class NarutoLoginScene extends LoginScene {
 		userNameField.setLayoutY(265);
 		userNameField.setStyle("-fx-background-color: transparent;"
 				+ "-fx-border-color: transparent;");
-//		userName.setFont(value);
+		Font font = Font.loadFont(Main.class.getResource("font/message.TTF").toExternalForm(), 25);
+		userNameField.setFont(font);
 		
 		passwordField = new PasswordField();
 		passwordField.setPrefWidth(270);
@@ -144,9 +147,9 @@ public class NarutoLoginScene extends LoginScene {
 				+ "-fx-border-color: transparent;");
 //		passwordField.setFont(value);
 		
-		wrongMessage.setLayoutX(250);
-		wrongMessage.setLayoutY(390);
-//		wrongMessage.setFont(value);
+		wrongMessage.setLayoutX(290);
+		wrongMessage.setLayoutY(405);
+		wrongMessage.setFont(font);
 		
 //		Image frameImage = new Image("/image/naruto/frame.png", 290, 50, true, true);
 //		frame = new ImageView(frameImage);
