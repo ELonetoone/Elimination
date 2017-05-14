@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -92,6 +93,9 @@ public abstract class RegisterScene extends Scene {
 	public void registerListener() {
 		
 		returnButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//			System.out.println("OK");
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 		});
 		
@@ -102,10 +106,16 @@ public abstract class RegisterScene extends Scene {
 			String confirmPasswd = confirmField.getText().trim();
 
 			if (uid == null || uid.equals("")) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("用户名不得为空");
 			} else if (passwd == null || passwd.equals("") || confirmPasswd == null || confirmPasswd.equals("")) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("密码不得为空");
 			} else if (!passwd.equals(confirmPasswd)) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("两次输入的密码不一致");
 			} else {
 				boolean hasSpace = false;
@@ -116,18 +126,31 @@ public abstract class RegisterScene extends Scene {
 					}
 				}
 				if (hasSpace) {
+					AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+//					System.out.println("OK");
+					audioClip.play();
 					wrongMessage.setText("用户名不能含有空格");
 				} else {
 					try {
 						user = User.register(uid, passwd);
 						UserBox.setUser(user);
 						// 转跳到综合界面
+						AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//						System.out.println("OK");
+						audioClip.play();
 						Config.getMain().setScene(Config.getTheme().getSynScene());
 					} catch (Exception q) {
 						String qErrorMessage = q.getMessage();
 						if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {
+							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+//							System.out.println("OK");
+							audioClip.play();
 							wrongMessage.setText("网络连接失败");
+							
 						} else if (qErrorMessage.equals(User.HASBEENREGISTERED)) {
+							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+//							System.out.println("OK");
+							audioClip.play();
 							wrongMessage.setText("用户名已被注册");
 						} else {
 

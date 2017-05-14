@@ -4,6 +4,7 @@ import el.onetoone.back.Config;
 import el.onetoone.back.User;
 import el.onetoone.back.UserBox;
 import el.onetoone.ui.InitialView;
+import el.onetoone.ui.Main;
 import el.onetoone.ui.RegisterScene;
 import el.onetoone.ui.naruto.NarutoLoginScene.LoginAndRegisterButton;
 import javafx.scene.Parent;
@@ -15,9 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class NarutoRegisterScene extends RegisterScene {
@@ -133,14 +136,16 @@ public class NarutoRegisterScene extends RegisterScene {
 		frame3.setLayoutX(180);
 		frame3.setLayoutY(345);
 		
+		Font font = Font.loadFont(Main.class.getResource("font/message.TTF").toExternalForm(), 25);
+		
 		gameName = new ImageView(new Image("/image/naruto/g_name.png", 400, 250, true, true));
 		gameName.setLayoutX(50);
 		gameName.setLayoutY(100);
 		
 		wrongMessage = new Text();
 		wrongMessage.setLayoutX(250);
-		wrongMessage.setLayoutY(410);
-//		wrongMessage.setFont(value);
+		wrongMessage.setLayoutY(420);
+		wrongMessage.setFont(font);
 		
 		registerButton = new LoginAndRegisterButton();
 		registerButton.setGraphic(new ImageView(new Image("/image/naruto/reg.png", 150, 66, true, true)));
@@ -157,7 +162,7 @@ public class NarutoRegisterScene extends RegisterScene {
 		userName.setLayoutY(225);
 		userName.setStyle("-fx-background-color: transparent;"
 				+ "-fx-border-color: transparent;");
-//		userName.setFont(value);
+		userName.setFont(font);
 		
 		passwordField = new PasswordField();
 		passwordField.setPrefWidth(270);
@@ -166,7 +171,6 @@ public class NarutoRegisterScene extends RegisterScene {
 		passwordField.setLayoutY(285);
 		passwordField.setStyle("-fx-background-color: transparent;"
 				+ "-fx-border-color: transparent;");
-//		passwordField.setFont(value);
 		
 		confirmField = new PasswordField();
 		confirmField.setPrefWidth(270);
@@ -175,7 +179,6 @@ public class NarutoRegisterScene extends RegisterScene {
 		confirmField.setLayoutY(345);
 		confirmField.setStyle("-fx-background-color: transparent;"
 				+ "-fx-border-color: transparent;");
-//		confirmField.setFont(value);
 		
 		registerButton();
 		
@@ -185,17 +188,10 @@ public class NarutoRegisterScene extends RegisterScene {
 	
 	public void registerButton() {
 		
-//		exitButton.setOnMouseEntered(e -> {
-//			exitButton.setScaleX(1.3);
-//			exitButton.setScaleY(1.3);
-//		});
-//		
-//		exitButton.setOnMouseExited(e -> {
-//			exitButton.setScaleX(1.0);
-//			exitButton.setScaleY(1.0);
-//		});
 		
 		exitButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 		});
 		
@@ -206,10 +202,16 @@ public class NarutoRegisterScene extends RegisterScene {
 			String confirmPasswd = confirmField.getText().trim();
 
 			if (uid == null || uid.equals("")) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("用户名不得为空");
 			} else if (passwd == null || passwd.equals("") || confirmPasswd == null || confirmPasswd.equals("")) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("密码不得为空");
 			} else if (!passwd.equals(confirmPasswd)) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("两次输入的密码不一致");
 			} else {
 				boolean hasSpace = false;
@@ -220,18 +222,26 @@ public class NarutoRegisterScene extends RegisterScene {
 					}
 				}
 				if (hasSpace) {
+					AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+					audioClip.play();
 					wrongMessage.setText("用户名不能含有空格");
 				} else {
 					try {
 						user = User.register(uid, passwd);
 						UserBox.setUser(user);
 						// 转跳到综合界面
+						AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+						audioClip.play();
 						Config.getMain().setScene(Config.getTheme().getSynScene());
 					} catch (Exception q) {
 						String qErrorMessage = q.getMessage();
 						if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {
+							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+							audioClip.play();
 							wrongMessage.setText("网络连接失败");
 						} else if (qErrorMessage.equals(User.HASBEENREGISTERED)) {
+							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+							audioClip.play();
 							wrongMessage.setText("用户名已被注册");
 						} else {
 

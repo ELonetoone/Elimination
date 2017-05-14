@@ -5,12 +5,12 @@ import java.net.URI;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
-import el.onetoone.ui.magicgirl.MagicSettingPane;
 import el.onetoone.ui.shop.MarketPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Text;
 
 abstract public class SyntheticModel extends Pane {
@@ -92,6 +92,9 @@ abstract public class SyntheticModel extends Pane {
 		this.getChildren().add(exitButton);
 
 		exitButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//			System.out.println("OK");
+			audioClip.play();
 			System.exit(0);
 		});
 	}
@@ -112,6 +115,9 @@ abstract public class SyntheticModel extends Pane {
 		});
 
 		logOutButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//			System.out.println("OK");
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 			UserBox.setUser(null);
 		});
@@ -135,8 +141,12 @@ abstract public class SyntheticModel extends Pane {
 
 		marketAndBackButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("尚未登录！");
 			} else {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+				audioClip.play();
 			}
 		});
 
@@ -152,8 +162,12 @@ abstract public class SyntheticModel extends Pane {
 
 		maxMarkButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("尚未登录！");
 			} else {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+				audioClip.play();
 				Config.getMain().setScene(Config.getTheme().getMaxMarkScene());
 			}
 		});
@@ -173,6 +187,8 @@ abstract public class SyntheticModel extends Pane {
 			// model.init();
 			// funcScene = model.getScene();
 			// primStage.setScene(funcScene);
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			audioClip.play();
 			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE7911.jpg";
 			URI uri = URI.create(url);
 			try {
@@ -202,9 +218,11 @@ abstract public class SyntheticModel extends Pane {
 
 		settingButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
-				getChildren().add(new MagicSettingPane());
-				wrongMessage.setText("尚未登录！");
+				
 			} else {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//				System.out.println("OK");
+				audioClip.play();
 			}
 		});
 
@@ -216,6 +234,8 @@ abstract public class SyntheticModel extends Pane {
 	public void registerModeButtonListener() {
 
 		unlimitedMode.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			audioClip.play();
 			wrongMessage.setText("");
 			mode = UNLIMITE;
 			// 然后传递mode到主游戏界面
@@ -224,6 +244,8 @@ abstract public class SyntheticModel extends Pane {
 		});
 
 		timeLimitedMode.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			audioClip.play();
 			wrongMessage.setText("");
 			mode = TIMELIMITED;
 			// 然后传递mode到主游戏界面
@@ -233,6 +255,8 @@ abstract public class SyntheticModel extends Pane {
 		});
 
 		stepLimitedMode.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			audioClip.play();
 			wrongMessage.setText("");
 			mode = STEPLIMITED;
 			// 然后传递mode到主游戏界面

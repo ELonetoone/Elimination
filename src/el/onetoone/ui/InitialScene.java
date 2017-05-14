@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
@@ -101,18 +102,30 @@ public abstract class InitialScene extends Scene {
 	public void registerButtonEventHandler() {
 		
 		trialButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			System.out.println("OK");
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getSynScene());
 		});
 		
 		exitButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//			System.out.println("OK");
+			audioClip.play();
 			System.exit(0);
 		});
 		
 		registerButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			System.out.println("OK");
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getRegisterScene());
 		});
 		
 		loginButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+			System.out.println("OK");
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getLoginScene());
 		});
 		

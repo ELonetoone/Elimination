@@ -2,6 +2,7 @@ package el.onetoone.ui.magicgirl;
 
 import el.onetoone.back.Config;
 import el.onetoone.ui.LoginScene;
+import el.onetoone.ui.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -10,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class MagicLoginScene extends LoginScene {
@@ -68,9 +70,9 @@ public class MagicLoginScene extends LoginScene {
 		userNameField.setPrefSize(350, 45);
 		passwordField.setPrefSize(350, 45);
 		userNameField.setLayoutX(550);
-		userNameField.setLayoutY(375);
+		userNameField.setLayoutY(380);
 		passwordField.setLayoutX(550);
-		passwordField.setLayoutY(445);
+		passwordField.setLayoutY(450);
 		((Pane) getRoot()).getChildren().add(userNameField);
 		((Pane) getRoot()).getChildren().add(passwordField);
 
@@ -85,7 +87,12 @@ public class MagicLoginScene extends LoginScene {
 		((Pane) getRoot()).getChildren().add(returnButton);
 
 		wrongMessage.setLayoutX(650);
-		wrongMessage.setLayoutY(510);
+		wrongMessage.setLayoutY(530);
+		
+		Font font = Font.loadFont(Main.class.getResource("font/magic.ttf").toExternalForm(), 25);
+		wrongMessage.setFont(font);
+		userNameField.setFont(font);
+		
 		((Pane) getRoot()).getChildren().add(wrongMessage);
 		registerListener();
 	}
