@@ -14,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -21,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class NarutoLoginScene extends LoginScene {
@@ -63,9 +66,9 @@ public class NarutoLoginScene extends LoginScene {
 	
 	private ImageView passwordImage;
 	
-	private ImageView frame;
-	
-	private ImageView frame2;
+//	private ImageView frame;
+//	
+//	private ImageView frame2;
 	
 	private LoginAndRegisterButton loginButton;
 	
@@ -73,13 +76,17 @@ public class NarutoLoginScene extends LoginScene {
 	
 	private ImageView gameName;
 	
+	private Rectangle frame1;
+	
+	private Rectangle frame2;
+	
 
 	@Override
 	public Scene getLoginScene() {
 		// TODO Auto-generated method stub
 		setBackground();
 		putButton();
-	//	getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
+		getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		return this;
 	}
 	
@@ -87,11 +94,74 @@ public class NarutoLoginScene extends LoginScene {
 		
 		super.createItems();
 		
+		userNameImage = new ImageView(new Image("/image/naruto/u_name.png", 120, 50, true, true));
+		userNameImage.setLayoutX(50);
+		userNameImage.setLayoutY(260);
+		
+		passwordImage = new ImageView(new Image("/image/naruto/password.png", 120, 50, true, true));
+		passwordImage.setLayoutX(50);
+		passwordImage.setLayoutY(320);
+		
+		frame1 = new Rectangle(290, 40);
+		frame2 = new Rectangle(290, 40);
+		
+		frame1.setStroke(Color.BLACK);
+		frame1.setStrokeWidth(2);
+		frame1.setFill(null);
+		frame1.setArcHeight(20);
+		frame1.setArcWidth(20);
+		
+		frame2.setStroke(Color.BLACK);
+		frame2.setStrokeWidth(2);
+		frame2.setFill(null);
+		frame2.setArcHeight(20);
+		frame2.setArcWidth(20);
+		
+		frame1.setLayoutX(180);
+		frame1.setLayoutY(265);
+		
+		frame2.setLayoutX(180);
+		frame2.setLayoutY(315);
+		
+		gameName = new ImageView(new Image("/image/naruto/g_name.png", 400, 250, true, true));
+		gameName.setLayoutX(50);
+		gameName.setLayoutY(100);
+		
+		userNameField = new TextField();
+		userNameField.setPrefHeight(40);
+		userNameField.setPrefWidth(270);
+		userNameField.setLayoutX(190);
+		userNameField.setLayoutY(265);
+		userNameField.setStyle("-fx-background-color: transparent;"
+				+ "-fx-border-color: transparent;");
+		
+		passwordField = new PasswordField();
+		passwordField.setPrefWidth(270);
+		passwordField.setPrefHeight(40);
+		passwordField.setLayoutX(190);
+		passwordField.setLayoutY(315);
+		passwordField.setStyle("-fx-background-color: transparent;"
+				+ "-fx-border-color: transparent;");
+		
+		wrongMessage.setLayoutX(250);
+		wrongMessage.setLayoutY(390);
+//		wrongMessage.setFont(value);
+		
+//		Image frameImage = new Image("/image/naruto/frame.png", 290, 50, true, true);
+//		frame = new ImageView(frameImage);
+//		frame2 = new ImageView(frameImage);
+//		
+//		frame.setLayoutX(335);
+//		frame.setLayoutY(160);
+//		
+//		frame2.setLayoutX(335);
+//		frame2.setLayoutY(220);
+		
 		loginButton = new LoginAndRegisterButton();
-		loginButton.setGraphic(new ImageView(new Image("/image/naruto/login.png", 70, 70, false, true)));
+		loginButton.setGraphic(new ImageView(new Image("/image/naruto/login.png", 150, 66, true, true)));
 		loginButton.setPrefSize(70, 70);
-		loginButton.setLayoutX(300);
-		loginButton.setLayoutY(300);
+		loginButton.setLayoutX(250);
+		loginButton.setLayoutY(420);
 		
 		exitButton = new Button();
 		exitButton.setGraphic(new ImageView(Config.getTheme().getBUTTON_BACK()));
@@ -168,7 +238,7 @@ public class NarutoLoginScene extends LoginScene {
 	}
 	
 	public void addNodes() {
-		((Pane) getRoot()).getChildren().add(frame);
+		((Pane) getRoot()).getChildren().add(frame1);
 		((Pane) getRoot()).getChildren().add(frame2);
 		((Pane) getRoot()).getChildren().add(gameName);
 		((Pane) getRoot()).getChildren().add(passwordImage);
