@@ -67,6 +67,8 @@ public abstract class Theme {
 	protected Image FRAME_TIME;
 	protected Image FRAME_GAME;
 	protected Image FRAME_HIGHEST_SCORE;
+	
+	protected Image[] nums = new Image[10];
 
 	protected MediaPlayer bgmPlayer;
 
@@ -407,6 +409,14 @@ public abstract class Theme {
 
 	public void setBG_HEIGHEST_SCORE(Image bG_HEIGHEST_SCORE) {
 		BG_HEIGHEST_SCORE = bG_HEIGHEST_SCORE;
+	}
+
+	public Image[] getNums() {
+		return nums;
+	}
+
+	public void setNums(Image[] nums) {
+		this.nums = nums;
 	}
 
 }

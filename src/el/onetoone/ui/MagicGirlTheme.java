@@ -68,6 +68,10 @@ public class MagicGirlTheme extends Theme {
 		setFRAME_TIME(new Image("/image/frame_time.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		
 		setICON_INDEFINITE(new Image("/image/icon_indefinite.png"));
+		
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = new Image("/image/num_" + i + ".png");
+		}
 	}
 
 	@Override
