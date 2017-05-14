@@ -28,6 +28,7 @@ public abstract class Theme {
 	protected Image BG_SIGN;
 	protected Image BG_HEIGHEST_SCORE;
 	protected Image BG_SETTING_PANE;
+	protected Image BG_SHOP;
 
 	// diamond
 	protected Image DIAMOND_ONE;
@@ -426,6 +427,14 @@ public abstract class Theme {
 
 	public void setBG_SETTING_PANE(Image bG_SETTING_PANE) {
 		BG_SETTING_PANE = bG_SETTING_PANE;
+	}
+
+	public Image getBG_SHOP() {
+		return BG_SHOP;
+	}
+
+	public void setBG_SHOP(Image bG_SHOP) {
+		BG_SHOP = bG_SHOP;
 	}
 
 }

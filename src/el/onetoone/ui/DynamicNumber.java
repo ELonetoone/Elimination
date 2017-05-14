@@ -25,7 +25,6 @@ public class DynamicNumber extends HBox{
 			numImgViews[i] = new ImageView(numImgs[0]);
 			numImgViews[i].setFitWidth(25);
 			numImgViews[i].setFitHeight(35);
-//			numImgViews[i].setPreserveRatio(true);
 		}
 		
 		for (int i = 0; i < bits; i++) {

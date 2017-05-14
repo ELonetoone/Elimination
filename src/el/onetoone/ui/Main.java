@@ -16,7 +16,6 @@ public class Main extends Application {
 		Config.setMain(this);
 		stage = primaryStage;
 		
-//		Scene initialPanel = Config.getTheme().getInitialScene(); //用非抽象类初始化
 		Scene initialPanel = new MagicGirlTheme().getInitialScene();
 		
 		stage.setScene(initialPanel);
@@ -37,5 +36,4 @@ public class Main extends Application {
 	public void setScene(Scene scene) {
 		this.stage.setScene(scene);
 	}
-
 }

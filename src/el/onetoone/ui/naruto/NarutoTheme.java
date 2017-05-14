@@ -15,6 +15,7 @@ public class NarutoTheme extends Theme{
 		setBG_START(new Image("/image/naruto/init_bg.jpg", true));
 		setBG_GAME(new Image("/image/naruto/bg_game.jpg", true));
 		setBG_SIGN(new Image("/image/naruto/bg_sign.jpg", true));
+		setBG_SHOP(new Image("/image/naruto/bg_shop.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 
 		// set diamond
 		setDIAMOND_ONE(new Image("/image/naruto/diamond_1.png"));

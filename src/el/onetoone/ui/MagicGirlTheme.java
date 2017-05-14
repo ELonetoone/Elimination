@@ -26,6 +26,7 @@ public class MagicGirlTheme extends Theme {
 		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false, false, true));
 		setBG_SIGN(new Image("/image/bg_sign.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 		setBG_HEIGHEST_SCORE(new Image("/image/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+//		setBG_SHOP(new Image("/image/bg_shop.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 		setBG_SETTING_PANE(new Image("/image/bg_setting_pane.png", true));
 		
 		//set diamond
