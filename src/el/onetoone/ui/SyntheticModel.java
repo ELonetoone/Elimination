@@ -141,10 +141,11 @@ abstract public class SyntheticModel extends Pane {
 
 		marketAndBackButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("尚未登录！");
 			} else {
 				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//				System.out.println("OK");
 				audioClip.play();
 			}
 		});
@@ -161,10 +162,11 @@ abstract public class SyntheticModel extends Pane {
 
 		maxMarkButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
+				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
+				audioClip.play();
 				wrongMessage.setText("尚未登录！");
 			} else {
 				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//				System.out.println("OK");
 				audioClip.play();
 				Config.getMain().setScene(Config.getTheme().getMaxMarkScene());
 			}
@@ -186,7 +188,6 @@ abstract public class SyntheticModel extends Pane {
 			// funcScene = model.getScene();
 			// primStage.setScene(funcScene);
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
 			audioClip.play();
 			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE7911.jpg";
 			URI uri = URI.create(url);
@@ -217,6 +218,7 @@ abstract public class SyntheticModel extends Pane {
 
 		settingButton.setOnAction(e -> {
 			if (UserBox.hasNotLogin()) {
+				
 			} else {
 				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
 //				System.out.println("OK");
@@ -233,7 +235,6 @@ abstract public class SyntheticModel extends Pane {
 
 		unlimitedMode.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
 			audioClip.play();
 			wrongMessage.setText("");
 			mode = UNLIMITE;
@@ -244,7 +245,6 @@ abstract public class SyntheticModel extends Pane {
 
 		timeLimitedMode.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
 			audioClip.play();
 			wrongMessage.setText("");
 			mode = TIMELIMITED;
@@ -256,7 +256,6 @@ abstract public class SyntheticModel extends Pane {
 
 		stepLimitedMode.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
 			audioClip.play();
 			wrongMessage.setText("");
 			mode = STEPLIMITED;
