@@ -1,6 +1,5 @@
 package el.onetoone.ui.naruto;
 
-import com.sun.media.jfxmedia.events.NewFrameEvent;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.User;
@@ -72,7 +71,7 @@ public class NarutoLoginScene extends LoginScene {
 	
 	private LoginAndRegisterButton loginButton;
 	
-	private Button exitButton;
+	private NarutoReturnButton exitButton;
 	
 	private ImageView gameName;
 	
@@ -165,10 +164,7 @@ public class NarutoLoginScene extends LoginScene {
 		loginButton.setLayoutX(250);
 		loginButton.setLayoutY(420);
 		
-		exitButton = new Button();
-		exitButton.setGraphic(new ImageView(Config.getTheme().getBUTTON_BACK()));
-		exitButton.setLayoutX(1150);
-		exitButton.setLayoutY(30);
+		exitButton = new NarutoReturnButton();
 		
 		registerButton();
 		
@@ -179,15 +175,15 @@ public class NarutoLoginScene extends LoginScene {
 	
 	public void registerButton() {
 		
-		exitButton.setOnMouseEntered(e -> {
-			exitButton.setScaleX(1.3);
-			exitButton.setScaleY(1.3);
-		});
-		
-		exitButton.setOnMouseExited(e -> {
-			exitButton.setScaleX(1.0);
-			exitButton.setScaleY(1.0);
-		});
+//		exitButton.setOnMouseEntered(e -> {
+//			exitButton.setScaleX(1.3);
+//			exitButton.setScaleY(1.3);
+//		});
+//		
+//		exitButton.setOnMouseExited(e -> {
+//			exitButton.setScaleX(1.0);
+//			exitButton.setScaleY(1.0);
+//		});
 		
 		exitButton.setOnAction(e -> {
 			Config.getMain().setScene(Config.getTheme().getInitialScene());

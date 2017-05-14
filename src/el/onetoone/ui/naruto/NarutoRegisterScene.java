@@ -84,7 +84,7 @@ public class NarutoRegisterScene extends RegisterScene {
 	
 	private LoginAndRegisterButton registerButton;
 	
-	private Button exitButton;
+	private NarutoReturnButton exitButton;
 	
 	public void putButton() {
 		
@@ -148,10 +148,7 @@ public class NarutoRegisterScene extends RegisterScene {
 		registerButton.setLayoutX(300);
 		registerButton.setLayoutY(440);
 		
-		exitButton = new Button();
-		exitButton.setGraphic(new ImageView(Config.getTheme().getBUTTON_BACK()));
-		exitButton.setLayoutX(1150);
-		exitButton.setLayoutY(30);
+		exitButton = new NarutoReturnButton();
 		
 		userName = new TextField();
 		userName.setPrefHeight(40);
@@ -188,15 +185,15 @@ public class NarutoRegisterScene extends RegisterScene {
 	
 	public void registerButton() {
 		
-		exitButton.setOnMouseEntered(e -> {
-			exitButton.setScaleX(1.3);
-			exitButton.setScaleY(1.3);
-		});
-		
-		exitButton.setOnMouseExited(e -> {
-			exitButton.setScaleX(1.0);
-			exitButton.setScaleY(1.0);
-		});
+//		exitButton.setOnMouseEntered(e -> {
+//			exitButton.setScaleX(1.3);
+//			exitButton.setScaleY(1.3);
+//		});
+//		
+//		exitButton.setOnMouseExited(e -> {
+//			exitButton.setScaleX(1.0);
+//			exitButton.setScaleY(1.0);
+//		});
 		
 		exitButton.setOnAction(e -> {
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
