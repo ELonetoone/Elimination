@@ -72,7 +72,7 @@ public class MagicRegisterScene extends RegisterScene {
 		returnButton.setPrefSize(190, 90);
 		
 		userName.setLayoutX(550);
-		userName.setLayoutY(345);
+		userName.setLayoutY(340);
 		passwordField.setLayoutX(550);
 		passwordField.setLayoutY(410);
 		confirmField.setLayoutX(550);
@@ -87,7 +87,7 @@ public class MagicRegisterScene extends RegisterScene {
 	//	wrongMessage.setText("DASDAS");
 		
 		wrongMessage.setLayoutX(690);
-		wrongMessage.setLayoutY(540);
+		wrongMessage.setLayoutY(545);
 		
 		Font font = Font.loadFont(Main.class.getResource("font/magic.ttf").toExternalForm(), 25);
 		wrongMessage.setFont(font);

@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
@@ -82,6 +83,9 @@ public abstract class LoginScene extends Scene {
 
 	public void registerListener() {
 		returnButton.setOnAction(e -> {
+			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//			System.out.println("OK");
+			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 		});
 
@@ -109,6 +113,9 @@ public abstract class LoginScene extends Scene {
 
 						UserBox.setUser(user);
 						// 转换到综合界面
+						AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
+//						System.out.println("OK");
+						audioClip.play();
 						Config.getMain().setScene(Config.getTheme().getSynScene());
 					} catch (Exception q) {
 						String qErrorMessage = q.getMessage();
