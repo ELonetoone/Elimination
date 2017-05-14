@@ -32,7 +32,7 @@ public class NarutoSynthetic extends SyntheticModel {
 
 	@Override
 	protected void createFuncButton() {
-		
+
 		// 商城按钮
 		ImageView shopImg = new ImageView(Config.getTheme().getBUTTON_SHOP());
 		shopImg.setFitHeight(FUNC_BUTTON_HEIGHT);
@@ -72,7 +72,7 @@ public class NarutoSynthetic extends SyntheticModel {
 
 		logOutButton = new Button();
 		logOutButton.setGraphic(logoutImg);
-		
+
 		funcButtonBox = new VBox(logOutButton, settingButton, marketAndBackButton, topUpButton, maxMarkButton);
 		funcButtonBox.setAlignment(Pos.CENTER);
 		funcButtonBox.setLayoutX(Config.SCREEN_WIDTH - 200);

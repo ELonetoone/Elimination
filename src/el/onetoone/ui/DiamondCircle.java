@@ -1,6 +1,5 @@
 package el.onetoone.ui;
 
-
 import el.onetoone.back.Point;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
@@ -32,27 +31,27 @@ public class DiamondCircle extends ImageView {
 
 		DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.WHITE, 0, 1, 0, 0);
 		ColorAdjust light = new ColorAdjust();
-		
+
 		shadow.setInput(light);
 		setEffect(shadow);
-		
-		Timeline flashing = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(light.brightnessProperty(), 0)),
+
+		Timeline flashing = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(light.brightnessProperty(), 0)),
 				new KeyFrame(Duration.ZERO, new KeyValue(shadow.radiusProperty(), 0)),
-				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(shadow.radiusProperty(), 3, Interpolator.EASE_IN)),
-				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)));
-		
+				new KeyFrame(Duration.millis(FADETRANSITIONTIME),
+						new KeyValue(shadow.radiusProperty(), 3, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(FADETRANSITIONTIME),
+						new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)));
+
 		Timeline stopFlashing = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(shadow.radiusProperty(), 3, Interpolator.EASE_IN)),
 				new KeyFrame(Duration.ZERO, new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(light.brightnessProperty(), 0)),
-				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(shadow.radiusProperty(), 0))
-				);
-		
+				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(shadow.radiusProperty(), 0)));
+
 		setOnMouseEntered(e -> {
 			flashing.play();
 		});
-		
+
 		setOnMouseExited(e -> stopFlashing.play());
 	}
 
@@ -105,16 +104,16 @@ public class DiamondCircle extends ImageView {
 		fade.setFromValue(1.0);
 		fade.setToValue(0.0);
 		fade.setCycleCount(1);
-		
+
 		RotateTransition rotateTransition = new RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
 		rotateTransition.setByAngle(360);
 		rotateTransition.setCycleCount(1);
-		
+
 		Timeline reduce = new Timeline(
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(this.opacityProperty(), 0.0)),
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME), new KeyValue(this.opacityProperty(), 0.0)),
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME / 2), new KeyValue(this.scaleXProperty(), 1.2)),
-				new KeyFrame(Duration.millis(FADETRANSITIONTIME/ 2), new KeyValue(this.scaleYProperty(), 1.2)));
+				new KeyFrame(Duration.millis(FADETRANSITIONTIME / 2), new KeyValue(this.scaleYProperty(), 1.2)));
 		result.getChildren().addAll(fade, reduce);
 
 		return result;
@@ -131,15 +130,16 @@ public class DiamondCircle extends ImageView {
 	public ParallelTransition appearTransition() {
 
 		ParallelTransition result = new ParallelTransition();
-		
+
 		FadeTransition appear = new FadeTransition(Duration.millis(FADETRANSITIONTIME * 2), this);
 		appear.setFromValue(0.0);
 		appear.setToValue(1.0);
 		appear.setCycleCount(1);
-		
-//		RotateTransition rotateTransition = new RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
-//		rotateTransition.setByAngle(-360);
-		
+
+		// RotateTransition rotateTransition = new
+		// RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
+		// rotateTransition.setByAngle(-360);
+
 		result.getChildren().addAll(appear);
 
 		return result;

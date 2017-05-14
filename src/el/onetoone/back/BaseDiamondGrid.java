@@ -1066,7 +1066,7 @@ public class BaseDiamondGrid {
 	public void setTime(int seconds) {
 		timeProperty.set(seconds);
 	}
-	
+
 	public void addTime(int second) {
 		timeProperty.set(timeProperty.get() + second);
 	}
@@ -1078,7 +1078,7 @@ public class BaseDiamondGrid {
 	public IntegerProperty timeProperty() {
 		return timeProperty;
 	}
-	
+
 	public void stepMinOne() {
 		stepProperty.set(stepProperty.get() - 1);
 	}

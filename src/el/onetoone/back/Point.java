@@ -6,33 +6,33 @@ public class Point {
 	 * 点的x坐标
 	 */
 	private int x;
-	
+
 	/**
 	 * 点的y坐标
 	 */
 	private int y;
-	
+
 	public int getX() {
 		return this.x;
 	}
-	
+
 	public int getY() {
 		return this.y;
 	}
-	
+
 	public void setX(int x) {
 		this.x = x;
 	}
-	
+
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	@Override
 	public boolean equals(Object point) {
 		Point anotherPoint = (Point) point;
@@ -42,7 +42,7 @@ public class Point {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return x * 100 + y;
@@ -52,5 +52,5 @@ public class Point {
 	public String toString() {
 		return "Point [" + x + ", " + y + "]";
 	}
-	
+
 }

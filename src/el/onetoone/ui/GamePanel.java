@@ -40,7 +40,7 @@ public class GamePanel extends Group {
 
 	private Theme theme;
 	private GameMain gameMain;
-	
+
 	public Theme getTheme() {
 		return theme;
 	}
@@ -134,26 +134,26 @@ public class GamePanel extends Group {
 					if (gameOver) {
 						return;
 					}
-					
+
 					if (gameMain.getCurrentProps() != null) {
 						gameMain.setCursor(Cursor.DEFAULT);
 						try {
 							if (UserBox.getUser().useItem(gameMain.getCurrentProps())) {
-								
+
 								switch (gameMain.getCurrentProps()) {
 								case ItemList.BOOM:
 									diamondGrid.useBoom(currentDiamond.getPoint());
 									break;
-									
+
 								case ItemList.HAMMER:
 									diamondGrid.useHammer(currentDiamond.getPoint());
 									break;
-									
+
 								case ItemList.NEWMAP:
 									diamondGrid.useGenNewMap();
 									repaintTheBoard();
 									break;
-									
+
 								}
 							}
 							gameMain.setCurrentProps(null);
@@ -168,7 +168,7 @@ public class GamePanel extends Group {
 							e1.printStackTrace();
 						}
 						return;
-					} 
+					}
 					if (choosedDiamond == null) {
 						choosedDiamond = currentDiamond;
 					} else if ((choosedDiamond.getPoint().getX() + 1 == currentDiamond.getPoint().getX()
@@ -437,22 +437,25 @@ public class GamePanel extends Group {
 		this.getChildren().clear();
 		paintDiamonds();
 	}
-	
+
 	public void gameOver() {
 		if (UserBox.getUser() != null) {
 			System.out.println(mode);
-			if (diamondGrid.gradeProperty().get() > UserBox.getUser().getendLessMaxMark() && mode.equals(SyntheticModel.UNLIMITE)) {
+			if (diamondGrid.gradeProperty().get() > UserBox.getUser().getendLessMaxMark()
+					&& mode.equals(SyntheticModel.UNLIMITE)) {
 				UserBox.getUser().setEndLessMaxMark(diamondGrid.gradeProperty().get());
-			} else if (diamondGrid.gradeProperty().get() > UserBox.getUser().getStepLimitedMaxMark() && mode.equals(SyntheticModel.STEPLIMITED)) {
+			} else if (diamondGrid.gradeProperty().get() > UserBox.getUser().getStepLimitedMaxMark()
+					&& mode.equals(SyntheticModel.STEPLIMITED)) {
 				UserBox.getUser().setStepLimitedMaxMark(diamondGrid.gradeProperty().get());
-			} else if (diamondGrid.gradeProperty().get() > UserBox.getUser().getTimeLimitedMaxMark() && mode.equals(SyntheticModel.TIMELIMITED)) {
+			} else if (diamondGrid.gradeProperty().get() > UserBox.getUser().getTimeLimitedMaxMark()
+					&& mode.equals(SyntheticModel.TIMELIMITED)) {
 				UserBox.getUser().setTimeLimitedMaxMark(diamondGrid.gradeProperty().get());
 			}
 			UserBox.getUser().updateUserInfo();
 		}
 		gameOver = true;
 	}
-	
+
 	public void restart() {
 		diamondGrid.restart();
 		repaintTheBoard();

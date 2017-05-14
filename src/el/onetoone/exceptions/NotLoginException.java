@@ -1,7 +1,7 @@
 package el.onetoone.exceptions;
 
 public class NotLoginException extends Exception {
-	
+
 	public static final String NOTLOGIN = "sadfcjkslcna";
 
 	public NotLoginException() {
@@ -29,6 +29,4 @@ public class NotLoginException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 }

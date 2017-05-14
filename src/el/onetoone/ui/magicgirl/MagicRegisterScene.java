@@ -52,47 +52,48 @@ public class MagicRegisterScene extends RegisterScene {
 		this.getStylesheets().add(MagicInitialScene.class.getResource("textField.css").toExternalForm());
 		return this;
 	}
-	
+
 	public void putButton() {
-		
+
 		super.createItems();
-		ImageView pane = new ImageView(new Image("/image/rg_pane.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, false));
+		ImageView pane = new ImageView(
+				new Image("/image/rg_pane.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, false));
 		pane.setLayoutX(295);
 		pane.setLayoutY(130);
 		((Pane) getRoot()).getChildren().add(pane);
-		
+
 		userName.setId("userName");
 		passwordField.setId("password");
 		userName.setPrefSize(350, 45);
 		passwordField.setPrefSize(350, 45);
 		confirmField.setId("confirmField");
 		confirmField.setPrefSize(350, 45);
-		
+
 		sureButton.setPrefSize(190, 90);
 		returnButton.setPrefSize(190, 90);
-		
+
 		userName.setLayoutX(550);
 		userName.setLayoutY(340);
 		passwordField.setLayoutX(550);
 		passwordField.setLayoutY(410);
 		confirmField.setLayoutX(550);
 		confirmField.setLayoutY(475);
-		
+
 		sureButton.setLayoutX(530);
 		sureButton.setLayoutY(570);
-		
+
 		returnButton.setLayoutX(755);
 		returnButton.setLayoutY(570);
-		
-	//	wrongMessage.setText("DASDAS");
-		
+
+		// wrongMessage.setText("DASDAS");
+
 		wrongMessage.setLayoutX(690);
 		wrongMessage.setLayoutY(545);
-		
+
 		Font font = Font.loadFont(Main.class.getResource("font/magic.ttf").toExternalForm(), 25);
 		wrongMessage.setFont(font);
 		userName.setFont(font);
-		
+
 		((Pane) getRoot()).getChildren().add(userName);
 		((Pane) getRoot()).getChildren().add(passwordField);
 		((Pane) getRoot()).getChildren().add(confirmField);

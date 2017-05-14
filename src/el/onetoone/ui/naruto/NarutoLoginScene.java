@@ -1,6 +1,5 @@
 package el.onetoone.ui.naruto;
 
-
 import el.onetoone.back.Config;
 import el.onetoone.back.User;
 import el.onetoone.back.UserBox;
@@ -32,7 +31,6 @@ public class NarutoLoginScene extends LoginScene {
 
 	public static final double BUTTON_HIGHLIGHT_MILLS = 300;
 
-
 	public NarutoLoginScene(Parent root, double width, double height, boolean depthBuffer,
 			SceneAntialiasing antiAliasing) {
 		super(root, width, height, depthBuffer, antiAliasing);
@@ -63,25 +61,24 @@ public class NarutoLoginScene extends LoginScene {
 		super(root);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	private ImageView userNameImage;
-	
+
 	private ImageView passwordImage;
-	
-//	private ImageView frame;
-//	
-//	private ImageView frame2;
-	
+
+	// private ImageView frame;
+	//
+	// private ImageView frame2;
+
 	private LoginAndRegisterButton loginButton;
-	
+
 	private NarutoReturnButton exitButton;
-	
+
 	private ImageView gameName;
-	
+
 	private Rectangle frame1;
-	
+
 	private Rectangle frame2;
-	
 
 	@Override
 	public Scene getLoginScene() {
@@ -91,123 +88,121 @@ public class NarutoLoginScene extends LoginScene {
 		getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		return this;
 	}
-	
+
 	public void putButton() {
-		
+
 		super.createItems();
-		
+
 		userNameImage = new ImageView(new Image("/image/naruto/u_name.png", 120, 50, true, true));
 		userNameImage.setLayoutX(50);
 		userNameImage.setLayoutY(260);
-		
+
 		passwordImage = new ImageView(new Image("/image/naruto/password.png", 120, 50, true, true));
 		passwordImage.setLayoutX(50);
 		passwordImage.setLayoutY(320);
-		
+
 		frame1 = new Rectangle(290, 40);
 		frame2 = new Rectangle(290, 40);
-		
+
 		frame1.setStroke(Color.BLACK);
 		frame1.setStrokeWidth(2);
 		frame1.setFill(null);
 		frame1.setArcHeight(20);
 		frame1.setArcWidth(20);
-		
+
 		frame2.setStroke(Color.BLACK);
 		frame2.setStrokeWidth(2);
 		frame2.setFill(null);
 		frame2.setArcHeight(20);
 		frame2.setArcWidth(20);
-		
+
 		frame1.setLayoutX(180);
 		frame1.setLayoutY(265);
-		
+
 		frame2.setLayoutX(180);
 		frame2.setLayoutY(325);
-		
+
 		gameName = new ImageView(new Image("/image/naruto/g_name.png", 400, 250, true, true));
 		gameName.setLayoutX(50);
 		gameName.setLayoutY(100);
-		
+
 		userNameField = new TextField();
 		userNameField.setPrefHeight(40);
 		userNameField.setPrefWidth(270);
 		userNameField.setLayoutX(190);
 		userNameField.setLayoutY(265);
-		userNameField.setStyle("-fx-background-color: transparent;"
-				+ "-fx-border-color: transparent;");
+		userNameField.setStyle("-fx-background-color: transparent;" + "-fx-border-color: transparent;");
 		Font font = Font.loadFont(Main.class.getResource("font/message.TTF").toExternalForm(), 25);
 		userNameField.setFont(font);
-		
+
 		passwordField = new PasswordField();
 		passwordField.setPrefWidth(270);
 		passwordField.setPrefHeight(40);
 		passwordField.setLayoutX(190);
 		passwordField.setLayoutY(325);
-		passwordField.setStyle("-fx-background-color: transparent;"
-				+ "-fx-border-color: transparent;");
-//		passwordField.setFont(value);
-		
+		passwordField.setStyle("-fx-background-color: transparent;" + "-fx-border-color: transparent;");
+		// passwordField.setFont(value);
+
 		wrongMessage.setLayoutX(290);
 		wrongMessage.setLayoutY(405);
 		wrongMessage.setFont(font);
-		
-//		Image frameImage = new Image("/image/naruto/frame.png", 290, 50, true, true);
-//		frame = new ImageView(frameImage);
-//		frame2 = new ImageView(frameImage);
-//		
-//		frame.setLayoutX(335);
-//		frame.setLayoutY(160);
-//		
-//		frame2.setLayoutX(335);
-//		frame2.setLayoutY(220);
-		
+
+		// Image frameImage = new Image("/image/naruto/frame.png", 290, 50,
+		// true, true);
+		// frame = new ImageView(frameImage);
+		// frame2 = new ImageView(frameImage);
+		//
+		// frame.setLayoutX(335);
+		// frame.setLayoutY(160);
+		//
+		// frame2.setLayoutX(335);
+		// frame2.setLayoutY(220);
+
 		loginButton = new LoginAndRegisterButton();
 		loginButton.setGraphic(new ImageView(new Image("/image/naruto/login.png", 150, 66, true, true)));
 		loginButton.setPrefSize(70, 70);
 		loginButton.setLayoutX(250);
 		loginButton.setLayoutY(420);
-		
+
 		exitButton = new NarutoReturnButton();
-		
+
 		registerButton();
-		
+
 		addNodes();
-		
+
 	}
-	
-	
+
 	public void registerButton() {
-		
-//		exitButton.setOnMouseEntered(e -> {
-//			exitButton.setScaleX(1.3);
-//			exitButton.setScaleY(1.3);
-//		});
-//		
-//		exitButton.setOnMouseExited(e -> {
-//			exitButton.setScaleX(1.0);
-//			exitButton.setScaleY(1.0);
-//		});
-		
+
+		// exitButton.setOnMouseEntered(e -> {
+		// exitButton.setScaleX(1.3);
+		// exitButton.setScaleY(1.3);
+		// });
+		//
+		// exitButton.setOnMouseExited(e -> {
+		// exitButton.setScaleX(1.0);
+		// exitButton.setScaleY(1.0);
+		// });
+
 		exitButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
+			// System.out.println("OK");
 			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 		});
-		
+
 		loginButton.setOnAction(e -> {
 			User user;
 			String uid = userNameField.getText().trim();
 			String passwd = passwordField.getText().trim();
 			if (uid == null || uid.equals("")) {
 				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//				System.out.println("OK");
+				// System.out.println("OK");
 				audioClip.play();
 				wrongMessage.setText("用户名不能为空");
 			} else if (passwd == null || passwd.equals("")) {
 				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//				System.out.println("OK");
+				// System.out.println("OK");
 				audioClip.play();
 				wrongMessage.setText("密码不能为空");
 			} else {
@@ -220,7 +215,7 @@ public class NarutoLoginScene extends LoginScene {
 				}
 				if (hasSpace) {
 					AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//					System.out.println("OK");
+					// System.out.println("OK");
 					audioClip.play();
 					wrongMessage.setText("用户名不能含有空格");
 				} else {
@@ -230,25 +225,28 @@ public class NarutoLoginScene extends LoginScene {
 						UserBox.setUser(user);
 						// 转换到综合界面
 						AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//						System.out.println("OK");
+						// System.out.println("OK");
 						audioClip.play();
 						Config.getMain().setScene(Config.getTheme().getSynScene());
 					} catch (Exception q) {
 						String qErrorMessage = q.getMessage();
 
 						if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {
-							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//							System.out.println("OK");
+							AudioClip audioClip = new AudioClip(
+									Main.class.getResource("sound/warning.wav").toExternalForm());
+							// System.out.println("OK");
 							audioClip.play();
 							wrongMessage.setText("网络连接失败");
 						} else if (qErrorMessage.equals(User.HASNOTREGISTER)) {
-							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//							System.out.println("OK");
+							AudioClip audioClip = new AudioClip(
+									Main.class.getResource("sound/warning.wav").toExternalForm());
+							// System.out.println("OK");
 							audioClip.play();
 							wrongMessage.setText("尚未注册");
 						} else if (qErrorMessage.equals(User.WRONGPASSWORD)) {
-							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//							System.out.println("OK");
+							AudioClip audioClip = new AudioClip(
+									Main.class.getResource("sound/warning.wav").toExternalForm());
+							// System.out.println("OK");
 							audioClip.play();
 							wrongMessage.setText("密码错误");
 						} else {
@@ -259,10 +257,9 @@ public class NarutoLoginScene extends LoginScene {
 				}
 			}
 		});
-		
-		
+
 	}
-	
+
 	public void addNodes() {
 		((Pane) getRoot()).getChildren().add(frame1);
 		((Pane) getRoot()).getChildren().add(frame2);
@@ -275,9 +272,7 @@ public class NarutoLoginScene extends LoginScene {
 		((Pane) getRoot()).getChildren().add(exitButton);
 		((Pane) getRoot()).getChildren().add(loginButton);
 	}
-	
-	
-	
+
 	public static class LoginAndRegisterButton extends Button {
 
 		private DropShadow shadow;

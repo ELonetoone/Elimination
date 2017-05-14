@@ -12,10 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 
-public class MagicMaxMarkScene extends MaxMarkScene{
+public class MagicMaxMarkScene extends MaxMarkScene {
 
 	private static final int SCORE_LAYOUT_Y = Config.SCREEN_HEIGHT - 120;
-	
+
 	public MagicMaxMarkScene(Parent root, double width, double height, boolean depthBuffer,
 			SceneAntialiasing antiAliasing) {
 		super(root, width, height, depthBuffer, antiAliasing);
@@ -64,31 +64,31 @@ public class MagicMaxMarkScene extends MaxMarkScene{
 		ImageView backImg = new ImageView(MagicGirlTheme.MAX_SCORE_BACK_BUTTON);
 		backImg.setFitHeight(150);
 		backImg.setPreserveRatio(true);
-		
+
 		backBtn = new Button();
 		backBtn.setGraphic(backImg);
 		backBtn.setLayoutX(Config.SCREEN_WIDTH - 300);
 		backBtn.setLayoutY(Config.SCREEN_HEIGHT - 200);
-		((Pane)getRoot()).getChildren().add(backBtn);
+		((Pane) getRoot()).getChildren().add(backBtn);
 	}
 
 	private void createScore() {
-		
+
 		DynamicNumber stepScore = new DynamicNumber(5);
 		stepScore.initStepScore();
 		stepScore.setLayoutX(850);
 		stepScore.setLayoutY(SCORE_LAYOUT_Y);
-		
+
 		DynamicNumber endlessScore = new DynamicNumber(5);
 		endlessScore.initUnlimitedScore();
 		endlessScore.setLayoutX(350);
 		endlessScore.setLayoutY(SCORE_LAYOUT_Y);
-		
+
 		DynamicNumber timeScore = new DynamicNumber(5);
 		timeScore.initTimeScore();
 		timeScore.setLayoutX(600);
 		timeScore.setLayoutY(SCORE_LAYOUT_Y);
-		
-		((Pane)getRoot()).getChildren().addAll(stepScore, timeScore, endlessScore);
+
+		((Pane) getRoot()).getChildren().addAll(stepScore, timeScore, endlessScore);
 	}
 }

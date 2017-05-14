@@ -1,6 +1,5 @@
 package el.onetoone.ui.magicgirl;
 
-
 import el.onetoone.back.Config;
 import el.onetoone.ui.InitialScene;
 import javafx.geometry.Pos;

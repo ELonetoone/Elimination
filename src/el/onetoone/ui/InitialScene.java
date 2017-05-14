@@ -18,7 +18,7 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 public abstract class InitialScene extends Scene {
-	
+
 	public InitialScene(Parent root, double width, double height, boolean depthBuffer, SceneAntialiasing antiAliasing) {
 		super(root, width, height, depthBuffer, antiAliasing);
 		// TODO Auto-generated constructor stub
@@ -48,25 +48,25 @@ public abstract class InitialScene extends Scene {
 		super(root);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static int BUTTON_HIGHLIGHT_MILLS = 300;
-	
+
 	public InitButton exitButton;
-	
+
 	public InitButton loginButton;
-	
+
 	public InitButton registerButton;
-	
+
 	public InitButton trialButton;
-	
+
 	protected ImageView backgroud;
-	
+
 	public User user;
-	
+
 	public abstract Scene getInitialScene();
-	
-	public void createButton (int BUTTON_HEIGHT) {
-		
+
+	public void createButton(int BUTTON_HEIGHT) {
+
 		ImageView exitImg = new ImageView(Config.getTheme().getINIT_BUTTON_QUIT());
 		exitImg.setFitHeight(BUTTON_HEIGHT);
 		exitImg.setPreserveRatio(true);
@@ -98,39 +98,39 @@ public abstract class InitialScene extends Scene {
 		trialButton = new InitButton();
 		trialButton.setGraphic(trialImg);
 	}
-	
+
 	public void registerButtonEventHandler() {
-		
+
 		trialButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
 			System.out.println("OK");
 			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getSynScene());
 		});
-		
+
 		exitButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
+			// System.out.println("OK");
 			audioClip.play();
 			System.exit(0);
 		});
-		
+
 		registerButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
 			System.out.println("OK");
 			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getRegisterScene());
 		});
-		
+
 		loginButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
 			System.out.println("OK");
 			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getLoginScene());
 		});
-		
+
 	}
-	
+
 	public class InitButton extends Button {
 
 		private DropShadow shadow;

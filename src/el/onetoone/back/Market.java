@@ -4,16 +4,16 @@ import java.util.HashMap;
 
 /**
  * 市场类
- * @author iznauy
- * 工具类
+ * 
+ * @author iznauy 工具类
  */
 public class Market {
-	
+
 	/**
 	 * 存放商品列表（商品名-价格）
 	 */
 	private static HashMap<String, Integer> itemList = new HashMap<>();
-	
+
 	/**
 	 * 初始化商品列表
 	 */
@@ -28,9 +28,10 @@ public class Market {
 		itemList.put(ItemList.PLUSTHREESTEPS, 30000);
 		itemList.put(ItemList.PLUSFIVESTEPS, 50000);
 	}
-	
+
 	/**
 	 * 扣除金币
+	 * 
 	 * @param user
 	 * @param coin
 	 * @return 返回TRUE表示金币足够，购买成功
@@ -43,19 +44,22 @@ public class Market {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 购买商品
-	 * @param user 购买者
-	 * @param item 商品名称
+	 * 
+	 * @param user
+	 *            购买者
+	 * @param item
+	 *            商品名称
 	 * @return 购买成功返回TRUE，扣除相应金币，否则返回FALSE
 	 */
 	public static boolean buyItem(User user, String item) {
 		return deductCoin(user, itemList.get(item));
 	}
-	
+
 	public static HashMap<String, Integer> getItemList() {
 		return itemList;
 	}
-	
+
 }

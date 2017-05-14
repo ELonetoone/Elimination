@@ -4,3 +4,150 @@
 	-fx-border-color: transparent;
 	-fx-content-display: center;
 }
+
+.tooltip {
+	
+	-fx-background-color: transparent;
+}
+
+/* Other */
+
+
+.scroll-pane {
+
+	-fx-background-color: transparent; 
+
+    -fx-background-insets: 0.0;
+
+    -fx-padding: 0.0;
+
+}
+
+.scroll-pane > .viewport {  
+   -fx-background-color: transparent;
+}
+
+.scroll-pane:focused {
+
+    -fx-background-insets: 0.0;
+    -fx-background-color: transparent; 
+
+}
+
+
+
+.scroll-pane .corner {
+
+    -fx-background-insets: 0.0;
+-fx-background-color: transparent; 
+}
+
+
+
+/* The main scrollbar **track** CSS class  */
+
+.scroll_bar {
+	-fx-background-color: transparent;
+}
+
+
+.scroll-bar:horizontal .track,
+
+.scroll-bar:vertical .track{
+
+	-fx-background-color: transparent;
+
+	-fx-border-color: transparent;
+
+	-fx-background-radius: 0.0em;
+
+	-fx-border-radius:2.0em;
+
+}
+
+
+
+/* The increment and decrement button CSS class of scrollbar */
+
+.scroll-bar:horizontal .increment-button ,
+
+.scroll-bar:horizontal .decrement-button {
+
+    -fx-background-color:transparent;
+
+	-fx-background-radius: 0.0em;
+
+	-fx-padding:0.0 0.0 10.0 0.0;
+
+
+
+}
+
+
+
+/* The increment and decrement button CSS class of scrollbar */
+
+
+
+.scroll-bar:vertical .increment-button ,
+
+.scroll-bar:vertical .decrement-button {
+
+
+
+    -fx-background-color:transparent;
+
+	-fx-background-radius: 0.0em;
+
+	-fx-padding:0.0 10.0 0.0 0.0;
+
+
+
+}
+
+
+
+.scroll-bar .increment-arrow,
+
+.scroll-bar .decrement-arrow
+
+ {
+
+	-fx-shape: " ";	
+
+	-fx-padding:0.0;
+
+}
+
+
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+
+.scroll-bar:horizontal .thumb,
+
+.scroll-bar:vertical .thumb {
+
+    -fx-background-color: rgba(0.0,0.0,0.0,0.2);
+
+	-fx-background-insets: 2.0, 0.0, 0.0;
+
+	-fx-background-radius: 2.0em;
+
+
+
+}
+
+.label{  
+	-fx-background-color: transparent;
+	
+	-fx-text-fill: #86A1A6;
+
+	-fx-font-family: "Tsukushi B Round Gothic";
+
+	-fx-font-weight: 600;
+
+	-fx-font-size: 20;
+
+	-fx-alignment: center;
+
+}

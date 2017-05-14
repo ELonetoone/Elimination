@@ -148,6 +148,7 @@ abstract public class SyntheticModel extends Pane {
 			} else {
 				AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
 				audioClip.play();
+				Config.getMain().setScene(Config.getTheme().getMarketScene());
 			}
 		});
 

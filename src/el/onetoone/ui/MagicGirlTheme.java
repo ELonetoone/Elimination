@@ -3,6 +3,7 @@ package el.onetoone.ui;
 import el.onetoone.back.Config;
 import el.onetoone.ui.magicgirl.MagicInitialScene;
 import el.onetoone.ui.magicgirl.MagicLoginScene;
+import el.onetoone.ui.magicgirl.MagicMarketScene;
 import el.onetoone.ui.magicgirl.MagicMaxMarkScene;
 import el.onetoone.ui.magicgirl.MagicRegisterScene;
 import el.onetoone.ui.magicgirl.MagicSettingPane;
@@ -17,28 +18,30 @@ public class MagicGirlTheme extends Theme {
 
 	private static final int FRAME_LITTLE_WIDTH = 300;
 	private static final int FRAME_LITTLE_HEIGHT = 400;
-	public static final Image BG_GAME_ING = new Image("/image/bg_game_ing.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true);
+	public static final Image BG_GAME_ING = new Image("/image/bg_game_ing.png", Config.SCREEN_WIDTH,
+			Config.SCREEN_HEIGHT, true, false, true);
 	public static final Image MAX_SCORE_BACK_BUTTON = new Image("/image/max_score_back.png");
 
 	public MagicGirlTheme() {
-		
-		//set background
+
+		// set background
 		setBG_START(new Image("/image/bg_start.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, true, true));
 		setBG_GAME(new Image("/image/bg_game.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false, false, true));
 		setBG_SIGN(new Image("/image/bg_sign.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
-		setBG_HEIGHEST_SCORE(new Image("/image/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
-//		setBG_SHOP(new Image("/image/bg_shop.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+		setBG_HEIGHEST_SCORE(new Image("/image/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true,
+				false, true));
+		setBG_SHOP(new Image("/image/bg_shop.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
 		setBG_SETTING_PANE(new Image("/image/bg_setting_pane.png", true));
-		
-		//set diamond
+
+		// set diamond
 		setDIAMOND_ONE(new Image("/image/diamond_1.png"));
 		setDIAMOND_TWO(new Image("/image/diamond_2.png"));
 		setDIAMOND_THREE(new Image("/image/diamond_3.png"));
 		setDIAMOND_FOUR(new Image("/image/diamond_4.png"));
 		setDIAMOND_FIVE(new Image("/image/diamond_5.png"));
 		setDIAMOND_SIX(new Image("/image/diamond_6.png"));
-		
-		//set button
+
+		// set button
 		setBUTTON_BACK(new Image("/image/button_back.png"));
 		setBUTTON_GAME_EXIT(new Image("/image/button_game_exit.png"));
 		setBUTTON_GAME_RESTART(new Image("/image/button_restart.png"));
@@ -53,23 +56,24 @@ public class MagicGirlTheme extends Theme {
 		setBUTTON_KEJIN(new Image("/image/button_kejin.png"));
 		setBUTTON_HEIGHEST_SCORE(new Image("/image/button_heighest_score.png"));
 		setBUTTON_SHOP(new Image("/image/button_shop.png"));
-		
-		//设置初始界面的按钮
+
+		// 设置初始界面的按钮
 		setINIT_BUTTON_QUIT(new Image("/image/init_button_quit.png"));
 		setINIT_BUTTON_SIGN_IN(new Image("/image/init_button_signIn.png"));
 		setINIT_BUTTON_SIGN_UP(new Image("/image/init_button_signUp.png"));
 		setINIT_BUTTON_TRY(new Image("/image/init_button_try.png"));
-		
-		//set frame
+
+		// set frame
 		setFRAME_GAME(new Image("/image/frame_game.png", 900, 1000, true, false, true));
-		setFRAME_HIGHEST_SCORE(new Image("/image/frame_highest_score.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
+		setFRAME_HIGHEST_SCORE(
+				new Image("/image/frame_highest_score.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_MONEY(new Image("/image/frame_money.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_SIGN_IN(new Image("/image/frame_signIn.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_STEP(new Image("/image/frame_step.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
 		setFRAME_TIME(new Image("/image/frame_time.png", FRAME_LITTLE_WIDTH, FRAME_LITTLE_HEIGHT, true, false));
-		
+
 		setICON_INDEFINITE(new Image("/image/icon_indefinite.png"));
-		
+
 		for (int i = 0; i < nums.length; i++) {
 			nums[i] = new Image("/image/number_" + i + ".png");
 		}
@@ -106,7 +110,6 @@ public class MagicGirlTheme extends Theme {
 		return new MagicRegisterScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getRegisterScene();
 	}
 
-
 	@Override
 	public Scene getMaxMarkScene() {
 		// TODO Auto-generated method stub
@@ -117,7 +120,7 @@ public class MagicGirlTheme extends Theme {
 	@Override
 	public Scene getMarketScene() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MagicMarketScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getMarketScene();
 	}
 
 	@Override

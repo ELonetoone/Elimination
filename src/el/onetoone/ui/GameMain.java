@@ -73,7 +73,7 @@ public class GameMain extends Pane {
 		stepIndefiniteImg.setPreserveRatio(true);
 		stepIndefiniteImg.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 		stepIndefiniteImg.setLayoutY(FRAME_CONTENT_LAYOUT_Y + FRAMR_HEIGHT);
-		
+
 		if (mode == null) {
 			getChildren().addAll(timeIndefiniteImg, stepIndefiniteImg);
 			return;
@@ -101,7 +101,7 @@ public class GameMain extends Pane {
 			getChildren().addAll(timeIndefiniteImg, stepIndefiniteImg);
 			break;
 		}
-		
+
 		scoreText = new ContentText(diamondGrid, gamePanel);
 		scoreText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 		scoreText.setLayoutY(frameBox.getLayoutY() + FRAMR_HEIGHT * 3 + 30);
@@ -173,7 +173,7 @@ public class GameMain extends Pane {
 		frameBox.setLayoutX(170);
 		frameBox.setLayoutY(260);
 		getChildren().add(frameBox);
-		
+
 		buttonBox = new HBox(backBtn, restartBtn);
 		buttonBox.setLayoutX(Config.SCREEN_WIDTH - 250);
 		buttonBox.setLayoutY(Config.SCREEN_HEIGHT - 150);
@@ -228,24 +228,24 @@ public class GameMain extends Pane {
 		configButton.setLayoutY(10);
 		configButton.setOnAction(e -> {
 			Theme.setBlur(this);
-//			this.getChildren().add(new SettingPane());
+			// this.getChildren().add(new SettingPane());
 		});
-		
+
 		ImageView backImg = new ImageView(Config.getTheme().getBUTTON_BACK());
 		backImg.setFitWidth(BUTTON_WIDTH);
 		backImg.setPreserveRatio(true);
-		
+
 		backBtn = new Button();
 		backBtn.setGraphic(backImg);
 		backBtn.setOnAction(e -> {
 			gamePanel.gameOver();
 			Config.getMain().setScene(Config.getTheme().getSynScene());
 		});
-		
+
 		ImageView restartImg = new ImageView(Config.getTheme().getBUTTON_GAME_RESTART());
 		restartImg.setFitWidth(BUTTON_WIDTH);
 		restartImg.setPreserveRatio(true);
-		
+
 		restartBtn = new Button();
 		restartBtn.setGraphic(restartImg);
 		restartBtn.setOnAction(e -> {

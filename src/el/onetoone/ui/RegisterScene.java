@@ -1,6 +1,5 @@
 package el.onetoone.ui;
 
-
 import el.onetoone.back.Config;
 import el.onetoone.back.User;
 import el.onetoone.back.UserBox;
@@ -48,57 +47,57 @@ public abstract class RegisterScene extends Scene {
 		super(root, width, height, depthBuffer, antiAliasing);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public abstract Scene getRegisterScene();
-	
+
 	public Button sureButton;
-	
+
 	public Button returnButton;
-	
+
 	public Text wrongMessage;
-	
+
 	public TextField userName;
-	
+
 	public PasswordField passwordField;
-	
+
 	public PasswordField confirmField;
-	
+
 	public ImageView background;
-	
+
 	public void createItems() {
-		
+
 		sureButton = new Button();
-		
+
 		returnButton = new Button();
-		
+
 		wrongMessage = new Text();
-		
+
 		userName = new TextField();
-		
+
 		passwordField = new PasswordField();
-		
+
 		confirmField = new PasswordField();
-		
+
 	}
-	
+
 	public void setBackground() {
-		
+
 		background = new ImageView(Config.getTheme().getBG_SIGN());
 		background.setFitWidth(Config.SCREEN_WIDTH);
 		background.setPreserveRatio(true);
 		((Pane) getRoot()).getChildren().add(background);
-		
+
 	}
-	
+
 	public void registerListener() {
-		
+
 		returnButton.setOnAction(e -> {
 			AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//			System.out.println("OK");
+			// System.out.println("OK");
 			audioClip.play();
 			Config.getMain().setScene(Config.getTheme().getInitialScene());
 		});
-		
+
 		sureButton.setOnAction(p -> {
 			User user;
 			String uid = userName.getText().trim();
@@ -127,7 +126,7 @@ public abstract class RegisterScene extends Scene {
 				}
 				if (hasSpace) {
 					AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//					System.out.println("OK");
+					// System.out.println("OK");
 					audioClip.play();
 					wrongMessage.setText("用户名不能含有空格");
 				} else {
@@ -136,20 +135,22 @@ public abstract class RegisterScene extends Scene {
 						UserBox.setUser(user);
 						// 转跳到综合界面
 						AudioClip audioClip = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());
-//						System.out.println("OK");
+						// System.out.println("OK");
 						audioClip.play();
 						Config.getMain().setScene(Config.getTheme().getSynScene());
 					} catch (Exception q) {
 						String qErrorMessage = q.getMessage();
 						if (qErrorMessage.equals(User.FAILTOCONNECTDATABASE)) {
-							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//							System.out.println("OK");
+							AudioClip audioClip = new AudioClip(
+									Main.class.getResource("sound/warning.wav").toExternalForm());
+							// System.out.println("OK");
 							audioClip.play();
 							wrongMessage.setText("网络连接失败");
-							
+
 						} else if (qErrorMessage.equals(User.HASBEENREGISTERED)) {
-							AudioClip audioClip = new AudioClip(Main.class.getResource("sound/warning.wav").toExternalForm());
-//							System.out.println("OK");
+							AudioClip audioClip = new AudioClip(
+									Main.class.getResource("sound/warning.wav").toExternalForm());
+							// System.out.println("OK");
 							audioClip.play();
 							wrongMessage.setText("用户名已被注册");
 						} else {
@@ -161,6 +162,5 @@ public abstract class RegisterScene extends Scene {
 
 		});
 	}
-	
 
 }

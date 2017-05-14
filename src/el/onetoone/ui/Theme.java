@@ -11,16 +11,30 @@ import javafx.scene.media.MediaPlayer;
 public abstract class Theme {
 
 	public static final Image SYSTEM_BUTTON_EXIT = new Image("image/system_button_exit.png");
-	// public static final Image SYSTEM_BUTTON_PAUSE = new
 	// Image("/image/system_button_pause.png");
 	public static final Image SYSTEM_BUTTON_CONFIG = new Image("image/system_button_config.png");
 	public static final Image IMAGE_MONEY = new Image("/image/icon_money.png");
 	public static final Image PROPS_HAMMER = new Image("/image/props_hammer.png");
 	public static final Image PROPS_NEW_MAP = new Image("/image/props_new_map.png");
 	public static final Image PROPS_BOOM = new Image("/image/props_boom.png");
+	public static final Image PROPS_FIVE_STEP = new Image("/image/props_five_step.png");
+	public static final Image PROPS_THREE_STEP = new Image("/image/props_three_step.png");
+	public static final Image PROPS_ONE_STEP = new Image("/image/props_one_step.png");
+	public static final Image PROPS_PLUS_FIVE_S = new Image("/image/props_five_s.png");
+	public static final Image PROPS_PLUS_THREE_S = new Image("image/props_three_s.png");
+	public static final Image PROPS_PLUS_ONE_S = new Image("image/props_plus_1s.png");
 	public static final Image BG_SHOP_PANEL = new Image("/image/bg_shop_panel.png", true);
+	public static final Image SHOP_KEJIN_BUTTON = new Image("/image/shop_kejin_button.png");
+	public static final Image TIP_HAMMER = new Image("/image/tip_hammer.png");
+	public static final Image TIP_NEW_MAP = new Image("/image/tip_new_map.png");
+	public static final Image TIP_BOOM = new Image("/image/tip_boom.png");
+	public static final Image TIP_FIVE_STEP = new Image("/image/tip_five_step.png");
+	public static final Image TIP_THREE_STEP = new Image("/image/tip_three_step.png");
+	public static final Image TIP_ONE_STEP = new Image("/image/tip_one_step.png");
+	public static final Image TIP_PLUS_FIVE_S = new Image("/image/tip_plus_5s.png");
+	public static final Image TIP_PLUS_THREE_S = new Image("image/tip_plus_3s.png");
+	public static final Image TIP_PLUS_ONE_S = new Image("image/tip_plus_1s.png");
 
-	
 	protected Image ICON_INDEFINITE;
 
 	// backgroud image
@@ -70,7 +84,7 @@ public abstract class Theme {
 	protected Image FRAME_TIME;
 	protected Image FRAME_GAME;
 	protected Image FRAME_HIGHEST_SCORE;
-	
+
 	protected Image[] nums = new Image[10];
 
 	protected MediaPlayer bgmPlayer;
@@ -381,7 +395,7 @@ public abstract class Theme {
 	public void setINIT_BUTTON_TRY(Image iNIT_BUTTON_TRY) {
 		INIT_BUTTON_TRY = iNIT_BUTTON_TRY;
 	}
-	
+
 	public Image getICON_INDEFINITE() {
 		return ICON_INDEFINITE;
 	}

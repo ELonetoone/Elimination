@@ -6,17 +6,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class DynamicNumber extends HBox{
+public class DynamicNumber extends HBox {
 
-//	private static final int NUMBER_CHANGE_MILLS = 100;
-	
+	// private static final int NUMBER_CHANGE_MILLS = 100;
+
 	private int bits;
 	private Image[] numImgs;
 	private ImageView[] numImgViews;
 	private String score;
-	
+
 	public DynamicNumber(int bits) {
-		
+
 		setSpacing(5);
 		numImgs = Config.getTheme().getNums();
 		this.bits = bits;
@@ -26,32 +26,32 @@ public class DynamicNumber extends HBox{
 			numImgViews[i].setFitWidth(25);
 			numImgViews[i].setFitHeight(35);
 		}
-		
+
 		for (int i = 0; i < bits; i++) {
 			getChildren().add(numImgViews[i]);
 		}
 	}
-	
+
 	public void initUnlimitedScore() {
 		score = UserBox.getUser().getendLessMaxMark() + "";
 		parseScore();
 	}
-	
+
 	public void initStepScore() {
 		score = UserBox.getUser().getStepLimitedMaxMark() + "";
 		parseScore();
 	}
-	
+
 	public void initTimeScore() {
 		score = UserBox.getUser().getTimeLimitedMaxMark() + "";
 		parseScore();
 	}
-	
+
 	private void parseScore() {
-		
+
 		for (int i = 0; i < score.length(); i++) {
 			numImgViews[bits - i - 1].setImage(numImgs[score.charAt(score.length() - 1 - i) - '0']);
 		}
 	}
-	
+
 }

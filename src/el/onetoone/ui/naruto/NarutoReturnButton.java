@@ -6,9 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 /**
- * 火影返回按钮，默认放置在1150 30位置
- * 鼠标放上去自动变大，移开自动变小
- * 应该会在多个界面用到
+ * 火影返回按钮，默认放置在1150 30位置 鼠标放上去自动变大，移开自动变小 应该会在多个界面用到
+ * 
  * @author iznauy
  *
  */
@@ -28,7 +27,7 @@ public class NarutoReturnButton extends Button {
 		super(text, graphic);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void init() {
 		this.setGraphic(new ImageView(Config.getTheme().getBUTTON_BACK()));
 		this.setLayoutX(1150);
@@ -37,13 +36,11 @@ public class NarutoReturnButton extends Button {
 			this.setScaleX(1.3);
 			this.setScaleY(1.3);
 		});
-		
+
 		this.setOnMouseExited(e -> {
 			this.setScaleX(1.0);
 			this.setScaleY(1.0);
 		});
 	}
-	
-	
 
 }

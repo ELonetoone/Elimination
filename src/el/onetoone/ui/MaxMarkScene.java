@@ -9,11 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 
-public abstract class MaxMarkScene extends Scene{
+public abstract class MaxMarkScene extends Scene {
 
 	protected Button backBtn;
 	private ImageView background;
-	
+
 	public MaxMarkScene(Parent root, double width, double height, boolean depthBuffer, SceneAntialiasing antiAliasing) {
 		super(root, width, height, depthBuffer, antiAliasing);
 		// TODO Auto-generated constructor stub
@@ -45,16 +45,17 @@ public abstract class MaxMarkScene extends Scene{
 	}
 
 	public abstract Scene getMaxMarkScene();
+
 	public abstract void createButton();
-	
+
 	protected void createBackground() {
-		
+
 		background = new ImageView(Config.getTheme().getBG_HEIGHEST_SCORE());
-		((Pane)getRoot()).getChildren().add(background);
+		((Pane) getRoot()).getChildren().add(background);
 	}
-	
+
 	protected void addButtonListener() {
-		
+
 		backBtn.setOnAction(e -> {
 			Config.getMain().setScene(Config.getTheme().getSynScene());
 		});

@@ -86,11 +86,11 @@ public class MagicLoginScene extends LoginScene {
 
 		wrongMessage.setLayoutX(650);
 		wrongMessage.setLayoutY(530);
-		
+
 		Font font = Font.loadFont(Main.class.getResource("font/magic.ttf").toExternalForm(), 25);
 		wrongMessage.setFont(font);
 		userNameField.setFont(font);
-		
+
 		((Pane) getRoot()).getChildren().add(wrongMessage);
 		registerListener();
 	}

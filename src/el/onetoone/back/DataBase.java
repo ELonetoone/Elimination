@@ -7,27 +7,29 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 /**
- * 用于操控数据库
- * 主要是懒得再大规模改动了。。干脆改成互联网版本。。
+ * 用于操控数据库 主要是懒得再大规模改动了。。干脆改成互联网版本。。
+ * 
  * @author iznauy
  *
  */
 public class DataBase {
-	
+
 	private File dataBase = new File("db/database");
-	
+
 	/**
 	 * 改变数据库源 （感觉不会用到QAQ）
-	 * @param dataBase 数据库文件的路径
+	 * 
+	 * @param dataBase
+	 *            数据库文件的路径
 	 */
 	public void setDataBase(File dataBase) {
 		this.dataBase = dataBase;
 	}
-	
+
 	/**
 	 * 如果第一次使用，初始化文件
+	 * 
 	 * @throws IOException
 	 */
 	public void init() throws IOException {
@@ -38,10 +40,11 @@ public class DataBase {
 
 	/**
 	 * 读取数据库中所有信息
+	 * 
 	 * @return 数据库中所有信息，每个条目都是一个字符串
 	 */
 	public ArrayList<String> read() {
-		ArrayList<String> objectsInfo = new ArrayList<>(); 
+		ArrayList<String> objectsInfo = new ArrayList<>();
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(dataBase))) {
 			String objectInfo = null;
 			while ((objectInfo = bufferedReader.readLine()) != null) {
@@ -52,9 +55,10 @@ public class DataBase {
 		}
 		return objectsInfo;
 	}
-	
+
 	/**
 	 * 批量写入数据，覆盖原有数据
+	 * 
 	 * @param objects
 	 * @return
 	 */
@@ -62,7 +66,7 @@ public class DataBase {
 		try {
 			init();
 			FileWriter fileWriter = new FileWriter(dataBase);
-			for (String object: objects) {
+			for (String object : objects) {
 				fileWriter.write(object);
 			}
 			fileWriter.close();
@@ -72,9 +76,10 @@ public class DataBase {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 以追加模式入单条数据
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -90,5 +95,5 @@ public class DataBase {
 		}
 		return true;
 	}
-	
+
 }
