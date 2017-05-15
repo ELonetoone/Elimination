@@ -176,6 +176,7 @@ public abstract class GameMain extends Pane {
 		backBtn.setOnAction(e -> {
 			gamePanel.gameOver();
 			Config.getMain().setScene(Config.getTheme().getSynScene());
+			Config.getTheme().initBGM();
 		});
 
 		ImageView restartImg = new ImageView(Config.getTheme().getBUTTON_GAME_RESTART());

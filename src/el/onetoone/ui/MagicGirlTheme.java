@@ -81,7 +81,23 @@ public class MagicGirlTheme extends Theme {
 
 	@Override
 	public void initBGM() {
+		
+		if (bgmPlayer != null) {
+			bgmPlayer.stop();
+		}
 		bgmPlayer = new MediaPlayer(Config.BGM_MAGIC);
+		bgmPlayer.setAutoPlay(false);
+		bgmPlayer.setCycleCount(Animation.INDEFINITE);
+		bgmPlayer.play();
+	}
+	
+	@Override
+	public void playGamingBGM() {
+		
+		if (bgmPlayer != null) {
+			bgmPlayer.stop();
+		}
+		bgmPlayer = new MediaPlayer(Config.BGM_MAGIC_GAMING);
 		bgmPlayer.setAutoPlay(false);
 		bgmPlayer.setCycleCount(Animation.INDEFINITE);
 		bgmPlayer.play();

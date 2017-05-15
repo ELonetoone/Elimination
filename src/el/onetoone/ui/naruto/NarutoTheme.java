@@ -64,7 +64,22 @@ public class NarutoTheme extends Theme {
 	@Override
 	public void initBGM() {
 		
+		if (bgmPlayer != null) {
+			bgmPlayer.stop();
+		}
 		bgmPlayer = new MediaPlayer(Config.BGM_NARUTO);
+		bgmPlayer.setAutoPlay(false);
+		bgmPlayer.setCycleCount(Animation.INDEFINITE);
+		bgmPlayer.play();
+	}
+	
+	@Override
+	public void playGamingBGM() {
+		// TODO Auto-generated method stub
+		if (bgmPlayer != null) {
+			bgmPlayer.stop();
+		}
+		bgmPlayer = new MediaPlayer(Config.BGM_NARUTO_GAMING);
 		bgmPlayer.setAutoPlay(false);
 		bgmPlayer.setCycleCount(Animation.INDEFINITE);
 		bgmPlayer.play();

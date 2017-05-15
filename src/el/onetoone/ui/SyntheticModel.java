@@ -265,6 +265,7 @@ abstract public class SyntheticModel extends Pane {
 			} else {
 				gameMain = new NarutoGameMain(mode);
 			}
+			Config.getTheme().playGamingBGM();
 			this.getChildren().add(gameMain);
 		});
 
@@ -279,6 +280,7 @@ abstract public class SyntheticModel extends Pane {
 			} else {
 				gameMain = new NarutoGameMain(mode);
 			}
+			Config.getTheme().playGamingBGM();
 			this.getChildren().add(gameMain);
 
 		});
@@ -294,6 +296,7 @@ abstract public class SyntheticModel extends Pane {
 			} else {
 				gameMain = new NarutoGameMain(mode);
 			}
+			Config.getTheme().playGamingBGM();
 			this.getChildren().add(gameMain);
 		});
 

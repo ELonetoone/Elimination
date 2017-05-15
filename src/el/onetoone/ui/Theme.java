@@ -100,11 +100,12 @@ public abstract class Theme {
 
 	// 播放背景音乐
 	abstract public void initBGM();
-
+	abstract public void playGamingBGM();
+	
 	public MediaPlayer getBGMPlayer() {
 		return bgmPlayer;
 	}
-
+	
 	public static void setBlur(Group root) {
 
 		for (Node node : root.getChildren()) {
