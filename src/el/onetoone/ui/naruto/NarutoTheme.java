@@ -53,6 +53,7 @@ public class NarutoTheme extends Theme {
 		setINIT_BUTTON_SIGN_UP(new Image("/image/naruto/init_game_signUp.png"));
 		setINIT_BUTTON_TRY(new Image("/image/naruto/init_game_try.png"));
 
+		setICON_INDEFINITE(new Image("/image/naruto/icon_indefinite.png"));
 		// set frame
 		// setFRAME_GAME(new Image("/image/naruto/frame_game.png"));
 		// setFRAME_HIGHEST_SCORE(new

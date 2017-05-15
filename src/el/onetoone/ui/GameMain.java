@@ -36,6 +36,7 @@ public abstract class GameMain extends Pane {
 	protected Props propsBoom, propsHammer, propsNewMap, propsOneStep, propsThreeStep, propsFiveStep, propsOneSec,
 			propsThreeSec, propsFiveSec;
 	protected ImageView timeIndefiniteImg, stepIndefiniteImg;
+	protected Label money;
 	protected Button backBtn, restartBtn;
 	protected VBox frameBox;
 	protected HBox buttonBox;
@@ -62,12 +63,59 @@ public abstract class GameMain extends Pane {
 		createProps();
 		layoutProps();
 		createFrameContent();
+		layFrameContent();
 	}
 
-	protected abstract void createFrameContent();
+	protected void createFrameContent() {
+		
+		
+		money = new Label(UserBox.getUser() == null ? "0" : UserBox.getUser().getCoinCount() + "");
+		getChildren().add(money);
+		
+		timeIndefiniteImg = new ImageView(Config.getTheme().getICON_INDEFINITE());
+		timeIndefiniteImg.setFitHeight(FRAMR_HEIGHT - 50);
+		timeIndefiniteImg.setPreserveRatio(true);
+		
+
+		stepIndefiniteImg = new ImageView(Config.getTheme().getICON_INDEFINITE());
+		stepIndefiniteImg.setFitHeight(FRAMR_HEIGHT - 50);
+		stepIndefiniteImg.setPreserveRatio(true);
+		
+
+		if (mode == null) {
+			getChildren().addAll(timeIndefiniteImg, stepIndefiniteImg);
+			return;
+		}
+		switch (mode) {
+		case SyntheticModel.TIMELIMITED:
+			getChildren().add(stepIndefiniteImg);
+			timeText = new ContentText(diamondGrid, gamePanel);
+			timeText.bindTime();
+			
+			getChildren().add(timeText);
+			break;
+
+		case SyntheticModel.STEPLIMITED:
+			getChildren().add(timeIndefiniteImg);
+			stepText = new ContentText(diamondGrid, gamePanel);
+			stepText.bindStep();
+			
+			getChildren().add(stepText);
+			break;
+
+		case SyntheticModel.UNLIMITE:
+			getChildren().addAll(timeIndefiniteImg, stepIndefiniteImg);
+			break;
+		}
+
+		scoreText = new ContentText(diamondGrid, gamePanel);
+		scoreText.bindGrade();
+
+		getChildren().add(scoreText);
+	}
 
 	protected abstract void layoutProps();
-
+	protected abstract void layFrameContent();
 	protected abstract void addFrameAndButton();
 
 	private void createProps() {

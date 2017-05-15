@@ -18,55 +18,28 @@ public class MagicGameMain extends GameMain{
 	}
 
 	@Override
-	protected void createFrameContent() {
+	protected void layFrameContent() {
 		// TODO Auto-generated method stub
-		
-		timeIndefiniteImg = new ImageView(Config.getTheme().getICON_INDEFINITE());
-		timeIndefiniteImg.setFitHeight(FRAMR_HEIGHT - 50);
-		timeIndefiniteImg.setPreserveRatio(true);
 		timeIndefiniteImg.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 		timeIndefiniteImg.setLayoutY(FRAME_CONTENT_LAYOUT_Y);
-
-		stepIndefiniteImg = new ImageView(Config.getTheme().getICON_INDEFINITE());
-		stepIndefiniteImg.setFitHeight(FRAMR_HEIGHT - 50);
-		stepIndefiniteImg.setPreserveRatio(true);
+		
 		stepIndefiniteImg.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 		stepIndefiniteImg.setLayoutY(FRAME_CONTENT_LAYOUT_Y + FRAMR_HEIGHT);
-
-		if (mode == null) {
-			getChildren().addAll(timeIndefiniteImg, stepIndefiniteImg);
-			return;
-		}
-		switch (mode) {
-		case SyntheticModel.TIMELIMITED:
-			getChildren().add(stepIndefiniteImg);
-			timeText = new ContentText(diamondGrid, gamePanel);
-			timeText.bindTime();
+		
+		if (timeText != null) {
 			timeText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 			timeText.setLayoutY(FRAME_CONTENT_LAYOUT_Y + 50);
-			getChildren().add(timeText);
-			break;
-
-		case SyntheticModel.STEPLIMITED:
-			getChildren().add(timeIndefiniteImg);
-			stepText = new ContentText(diamondGrid, gamePanel);
-			stepText.bindStep();
+		}
+		if (stepText != null) {
 			stepText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
 			stepText.setLayoutY(FRAME_CONTENT_LAYOUT_Y + FRAMR_HEIGHT + 50);
-			getChildren().add(stepText);
-			break;
-
-		case SyntheticModel.UNLIMITE:
-			getChildren().addAll(timeIndefiniteImg, stepIndefiniteImg);
-			break;
 		}
-
-		scoreText = new ContentText(diamondGrid, gamePanel);
+		
+		money.setLayoutX(FRAME_CONTENT_LAYOUT_X);
+		money.setLayoutY(FRAME_CONTENT_LAYOUT_Y + FRAMR_HEIGHT * 2 + 30);
+		
 		scoreText.setLayoutX(FRAME_CONTENT_LAYOUT_X);
-		scoreText.setLayoutY(frameBox.getLayoutY() + FRAMR_HEIGHT * 3 + 30);
-		scoreText.bindGrade();
-
-		getChildren().add(scoreText);
+		scoreText.setLayoutY(FRAME_CONTENT_LAYOUT_Y + FRAMR_HEIGHT * 3 + 30);
 	}
 
 	@Override

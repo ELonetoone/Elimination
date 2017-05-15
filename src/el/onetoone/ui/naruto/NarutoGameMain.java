@@ -16,9 +16,28 @@ public class NarutoGameMain extends GameMain{
 	}
 
 	@Override
-	protected void createFrameContent() {
+	protected void layFrameContent() {
 		// TODO Auto-generated method stub
+		timeIndefiniteImg.setLayoutX(Config.SCREEN_WIDTH - 200);
+		timeIndefiniteImg.setLayoutY(230);
 		
+		stepIndefiniteImg.setLayoutX(Config.SCREEN_WIDTH - 200);
+		stepIndefiniteImg.setLayoutY(410);
+		
+		if (timeText != null) {
+			timeText.setLayoutX(Config.SCREEN_WIDTH - 150);
+			timeText.setLayoutY(275);
+		}
+		if (stepText != null) {
+			stepText.setLayoutX(Config.SCREEN_WIDTH - 150);
+			stepText.setLayoutY(460);
+		}
+		
+		money.setLayoutX(90);
+		money.setLayoutY(Config.SCREEN_HEIGHT - 100);
+		
+		scoreText.setLayoutX(Config.SCREEN_WIDTH - 135);
+		scoreText.setLayoutY(Config.SCREEN_HEIGHT - 90);
 	}
 
 	@Override
