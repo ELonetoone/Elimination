@@ -32,7 +32,6 @@ public class MagicGirlTheme extends Theme {
 		setBG_HEIGHEST_SCORE(new Image("/image/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true,
 				false, true));
 		setBG_SHOP(new Image("/image/bg_shop.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
-		setBG_SETTING_PANE(new Image("/image/bg_setting_pane.png", true));
 
 		// set diamond
 		setDIAMOND_ONE(new Image("/image/diamond_1.png"));
@@ -81,12 +80,9 @@ public class MagicGirlTheme extends Theme {
 	}
 
 	@Override
-	public void playBGM() {
-		// TODO Auto-generated method stub
-		String source = getClass().getResource("/image/bgm_magic.mp3").toExternalForm();
-		Media bgm = new Media(source);
-		bgmPlayer = new MediaPlayer(bgm);
-		bgmPlayer.setAutoPlay(true);
+	public void initBGM() {
+		bgmPlayer = new MediaPlayer(Config.BGM_MAGIC);
+		bgmPlayer.setAutoPlay(false);
 		bgmPlayer.setCycleCount(Animation.INDEFINITE);
 		bgmPlayer.play();
 	}

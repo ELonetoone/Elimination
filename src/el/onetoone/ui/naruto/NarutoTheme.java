@@ -3,9 +3,12 @@ package el.onetoone.ui.naruto;
 import el.onetoone.back.Config;
 import el.onetoone.ui.Theme;
 import el.onetoone.ui.magicgirl.MagicSettingPane;
+import javafx.animation.Animation;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class NarutoTheme extends Theme {
 
@@ -61,9 +64,12 @@ public class NarutoTheme extends Theme {
 	}
 
 	@Override
-	public void playBGM() {
-		// TODO Auto-generated method stub
-
+	public void initBGM() {
+		
+		bgmPlayer = new MediaPlayer(Config.BGM_NARUTO);
+		bgmPlayer.setAutoPlay(false);
+		bgmPlayer.setCycleCount(Animation.INDEFINITE);
+		bgmPlayer.play();
 	}
 
 	@Override

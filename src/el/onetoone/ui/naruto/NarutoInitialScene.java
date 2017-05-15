@@ -45,7 +45,7 @@ public class NarutoInitialScene extends InitialScene {
 
 	@Override
 	public Scene getInitialScene() {
-		// TODO Auto-generated method stub
+		
 		getStylesheets().add(InitialView.class.getResource("initialView.css").toExternalForm());
 		createButton(60);
 		registerButtonEventHandler();

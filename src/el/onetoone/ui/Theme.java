@@ -15,6 +15,8 @@ public abstract class Theme {
 	// Image("/image/system_button_pause.png");
 	public static final Image SYSTEM_BUTTON_CONFIG = new Image("image/system_button_config.png");
 	public static final Image IMAGE_MONEY = new Image("/image/icon_money.png");
+	
+	//道具图片
 	public static final Image PROPS_HAMMER = new Image("/image/props_hammer.png");
 	public static final Image PROPS_NEW_MAP = new Image("/image/props_new_map.png");
 	public static final Image PROPS_BOOM = new Image("/image/props_boom.png");
@@ -26,6 +28,8 @@ public abstract class Theme {
 	public static final Image PROPS_PLUS_ONE_S = new Image("image/props_plus_1s.png");
 	public static final Image BG_SHOP_PANEL = new Image("/image/bg_shop_panel.png", true);
 	public static final Image SHOP_KEJIN_BUTTON = new Image("/image/shop_kejin_button.png");
+	
+	//提示图片
 	public static final Image TIP_HAMMER = new Image("/image/tip_hammer.png");
 	public static final Image TIP_NEW_MAP = new Image("/image/tip_new_map.png");
 	public static final Image TIP_BOOM = new Image("/image/tip_boom.png");
@@ -36,6 +40,11 @@ public abstract class Theme {
 	public static final Image TIP_PLUS_THREE_S = new Image("image/tip_plus_3s.png");
 	public static final Image TIP_PLUS_ONE_S = new Image("image/tip_plus_1s.png");
 	
+	//设置按钮图片
+	public static final Image SETTING_NARUTO = new Image("/image/setting_naruto.png");
+	public static final Image SETTING_MAGIC = new Image("/image/setting_magic.png");
+	public static final Image SETTING_PANE = new Image("/image/bg_setting_pane.png", true);
+	
 	protected Image ICON_INDEFINITE;
 
 	// backgroud image
@@ -43,7 +52,6 @@ public abstract class Theme {
 	protected Image BG_GAME;
 	protected Image BG_SIGN;
 	protected Image BG_HEIGHEST_SCORE;
-	protected Image BG_SETTING_PANE;
 	protected Image BG_SHOP;
 
 	// diamond
@@ -91,7 +99,7 @@ public abstract class Theme {
 	protected MediaPlayer bgmPlayer;
 
 	// 播放背景音乐
-	abstract public void playBGM();
+	abstract public void initBGM();
 
 	public MediaPlayer getBGMPlayer() {
 		return bgmPlayer;
@@ -435,14 +443,6 @@ public abstract class Theme {
 
 	public void setNums(Image[] nums) {
 		this.nums = nums;
-	}
-
-	public Image getBG_SETTING_PANE() {
-		return BG_SETTING_PANE;
-	}
-
-	public void setBG_SETTING_PANE(Image bG_SETTING_PANE) {
-		BG_SETTING_PANE = bG_SETTING_PANE;
 	}
 
 	public Image getBG_SHOP() {

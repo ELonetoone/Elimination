@@ -19,8 +19,8 @@ public class Main extends Application {
 		Scene initialPanel = new MagicGirlTheme().getInitialScene();
 
 		stage.setScene(initialPanel);
-
-		Config.getTheme().playBGM();
+		
+		Config.getTheme().initBGM();
 
 		primaryStage.setTitle("氪金消消乐");
 		primaryStage.initStyle(StageStyle.UNDECORATED);

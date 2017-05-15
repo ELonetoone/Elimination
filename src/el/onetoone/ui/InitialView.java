@@ -73,7 +73,7 @@ public class InitialView extends Application {
 		primaryStage.setScene(initialScene);
 
 		// 方背景音乐
-		Config.getTheme().playBGM();
+		Config.getTheme().initBGM();
 
 		primStage = primaryStage;
 		primaryStage.show();
