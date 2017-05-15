@@ -1,6 +1,8 @@
 package el.onetoone.ui;
 
+import el.onetoone.back.Config;
 import el.onetoone.back.Point;
+import el.onetoone.ui.naruto.NarutoTheme;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -115,6 +117,9 @@ public class DiamondCircle extends ImageView {
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME / 2), new KeyValue(this.scaleXProperty(), 1.2)),
 				new KeyFrame(Duration.millis(FADETRANSITIONTIME / 2), new KeyValue(this.scaleYProperty(), 1.2)));
 		result.getChildren().addAll(fade, reduce);
+		if (Config.getTheme() instanceof NarutoTheme) {
+			result.getChildren().add(rotateTransition);
+		}
 
 		return result;
 	}
@@ -136,10 +141,12 @@ public class DiamondCircle extends ImageView {
 		appear.setToValue(1.0);
 		appear.setCycleCount(1);
 
-		// RotateTransition rotateTransition = new
-		// RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
-		// rotateTransition.setByAngle(-360);
+		RotateTransition rotateTransition = new RotateTransition(Duration.millis(FADETRANSITIONTIME), this);
+		rotateTransition.setByAngle(-360);
 
+		if (Config.getTheme() instanceof NarutoTheme) {
+			result.getChildren().add(rotateTransition);
+		}
 		result.getChildren().addAll(appear);
 
 		return result;

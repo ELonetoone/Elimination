@@ -46,10 +46,9 @@
 
 /* The main scrollbar **track** CSS class  */
 
-.scroll_bar {
+.scroll-bar {
 	-fx-background-color: transparent;
 }
-
 
 .scroll-bar:horizontal .track,
 

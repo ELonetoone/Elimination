@@ -6,6 +6,8 @@ import java.util.Random;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.UserBox;
+import el.onetoone.ui.magicgirl.MagicGameMain;
+import el.onetoone.ui.naruto.NarutoGameMain;
 import el.onetoone.ui.shop.MarketPanel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -258,7 +260,11 @@ abstract public class SyntheticModel extends Pane {
 			wrongMessage.setText("");
 			mode = UNLIMITE;
 			// 然后传递mode到主游戏界面
-			gameMain = new GameMain(mode);
+			if (Config.getTheme() instanceof MagicGirlTheme) {
+				gameMain = new MagicGameMain(mode);
+			} else {
+				gameMain = new NarutoGameMain(mode);
+			}
 			this.getChildren().add(gameMain);
 		});
 
@@ -268,7 +274,11 @@ abstract public class SyntheticModel extends Pane {
 			wrongMessage.setText("");
 			mode = TIMELIMITED;
 			// 然后传递mode到主游戏界面
-			gameMain = new GameMain(mode);
+			if (Config.getTheme() instanceof MagicGirlTheme) {
+				gameMain = new MagicGameMain(mode);
+			} else {
+				gameMain = new NarutoGameMain(mode);
+			}
 			this.getChildren().add(gameMain);
 
 		});
@@ -279,7 +289,11 @@ abstract public class SyntheticModel extends Pane {
 			wrongMessage.setText("");
 			mode = STEPLIMITED;
 			// 然后传递mode到主游戏界面
-			gameMain = new GameMain(mode);
+			if (Config.getTheme() instanceof MagicGirlTheme) {
+				gameMain = new MagicGameMain(mode);
+			} else {
+				gameMain = new NarutoGameMain(mode);
+			}
 			this.getChildren().add(gameMain);
 		});
 

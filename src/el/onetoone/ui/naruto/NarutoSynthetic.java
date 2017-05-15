@@ -109,6 +109,8 @@ public class NarutoSynthetic extends SyntheticModel {
 		modeButtonBox.setLayoutX(400);
 		modeButtonBox.setLayoutY(250);
 		getChildren().add(modeButtonBox);
+		
+		registerModeButtonListener();
 	}
 
 }

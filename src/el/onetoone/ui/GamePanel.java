@@ -10,6 +10,7 @@ import el.onetoone.back.Point;
 import el.onetoone.back.Status;
 import el.onetoone.back.UserBox;
 import el.onetoone.exceptions.NotLoginException;
+import el.onetoone.ui.naruto.NarutoTheme;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -20,11 +21,12 @@ import javafx.scene.image.Image;
 
 public class GamePanel extends Group {
 
-	private static final double DISTANCE = 60;
+	private double distance = 60;
 	private static final double START_Y = 100;
 	private static final double START_X = 100;
 	private static final double DIAMOND_WIDTH = 100;
 	private static final double DIAMOND_HEIGHT = 80;
+	private static final double EYE_WIDTH = 60;
 
 	private DiamondCircle[][] diamondCircles = new DiamondCircle[Config.height][Config.width];
 	private BaseDiamondGrid diamondGrid;
@@ -52,6 +54,9 @@ public class GamePanel extends Group {
 	 */
 	public GamePanel(GameMain gameMain) {
 
+		if (Config.getTheme() instanceof NarutoTheme) {
+			distance = 70;
+		}
 		this.gameMain = gameMain;
 		mode = gameMain.getMode();
 		theme = Config.getTheme();
@@ -121,10 +126,15 @@ public class GamePanel extends Group {
 				diamondCircles[i][j] = new DiamondCircle();
 				diamondCircles[i][j].setPoint(new Point(i + 2, j + 2));
 				diamondCircles[i][j].setImage(diamondImage);
-				diamondCircles[i][j].setFitWidth(DIAMOND_WIDTH);
-				diamondCircles[i][j].setFitHeight(DIAMOND_HEIGHT);
-				diamondCircles[i][j].setLayoutX(START_Y + DISTANCE * (j - 2));
-				diamondCircles[i][j].setLayoutY(START_X + DISTANCE * (i - 2));
+				if (Config.getTheme() instanceof MagicGirlTheme) {
+					diamondCircles[i][j].setFitWidth(DIAMOND_WIDTH);
+					diamondCircles[i][j].setFitHeight(DIAMOND_HEIGHT);
+				} else {
+					diamondCircles[i][j].setFitWidth(EYE_WIDTH);
+					diamondCircles[i][j].setPreserveRatio(true);
+				}
+				diamondCircles[i][j].setLayoutX(START_Y + distance * (j - 2));
+				diamondCircles[i][j].setLayoutY(START_X + distance * (i - 2));
 				this.getChildren().add(diamondCircles[i][j]);
 
 				DiamondCircle currentDiamond = diamondCircles[i][j];
@@ -171,9 +181,9 @@ public class GamePanel extends Group {
 						boolean exchangeValid = diamondGrid.executeExchangeElimination(currentDiamond.getPoint(),
 								choosedDiamond.getPoint());
 						TranslateTransition transition1 = choosedDiamond.verticalTransition(
-								(currentDiamond.getPoint().getX() - choosedDiamond.getPoint().getX()) * DISTANCE);
+								(currentDiamond.getPoint().getX() - choosedDiamond.getPoint().getX()) * distance);
 						TranslateTransition transition2 = currentDiamond.verticalTransition(
-								(choosedDiamond.getPoint().getX() - currentDiamond.getPoint().getX()) * DISTANCE);
+								(choosedDiamond.getPoint().getX() - currentDiamond.getPoint().getX()) * distance);
 
 						if (exchangeValid) {
 							exchangeDiamondCircle(currentDiamond);
@@ -204,9 +214,9 @@ public class GamePanel extends Group {
 						boolean exchangeValid = diamondGrid.executeExchangeElimination(currentDiamond.getPoint(),
 								choosedDiamond.getPoint());
 						TranslateTransition transition1 = currentDiamond.hrizontalTransition(
-								(choosedDiamond.getPoint().getY() - currentDiamond.getPoint().getY()) * DISTANCE);
+								(choosedDiamond.getPoint().getY() - currentDiamond.getPoint().getY()) * distance);
 						TranslateTransition transition2 = choosedDiamond.hrizontalTransition(
-								(currentDiamond.getPoint().getY() - choosedDiamond.getPoint().getY()) * DISTANCE);
+								(currentDiamond.getPoint().getY() - choosedDiamond.getPoint().getY()) * distance);
 
 						if (exchangeValid) {
 							exchangeDiamondCircle(currentDiamond);
@@ -262,16 +272,16 @@ public class GamePanel extends Group {
 			}
 			if (haveSpecialDiamond) {
 				parallelTransition.getChildren().add(diamondCircles[specialDiamondPosition - 2][i - 2]
-						.dropToTransition((bottom - specialDiamondPosition) * DISTANCE));
+						.dropToTransition((bottom - specialDiamondPosition) * distance));
 				while (bottom - 3 - numbersOfNull >= 0) {
 					parallelTransition.getChildren().add(diamondCircles[bottom - 3 - numbersOfNull][i - 2]
-							.dropToTransition(numbersOfNull * DISTANCE));
+							.dropToTransition(numbersOfNull * distance));
 					bottom--;
 				}
 			} else {
 				while (bottom - 2 - numbersOfNull >= 0) {
 					parallelTransition.getChildren().add(diamondCircles[bottom - 2 - numbersOfNull][i - 2]
-							.dropToTransition(numbersOfNull * DISTANCE));
+							.dropToTransition(numbersOfNull * distance));
 					bottom--;
 				}
 			}
@@ -317,8 +327,8 @@ public class GamePanel extends Group {
 		for (Point point : list) {
 			DiamondCircle temp = new DiamondCircle();
 			temp.setPoint(point);
-			temp.setLayoutY(START_X + ((point.getX() - 4) * DISTANCE));
-			temp.setLayoutX(START_Y + ((point.getY() - 4) * DISTANCE));
+			temp.setLayoutY(START_X + ((point.getX() - 4) * distance));
+			temp.setLayoutX(START_Y + ((point.getY() - 4) * distance));
 
 			Image diamondImage = null;
 			switch (diamonds[point.getX()][point.getY()].getColor().ordinal()) {
@@ -356,8 +366,14 @@ public class GamePanel extends Group {
 			}
 
 			temp.setImage(diamondImage);
-			temp.setFitHeight(DIAMOND_HEIGHT);
-			temp.setFitWidth(DIAMOND_WIDTH);
+			if (Config.getTheme() instanceof MagicGirlTheme) {
+				
+				temp.setFitHeight(DIAMOND_HEIGHT);
+				temp.setFitWidth(DIAMOND_WIDTH);
+			} else {
+				temp.setFitWidth(EYE_WIDTH);
+				temp.setPreserveRatio(true);
+			}
 
 			this.getChildren().add(temp);
 			appear.getChildren().add(temp.appearTransition());

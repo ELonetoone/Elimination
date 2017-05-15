@@ -13,7 +13,8 @@ import javafx.scene.media.MediaPlayer;
 public class NarutoTheme extends Theme {
 
 	public static final Image BG_SYN = new Image("/image/naruto/bg_syn.png");
-
+	public static final Image BG_GAME_ING = new Image("/image/naruto/bg_game_ing.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true);
+	
 	public NarutoTheme() {
 
 		// set background
