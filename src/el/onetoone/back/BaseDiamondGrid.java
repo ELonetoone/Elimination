@@ -902,6 +902,7 @@ public class BaseDiamondGrid {
 		if (UserBox.getUser() == null) {
 			throw new NotLoginException(NotLoginException.NOTLOGIN);
 		} else if (UserBox.getUser().useItem(ItemList.HAMMER)) {
+			gradeProperty.set(gradeProperty.get() + diamondMap[x][y].getGrade());
 			diamondMap[x][y] = null;
 			return true;
 		} else {
@@ -928,6 +929,7 @@ public class BaseDiamondGrid {
 			for (int i = x - 1; i <= x + 1; i++) {
 				for (int j = y - 1; j <= y + 1; j++) {
 					if (i >= 2 && i <= height + 1 && j >= 2 && j <= width + 1) {
+						gradeProperty.set(gradeProperty.get() + diamondMap[i][j].getGrade());
 						diamondMap[i][j] = null;
 					}
 				}

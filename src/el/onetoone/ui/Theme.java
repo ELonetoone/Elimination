@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 
 public abstract class Theme {
@@ -34,7 +35,7 @@ public abstract class Theme {
 	public static final Image TIP_PLUS_FIVE_S = new Image("/image/tip_plus_5s.png");
 	public static final Image TIP_PLUS_THREE_S = new Image("image/tip_plus_3s.png");
 	public static final Image TIP_PLUS_ONE_S = new Image("image/tip_plus_1s.png");
-
+	
 	protected Image ICON_INDEFINITE;
 
 	// backgroud image

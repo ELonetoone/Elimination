@@ -8,6 +8,7 @@ import el.onetoone.ui.magicgirl.MagicMaxMarkScene;
 import el.onetoone.ui.magicgirl.MagicRegisterScene;
 import el.onetoone.ui.magicgirl.MagicSettingPane;
 import el.onetoone.ui.magicgirl.MagicSyntheticPanel;
+import javafx.animation.Animation;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -86,6 +87,7 @@ public class MagicGirlTheme extends Theme {
 		Media bgm = new Media(source);
 		bgmPlayer = new MediaPlayer(bgm);
 		bgmPlayer.setAutoPlay(true);
+		bgmPlayer.setCycleCount(Animation.INDEFINITE);
 		bgmPlayer.play();
 	}
 

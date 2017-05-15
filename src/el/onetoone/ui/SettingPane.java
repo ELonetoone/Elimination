@@ -1,6 +1,8 @@
 package el.onetoone.ui;
 
+import javafx.scene.media.AudioClip;
 import el.onetoone.back.Config;
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -24,14 +26,12 @@ public abstract class SettingPane extends Pane {
 		setStyle(";-fx-background-radius: 10" + ";-fx-border-radius: 10"
 				+ ";-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1)");
 
-		closeBtn = new SystemButton(0);
-		closeBtn.setOnAction(e -> {
-			Theme.removeBlur((Pane) this.getParent());
-			((Pane) this.getParent()).getChildren().remove(this);
+		setOnMouseClicked(e -> {
+			if (e.getClickCount() == 2) {
+				((Pane) this.getParent()).getChildren().remove(this);
+			}
 		});
-		closeBtn.setLayoutX(this.getPrefWidth() - 55);
-		closeBtn.setLayoutY(10);
-
+		
 		createBackgroud();
 		createSlider();
 		addControlListener();
@@ -53,6 +53,14 @@ public abstract class SettingPane extends Pane {
 
 	private void addControlListener() {
 
+		final DoubleProperty sound = volumeSoundEffect.valueProperty();
 		volumeBGM.valueProperty().bindBidirectional(Config.getTheme().getBGMPlayer().volumeProperty());
+		sound.bindBidirectional(Config.SOUND_BOOM.volumeProperty());
+		sound.bindBidirectional(Config.SOUND_BUY_THING.volumeProperty());
+		sound.bindBidirectional(Config.SOUND_CLICK.volumeProperty());
+		sound.bindBidirectional(Config.SOUND_EL.volumeProperty());
+		sound.bindBidirectional(Config.SOUND_ITEMS.volumeProperty());
+		sound.bindBidirectional(Config.SOUND_MOVE.volumeProperty());
+		sound.bindBidirectional(Config.SOUND_WARNING.volumeProperty());
 	}
 }

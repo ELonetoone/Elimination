@@ -263,6 +263,11 @@ public class GameMain extends Pane {
 			propsImg.setImage(image);
 			propsImg.setFitWidth(PROPS_WIDTH);
 			propsImg.setPreserveRatio(true);
+			getChildren().add(propsImg);
+			
+			if (UserBox.getUser() == null) {
+				return;
+			}
 			propsImg.setOnMouseClicked(e -> {
 				
 				if (e.getClickCount() == 2) {
@@ -316,7 +321,6 @@ public class GameMain extends Pane {
 				}
 			});
 			
-			getChildren().add(propsImg);
 			
 			quantityLabel = new Label(UserBox.getUser().getMyItems().get(item).toString());
 			quantityLabel.setPrefSize(50, 30);

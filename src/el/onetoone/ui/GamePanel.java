@@ -444,6 +444,7 @@ public class GamePanel extends Group {
 					&& mode.equals(SyntheticModel.TIMELIMITED)) {
 				UserBox.getUser().setTimeLimitedMaxMark(diamondGrid.gradeProperty().get());
 			}
+			UserBox.getUser().setCoinCount(UserBox.getUser().getCoinCount() + diamondGrid.gradeProperty().get() / 10);
 			UserBox.getUser().updateUserInfo();
 		}
 		gameOver = true;
