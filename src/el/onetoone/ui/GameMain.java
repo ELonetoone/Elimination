@@ -3,11 +3,18 @@ package el.onetoone.ui;
 import el.onetoone.back.BaseDiamondGrid;
 import el.onetoone.back.Config;
 import el.onetoone.back.ItemList;
+import el.onetoone.back.UserBox;
+import el.onetoone.exceptions.NotLoginException;
+import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
@@ -26,7 +33,7 @@ public class GameMain extends Pane {
 
 	// 各种框
 	private ImageView backgroud, gameFrame, moneyFrame, timeFrame, stepFrame, scoreFrame;
-	private ImageView propsBoom, propsHammer, propsNewMap;
+	Props propsBoom, propsHammer, propsNewMap, propsOneStep, propsThreeStep, propsFiveStep, propsOneSec, propsThreeSec, propsFiveSec;
 	private ImageView timeIndefiniteImg, stepIndefiniteImg;
 	private Button backBtn, restartBtn;
 	private VBox frameBox;
@@ -113,42 +120,25 @@ public class GameMain extends Pane {
 	private void createProps() {
 
 		diamondGrid = gamePanel.getDiamondGrid();
-		propsBoom = new ImageView(Theme.PROPS_BOOM);
-		propsBoom.setFitWidth(PROPS_WIDTH);
-		propsBoom.setPreserveRatio(true);
-
-		propsHammer = new ImageView(Theme.PROPS_HAMMER);
-		propsHammer.setFitWidth(PROPS_WIDTH);
-		propsHammer.setPreserveRatio(true);
-
-		propsNewMap = new ImageView(Theme.PROPS_NEW_MAP);
-		propsNewMap.setFitWidth(PROPS_WIDTH);
-		propsNewMap.setPreserveRatio(true);
+		propsBoom = new Props(Theme.PROPS_BOOM, ItemList.BOOM);
+		propsHammer = new Props(Theme.PROPS_HAMMER, ItemList.HAMMER);
+		propsNewMap = new Props(Theme.PROPS_NEW_MAP, ItemList.NEWMAP);
+		propsOneSec = new Props(Theme.PROPS_PLUS_ONE_S, ItemList.PLUSONESECOND);
+		propsThreeSec = new Props(Theme.PROPS_PLUS_THREE_S, ItemList.PLUSTHREESECONDS);
+		propsFiveSec = new Props(Theme.PROPS_PLUS_FIVE_S, ItemList.PLUSFIVESECONDS);
+		propsOneStep = new Props(Theme.PROPS_ONE_STEP, ItemList.PLUSONESTEP);
+		propsThreeStep = new Props(Theme.PROPS_THREE_STEP, ItemList.PLUSTHREESTEPS);
+		propsFiveStep = new Props(Theme.PROPS_FIVE_STEP, ItemList.PLUSFIVESTEPS);
 
 		propPane = new TilePane();
 		propPane.setPrefColumns(2);
-		propPane.getChildren().addAll(propsBoom, propsHammer, propsNewMap);
+		propPane.getChildren().addAll(propsBoom, propsHammer, propsNewMap, propsOneSec, propsThreeSec, propsFiveSec, propsOneStep, propsThreeStep, propsFiveStep);
 		propPane.setLayoutX(Config.SCREEN_WIDTH - 250);
 		propPane.setLayoutY(80);
 		propPane.setVgap(15);
 		propPane.setHgap(15);
 
 		getChildren().add(propPane);
-
-		propsBoom.setOnMousePressed(e -> {
-			setCursor(new ImageCursor(Theme.PROPS_BOOM));
-			currentProps = ItemList.BOOM;
-		});
-
-		propsHammer.setOnMousePressed(e -> {
-			setCursor(new ImageCursor(Theme.PROPS_HAMMER));
-			currentProps = ItemList.HAMMER;
-		});
-
-		propsNewMap.setOnMousePressed(e -> {
-			setCursor(new ImageCursor(Theme.PROPS_NEW_MAP));
-			currentProps = ItemList.NEWMAP;
-		});
 	}
 
 	public void setMode(String mode) {
@@ -258,5 +248,84 @@ public class GameMain extends Pane {
 
 	public String getMode() {
 		return mode;
+	}
+	
+	class Props extends StackPane {
+		
+		private ImageView propsImg;
+		private Label quantityLabel;
+		private String item;
+		public Props(Image image, String item) {
+			
+			this.item = item;
+			
+			propsImg = new ImageView();
+			propsImg.setImage(image);
+			propsImg.setFitWidth(PROPS_WIDTH);
+			propsImg.setPreserveRatio(true);
+			propsImg.setOnMouseClicked(e -> {
+				
+				if (e.getClickCount() == 2) {
+					
+					try {
+						switch (item) {
+						case ItemList.NEWMAP:
+							diamondGrid.useGenNewMap();
+							gamePanel.repaintTheBoard();
+							updateLabel();
+							break;
+							
+						case ItemList.PLUSONESECOND:
+							diamondGrid.usePlusOneSecond();
+							updateLabel();
+							break;
+							
+						case ItemList.PLUSTHREESECONDS:
+							diamondGrid.usePlusThreeSeconds();
+							updateLabel();
+							break;
+							
+						case ItemList.PLUSFIVESECONDS:
+							diamondGrid.usePlusFiveSeconds();
+							updateLabel();
+							break;
+							
+						case ItemList.PLUSONESTEP:
+							diamondGrid.usePlusOneStep();
+							updateLabel();
+							break;
+							
+						case ItemList.PLUSTHREESTEPS:
+							diamondGrid.usePlusThreeSteps();
+							updateLabel();
+							break;
+							
+						case ItemList.PLUSFIVESTEPS:
+							diamondGrid.usePlusFiveSteps();
+							updateLabel();
+							break;
+							
+						case ItemList.BOOM:
+						case ItemList.HAMMER:
+							currentProps = item;
+							GameMain.this.setCursor(new ImageCursor(image));
+						}
+					} catch (NotLoginException e2) {
+						e2.printStackTrace();
+					}
+				}
+			});
+			
+			getChildren().add(propsImg);
+			
+			quantityLabel = new Label(UserBox.getUser().getMyItems().get(item).toString());
+			quantityLabel.setPrefSize(50, 30);
+			StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
+			getChildren().add(quantityLabel);
+		}
+		
+		public void updateLabel() {
+			quantityLabel.setText(UserBox.getUser().getMyItems().get(item).toString());
+		}
 	}
 }

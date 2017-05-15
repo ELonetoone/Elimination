@@ -100,8 +100,8 @@ public abstract class MarketScene extends Scene {
 		boom = new PropsButton(Theme.PROPS_BOOM, Theme.TIP_BOOM, ItemList.BOOM);
 		genNewMap = new PropsButton(Theme.PROPS_NEW_MAP, Theme.TIP_NEW_MAP, ItemList.NEWMAP);
 		oneSecond = new PropsButton(Theme.PROPS_PLUS_ONE_S, Theme.TIP_PLUS_ONE_S, ItemList.PLUSONESECOND);
-		threeSeconds = new PropsButton(Theme.PROPS_PLUS_THREE_S, Theme.TIP_PLUS_THREE_S, ItemList.PLUSFIVESECONDS);
-		fiveSeconds = new PropsButton(Theme.PROPS_PLUS_FIVE_S, Theme.TIP_PLUS_FIVE_S, ItemList.PLUSTENSECONDS);
+		threeSeconds = new PropsButton(Theme.PROPS_PLUS_THREE_S, Theme.TIP_PLUS_THREE_S, ItemList.PLUSTHREESECONDS);
+		fiveSeconds = new PropsButton(Theme.PROPS_PLUS_FIVE_S, Theme.TIP_PLUS_FIVE_S, ItemList.PLUSFIVESECONDS);
 		oneStep = new PropsButton(Theme.PROPS_ONE_STEP, Theme.TIP_ONE_STEP, ItemList.PLUSONESTEP);
 		threeSteps = new PropsButton(Theme.PROPS_THREE_STEP, Theme.TIP_THREE_STEP, ItemList.PLUSTHREESTEPS);
 		fiveSteps = new PropsButton(Theme.PROPS_FIVE_STEP, Theme.TIP_FIVE_STEP, ItemList.PLUSFIVESTEPS);
@@ -117,8 +117,8 @@ public abstract class MarketScene extends Scene {
 		myBoom = new PropsButton(Theme.PROPS_BOOM, Theme.TIP_BOOM, ItemList.BOOM);
 		myGenNewMap = new PropsButton(Theme.PROPS_NEW_MAP, Theme.TIP_NEW_MAP, ItemList.NEWMAP);
 		myOneSecond = new PropsButton(Theme.PROPS_PLUS_ONE_S, Theme.TIP_PLUS_ONE_S, ItemList.PLUSONESECOND);
-		myThreeSeconds = new PropsButton(Theme.PROPS_PLUS_THREE_S, Theme.TIP_PLUS_THREE_S, ItemList.PLUSFIVESECONDS);
-		myFiveSeconds = new PropsButton(Theme.PROPS_PLUS_FIVE_S, Theme.TIP_PLUS_FIVE_S, ItemList.PLUSTENSECONDS);
+		myThreeSeconds = new PropsButton(Theme.PROPS_PLUS_THREE_S, Theme.TIP_PLUS_THREE_S, ItemList.PLUSTHREESECONDS);
+		myFiveSeconds = new PropsButton(Theme.PROPS_PLUS_FIVE_S, Theme.TIP_PLUS_FIVE_S, ItemList.PLUSFIVESECONDS);
 		myOneStep = new PropsButton(Theme.PROPS_ONE_STEP, Theme.TIP_ONE_STEP, ItemList.PLUSONESTEP);
 		myThreeSteps = new PropsButton(Theme.PROPS_THREE_STEP, Theme.TIP_THREE_STEP, ItemList.PLUSTHREESTEPS);
 		myFiveSteps = new PropsButton(Theme.PROPS_FIVE_STEP, Theme.TIP_FIVE_STEP, ItemList.PLUSFIVESTEPS);
@@ -197,7 +197,7 @@ public abstract class MarketScene extends Scene {
 		((Pane) getRoot()).getChildren().addAll(shopScroll, myPropsScroll);
 	}
 
-	class PropsButton extends StackPane {
+	public class PropsButton extends StackPane {
 
 		private String item;
 		private Button propsBtn;
@@ -219,11 +219,11 @@ public abstract class MarketScene extends Scene {
 				price = 25000;
 				break;
 
-			case ItemList.PLUSFIVESECONDS:
+			case ItemList.PLUSTHREESECONDS:
 				price = 25000;
 				break;
 
-			case ItemList.PLUSTENSECONDS:
+			case ItemList.PLUSFIVESECONDS:
 				price = 50000;
 				break;
 

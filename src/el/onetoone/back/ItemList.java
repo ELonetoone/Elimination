@@ -46,11 +46,11 @@ public class ItemList {
 	/**
 	 * 价格 15000
 	 */
-	public static final String PLUSFIVESECONDS = "+5s";
+	public static final String PLUSTHREESECONDS = "+3s";
 
 	/**
 	 * 价格 25000
 	 */
-	public static final String PLUSTENSECONDS = "+10s";
+	public static final String PLUSFIVESECONDS = "+5s";
 
 }

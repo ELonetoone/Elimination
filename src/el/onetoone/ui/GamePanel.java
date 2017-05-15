@@ -138,23 +138,16 @@ public class GamePanel extends Group {
 					if (gameMain.getCurrentProps() != null) {
 						gameMain.setCursor(Cursor.DEFAULT);
 						try {
-							if (UserBox.getUser().useItem(gameMain.getCurrentProps())) {
-
-								switch (gameMain.getCurrentProps()) {
-								case ItemList.BOOM:
-									diamondGrid.useBoom(currentDiamond.getPoint());
-									break;
-
-								case ItemList.HAMMER:
-									diamondGrid.useHammer(currentDiamond.getPoint());
-									break;
-
-								case ItemList.NEWMAP:
-									diamondGrid.useGenNewMap();
-									repaintTheBoard();
-									break;
-
-								}
+							switch (gameMain.getCurrentProps()) {
+							case ItemList.BOOM:
+								diamondGrid.useBoom(currentDiamond.getPoint());
+								gameMain.propsBoom.updateLabel();
+								break;
+								
+							case ItemList.HAMMER:
+								diamondGrid.useHammer(currentDiamond.getPoint());
+								gameMain.propsHammer.updateLabel();
+								break;
 							}
 							gameMain.setCurrentProps(null);
 							paintNullToNoColor(sequentialTransition);
@@ -433,7 +426,7 @@ public class GamePanel extends Group {
 		choosedDiamond.setPoint(temp);
 	}
 
-	private void repaintTheBoard() {
+	public void repaintTheBoard() {
 		this.getChildren().clear();
 		paintDiamonds();
 	}

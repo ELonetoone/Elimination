@@ -1004,7 +1004,7 @@ public class BaseDiamondGrid {
 	public boolean usePlusOneStep() throws NotLoginException {
 		if (UserBox.getUser() == null) {
 			throw new NotLoginException(NotLoginException.NOTLOGIN);
-		} else if (UserBox.getUser().useItem(ItemList.PLUSTHREESTEPS)) {
+		} else if (UserBox.getUser().useItem(ItemList.PLUSONESTEP)) {
 			stepPlus(1);
 			return true;
 		} else {
@@ -1035,11 +1035,11 @@ public class BaseDiamondGrid {
 	 * @return
 	 * @throws NotLoginException
 	 */
-	public boolean usePlusFiveSeconds() throws NotLoginException {
+	public boolean usePlusThreeSeconds() throws NotLoginException {
 		if (UserBox.getUser() == null) {
 			throw new NotLoginException(NotLoginException.NOTLOGIN);
-		} else if (UserBox.getUser().useItem(ItemList.PLUSFIVESECONDS)) {
-			addTime(5);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSTHREESECONDS)) {
+			addTime(3);
 			return true;
 		} else {
 			return false;
@@ -1052,11 +1052,11 @@ public class BaseDiamondGrid {
 	 * @return
 	 * @throws NotLoginException
 	 */
-	public boolean usePlusTenSeconds() throws NotLoginException {
+	public boolean usePlusFiveSeconds() throws NotLoginException {
 		if (UserBox.getUser() == null) {
 			throw new NotLoginException(NotLoginException.NOTLOGIN);
-		} else if (UserBox.getUser().useItem(ItemList.PLUSTENSECONDS)) {
-			addTime(10);
+		} else if (UserBox.getUser().useItem(ItemList.PLUSFIVESECONDS)) {
+			addTime(5);
 			return true;
 		} else {
 			return false;
