@@ -22,6 +22,7 @@ public class NarutoTheme extends Theme {
 		setBG_GAME(new Image("/image/naruto/bg_game.jpg", true));
 		setBG_SIGN(new Image("/image/naruto/bg_sign.jpg", true));
 		setBG_SHOP(new Image("/image/naruto/bg_shop.png", Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, true, false, true));
+		setBG_HEIGHEST_SCORE(new Image("/image/naruto/bg_heighest_score.png", Config.SCREEN_WIDTH, Config.SCREEN_WIDTH, true, false, true));
 
 		// set diamond
 		setDIAMOND_ONE(new Image("/image/naruto/diamond_1.png"));
@@ -54,15 +55,10 @@ public class NarutoTheme extends Theme {
 		setINIT_BUTTON_TRY(new Image("/image/naruto/init_game_try.png"));
 
 		setICON_INDEFINITE(new Image("/image/naruto/icon_indefinite.png"));
-		// set frame
-		// setFRAME_GAME(new Image("/image/naruto/frame_game.png"));
-		// setFRAME_HIGHEST_SCORE(new
-		// Image("/image/naruto/frame_highest_score.png"));
-		// setFRAME_MONEY(new Image("/image/naruto/frame_money.png"));
-		// setFRAME_SIGN_IN(new Image("/image/naruto/frame_signIn.png"));
-		// setFRAME_STEP(new Image("/image/naruto/frame_step.png"));
-		// setFRAME_TIME(new Image("/image/naruto/frame_time.png"));
-
+		
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] = new Image("/image/num_" + i + ".png");
+		}
 	}
 
 	@Override
@@ -96,7 +92,7 @@ public class NarutoTheme extends Theme {
 	@Override
 	public Scene getMaxMarkScene() {
 		// TODO Auto-generated method stub
-		return null;
+		return new NarutoMaxMarkScene(new Pane(), Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT).getMaxMarkScene();
 	}
 
 	@Override
