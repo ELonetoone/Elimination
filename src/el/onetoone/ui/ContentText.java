@@ -39,7 +39,7 @@ public class ContentText extends Text {
 			@Override
 			protected Void call() throws Exception {
 				// TODO Auto-generated method stub
-				int currentTime = diamondGrid.timeProperty().get();
+//				int currentTime = diamondGrid.timeProperty().get();
 				while (diamondGrid.timeProperty().get() != 0) {
 
 					Thread.sleep(1000);

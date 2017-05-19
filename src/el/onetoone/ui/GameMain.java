@@ -7,7 +7,6 @@ import el.onetoone.back.UserBox;
 import el.onetoone.exceptions.NotLoginException;
 import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

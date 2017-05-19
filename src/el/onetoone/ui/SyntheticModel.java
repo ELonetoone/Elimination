@@ -291,6 +291,14 @@ abstract public class SyntheticModel extends Pane {
 
 	}
 
+	public MarketPanel getMarketPanel() {
+		return marketPanel;
+	}
+
+	public void setMarketPanel(MarketPanel marketPanel) {
+		this.marketPanel = marketPanel;
+	}
+
 	public class SyntheticButton extends Button {
 
 		// 加一些特效

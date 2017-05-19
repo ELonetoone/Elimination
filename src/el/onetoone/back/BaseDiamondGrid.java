@@ -86,7 +86,7 @@ public class BaseDiamondGrid {
 	 */
 	public BaseDiamondGrid(int height, int width, String mode) {
 		this(height, width);
-		this.mode = mode;
+		this.setMode(mode);
 	}
 
 	/**
@@ -1093,5 +1093,13 @@ public class BaseDiamondGrid {
 		do {
 			this.init();
 		} while (isDie() || canDirectlyEliminated());
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 }

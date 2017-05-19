@@ -56,4 +56,12 @@ public class FramePanel extends Pane {
 		backgourd.setFitWidth(getPrefWidth());
 
 	}
+
+	public ContentText getScore() {
+		return score;
+	}
+
+	public void setScore(ContentText score) {
+		this.score = score;
+	}
 }

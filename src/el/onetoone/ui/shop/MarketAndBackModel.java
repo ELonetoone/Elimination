@@ -25,7 +25,7 @@ public class MarketAndBackModel {
 	private Stage stage;
 
 	public MarketAndBackModel(Stage stage, Scene synScene) {
-		this.synScene = synScene;
+		this.setSynScene(synScene);
 		this.stage = stage;
 	}
 
@@ -55,6 +55,14 @@ public class MarketAndBackModel {
 		backButton.setLayoutY(10);
 		backButton.setOnAction(e -> {
 		});
+	}
+
+	public Scene getSynScene() {
+		return synScene;
+	}
+
+	public void setSynScene(Scene synScene) {
+		this.synScene = synScene;
 	}
 
 }

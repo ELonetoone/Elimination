@@ -1,10 +1,8 @@
 package el.onetoone.ui;
 
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import el.onetoone.back.Config;
-import el.onetoone.ui.InitialScene.InitButton;
 import el.onetoone.ui.naruto.NarutoTheme;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -117,6 +115,14 @@ public abstract class SettingPane extends Pane {
 		sound.bindBidirectional(Config.SOUND_WARNING.volumeProperty());
 	}
 	
+	public SystemButton getCloseBtn() {
+		return closeBtn;
+	}
+
+	public void setCloseBtn(SystemButton closeBtn) {
+		this.closeBtn = closeBtn;
+	}
+
 	class EffectButton extends Button {
 		
 		private DropShadow shadow;

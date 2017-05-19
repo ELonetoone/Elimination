@@ -2,6 +2,13 @@ package el.onetoone.exceptions;
 
 public class NotLoginException extends Exception {
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1104160014487169636L;
+	
+	
 	public static final String NOTLOGIN = "sadfcjkslcna";
 
 	public NotLoginException() {

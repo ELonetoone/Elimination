@@ -1,7 +1,6 @@
 package el.onetoone.back;
 
 
-import el.onetoone.ui.MagicGirlTheme;
 import el.onetoone.ui.Main;
 import el.onetoone.ui.Theme;
 import el.onetoone.ui.naruto.NarutoTheme;

@@ -36,14 +36,5 @@ public abstract class SignInPane extends Pane {
 		createPasswordArea();
 	}
 
-	private void registerButtonListener() {
 
-		signInButton.setOnAction(e -> {
-
-		});
-
-		backButton.setOnAction(e -> {
-
-		});
-	}
 }

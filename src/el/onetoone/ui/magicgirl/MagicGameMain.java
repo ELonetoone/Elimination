@@ -1,10 +1,8 @@
 package el.onetoone.ui.magicgirl;
 
 import el.onetoone.back.Config;
-import el.onetoone.ui.ContentText;
 import el.onetoone.ui.GameMain;
 import el.onetoone.ui.MagicGirlTheme;
-import el.onetoone.ui.SyntheticModel;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
