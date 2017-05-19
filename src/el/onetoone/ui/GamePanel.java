@@ -150,11 +150,13 @@ public class GamePanel extends Group {
 						try {
 							switch (gameMain.getCurrentProps()) {
 							case ItemList.BOOM:
+								Config.SOUND_BOOM.play();
 								diamondGrid.useBoom(currentDiamond.getPoint());
 								gameMain.propsBoom.updateLabel();
 								break;
 								
 							case ItemList.HAMMER:
+								Config.SOUND_EL.play();
 								diamondGrid.useHammer(currentDiamond.getPoint());
 								gameMain.propsHammer.updateLabel();
 								break;
@@ -172,6 +174,7 @@ public class GamePanel extends Group {
 						}
 						return;
 					}
+					Config.SOUND_CLICK.play();
 					if (choosedDiamond == null) {
 						choosedDiamond = currentDiamond;
 					} else if ((choosedDiamond.getPoint().getX() + 1 == currentDiamond.getPoint().getX()
@@ -286,7 +289,7 @@ public class GamePanel extends Group {
 				}
 			}
 		}
-
+		
 		parallelTransition.play();
 		AnimationTimer timer = new AnimationTimer() {
 
@@ -322,6 +325,7 @@ public class GamePanel extends Group {
 	}
 
 	private void appearDiamonds() {
+		Config.SOUND_MOVE.play();
 		ParallelTransition appear = new ParallelTransition();
 		List<Point> list = diamondGrid.generateNewDiamonds();
 		for (Point point : list) {

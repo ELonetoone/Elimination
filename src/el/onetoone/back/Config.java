@@ -17,8 +17,8 @@ public class Config {
 	public static final int SCREEN_HEIGHT = 720;
 	
 	//游戏开始的步数，时间
-	public static final int START_TIME = 60;
-	public static final int START_STEP = 2;
+	public static final int START_TIME = 90;
+	public static final int START_STEP = 50;
 	
 	//音效
 	public static final AudioClip SOUND_CLICK = new AudioClip(Main.class.getResource("sound/click.wav").toExternalForm());

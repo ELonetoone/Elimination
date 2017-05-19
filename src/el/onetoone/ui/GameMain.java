@@ -174,6 +174,7 @@ public abstract class GameMain extends Pane {
 		backBtn = new Button();
 		backBtn.setGraphic(backImg);
 		backBtn.setOnAction(e -> {
+			Config.SOUND_CLICK.play();
 			gamePanel.gameOver();
 			Config.getMain().setScene(Config.getTheme().getSynScene());
 			Config.getTheme().initBGM();
@@ -186,6 +187,7 @@ public abstract class GameMain extends Pane {
 		restartBtn = new Button();
 		restartBtn.setGraphic(restartImg);
 		restartBtn.setOnAction(e -> {
+			Config.SOUND_CLICK.play();
 			diamondGrid.gradeProperty().set(0);
 			diamondGrid.stepProperty().set(Config.START_STEP);
 			diamondGrid.timeProperty().set(Config.START_TIME);
@@ -223,43 +225,56 @@ public abstract class GameMain extends Pane {
 					try {
 						switch (item) {
 						case ItemList.NEWMAP:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.useGenNewMap();
 							gamePanel.repaintTheBoard();
 							updateLabel();
 							break;
 
 						case ItemList.PLUSONESECOND:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.usePlusOneSecond();
 							updateLabel();
 							break;
 
 						case ItemList.PLUSTHREESECONDS:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.usePlusThreeSeconds();
 							updateLabel();
 							break;
 
 						case ItemList.PLUSFIVESECONDS:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.usePlusFiveSeconds();
 							updateLabel();
 							break;
 
 						case ItemList.PLUSONESTEP:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.usePlusOneStep();
 							updateLabel();
 							break;
 
 						case ItemList.PLUSTHREESTEPS:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.usePlusThreeSteps();
 							updateLabel();
 							break;
 
 						case ItemList.PLUSFIVESTEPS:
+							Config.SOUND_ITEMS.play();
 							diamondGrid.usePlusFiveSteps();
 							updateLabel();
 							break;
 
 						case ItemList.BOOM:
+							Config.SOUND_ITEMS.play();
+							currentProps = item;
+							GameMain.this.setCursor(new ImageCursor(image));
+							break;
+							
 						case ItemList.HAMMER:
+							Config.SOUND_ITEMS.play();
 							currentProps = item;
 							GameMain.this.setCursor(new ImageCursor(image));
 						}
