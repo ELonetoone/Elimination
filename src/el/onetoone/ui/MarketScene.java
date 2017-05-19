@@ -3,6 +3,7 @@ package el.onetoone.ui;
 import java.awt.Desktop;
 import java.net.URI;
 import java.util.Map;
+import java.util.Random;
 
 import el.onetoone.back.Config;
 import el.onetoone.back.ItemList;
@@ -143,7 +144,29 @@ public abstract class MarketScene extends Scene {
 		kejinBtn.setLayoutY(Config.SCREEN_HEIGHT - 130);
 
 		kejinBtn.setOnAction(e -> {
-			String url = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE7911.jpg";
+			Config.SOUND_BUY_THING.play();
+			String url1 = "http://115.159.29.36/wp-content/uploads/2017/05/E860D85BEE735FCD143E0E97F7ADDDD2.jpg";
+			String url2 = "http://115.159.29.36/wp-content/uploads/2017/05/9A450F09BC437A429703741650C1AE7911.jpg";
+			String url3 = "http://115.159.29.36/wp-content/uploads/2017/05/06645FECD842644F3D60B1D2CE7EAE80.jpg";
+			String url4 = "http://115.159.29.36/wp-content/uploads/2017/05/82A46EF09286C3AFA15947CE58C964F0.jpg";
+			String url = null;
+			int people = new Random().nextInt(4);
+			switch (people) {
+			case 0:
+				url = url1;
+				break;
+			case 1:
+				url = url2;
+				break;
+			case 2:
+				url = url3;
+				break;
+			case 3:
+				url = url4;
+				break;
+			default:
+				url = url2;
+			}
 			URI uri = URI.create(url);
 			try {
 				Desktop desktop = Desktop.getDesktop();
@@ -280,6 +303,7 @@ public abstract class MarketScene extends Scene {
 				System.out.println("pressed");
 			});
 			propsBtn.setOnMouseClicked(e -> {
+				Config.SOUND_BUY_THING.play();
 				System.out.println("clicked");
 				if ((UserBox.getUser().getCoinCount() - price) >= 0 && e.getClickCount() == 2) {
 					UserBox.getUser().setCoinCount(UserBox.getUser().getCoinCount() - price);
