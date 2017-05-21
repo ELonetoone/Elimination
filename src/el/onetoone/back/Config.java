@@ -54,5 +54,6 @@ public class Config {
 	public static Main getMain() {
 		return Config.main;
 	}
+	
 
 }
